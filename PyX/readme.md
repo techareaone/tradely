@@ -1,4 +1,4 @@
-#PyX - Python to EXE Conversion Wizard for Windows
+# PyX - Python to EXE Conversion Wizard for Windows
 ## Built in python.
 *Stage = Prototype
 Documentation = Under Development*
