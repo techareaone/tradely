@@ -15,6 +15,39 @@
     "rich", "textual"
   ],
 
+  "copy_metadata": {
+    "sklearn":        "scikit-learn",
+    "skimage":        "scikit-image",
+    "cv2":            "opencv-python",
+    "PIL":            "Pillow",
+    "bs4":            "beautifulsoup4",
+    "yaml":           "PyYAML",
+    "docx":           "python-docx",
+    "pptx":           "python-pptx",
+    "dateutil":       "python-dateutil",
+    "jwt":            "PyJWT",
+    "nacl":           "PyNaCl",
+    "Crypto":         "pycryptodome",
+    "usb":            "pyusb",
+    "serial":         "pyserial",
+    "gi":             "PyGObject",
+    "wx":             "wxPython",
+    "OpenGL":         "PyOpenGL",
+    "attr":           "attrs",
+    "pkg_resources":  "setuptools",
+    "google":         "google-auth",
+    "grpc":           "grpcio",
+    "torch":          "torch",
+    "tensorflow":     "tensorflow",
+    "transformers":   "transformers",
+    "datasets":       "datasets",
+    "pydantic":       "pydantic",
+    "sqlalchemy":     "SQLAlchemy",
+    "cryptography":   "cryptography",
+    "shapely":        "Shapely",
+    "numba":          "numba"
+  },
+
   "hidden_imports": {
     "sklearn": [
       "sklearn.utils._cython_blas",
