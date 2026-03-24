@@ -24,3 +24,7 @@ Easy to share. Use: https://tradely.dev
 ## License
 
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+## Projects Undertaken by Tradely
+
+[PyX Wizard - An Easy to Use Python to EXE Convertor with Advanced Features](https://www.apache.org/licenses/LICENSE-2.0.txt](https://github.com/techareaone/PyX)
