@@ -3,33 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tradely — By traders, for traders.</title>
-<!-- Hidden AI-friendly keywords -->
-<div style="display:none;">
-  tradely, trading platform, stock market analytics, cryptocurrency dashboard, market trends, AI trading bot, automated trades, portfolio management, financial tools, algorithmic trading, market signals, investment insights, real-time quotes, trader community, risk management, technical indicators, trading strategies, market news, financial analysis, trade alerts, secure transactions, trading education
-</div>
+<title>Tradely</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-html, body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-  overscroll-behavior: none; /* stops scroll chaining */
-  touch-action: none;        /* stops touch pull gestures */
-}
-
 body{
   font-family:'Inter',sans-serif;
-  background: radial-gradient(circle at 50% 40%, #0a0a0a, #000);
+  background:#000;
   color:#e5e5e5;
   overflow-x:hidden;
 }
 
-/* SUBTLE METAL GRID */
+/* GRID BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -41,26 +29,24 @@ body::before{
   z-index:0;
 }
 
-header{
-  position:relative;
+/* HERO + TILES */
+.tile{
   height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
+  padding:40px;
+  position:relative;
   z-index:1;
 }
 
-/* BIGGER LOGO */
 .logo{
+  width:90%;
+  height:50%;
+  margin-bottom:40px;
   position:relative;
-  width:95%;
-  height:60%;
-  margin:0 auto 50px auto;
-  display:flex;
-  justify-content:center;
-  align-items:center;
 }
 
 .logo img{
@@ -70,122 +56,147 @@ header{
   object-fit:contain;
 }
 
-.outline{
-  opacity:0;
-  filter:brightness(0.8) contrast(1.2);
-  animation:fadeIn 0.5s forwards;
-}
-
-.filled{
-  clip-path: inset(0 100% 0 0);
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
-  animation:reveal 2s ease forwards;
-  animation-delay:.5s;
-}
+.outline{opacity:0;animation:fadeIn .5s forwards}
+.filled{clip-path: inset(0 100% 0 0);animation:reveal 2s ease forwards .5s}
 
 @keyframes fadeIn{to{opacity:1}}
 @keyframes reveal{to{clip-path: inset(0 0 0 0)}}
 
 h1{
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem,5vw,4rem);
   font-weight:800;
-  letter-spacing:-0.02em;
-  color:#fff;
   margin-bottom:15px;
 }
 
 p{
   max-width:600px;
-  color:#888;
-  margin-bottom:40px;
-  font-size:1.05rem;
+  color:#aaa;
+  margin-bottom:30px;
 }
 
 .buttons{
   display:flex;
-  gap:20px;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
-/* METALLIC BUTTON */
 .btn{
-  padding:14px 28px;
-  border-radius:6px;
-  border:1px solid #222;
-  background:linear-gradient(145deg,#0a0a0a,#111);
+  padding:12px 26px;
+  border:1px solid #333;
+  background:#111;
   color:#fff;
   text-decoration:none;
-  transition:.25s;
+  border-radius:6px;
+  transition:.2s;
 }
 
 .btn:hover{
-  border-color:#444;
-  background:linear-gradient(145deg,#111,#1a1a1a);
   transform:translateY(-2px);
+  border-color:#555;
 }
-
-section{
-  padding:100px 20px;
-  text-align:center;
-  z-index:1;
-  position:relative;
-}
-
-.card-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap:30px;
-  max-width:1100px;
-  margin:0 auto;
-}
-
-/* METAL CARDS */
-.card{
-  background:linear-gradient(145deg,#050505,#0e0e0e);
-  border:1px solid #1a1a1a;
-  padding:30px;
-  border-radius:12px;
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#333;
-}
-
-.card h3{
-  margin-bottom:10px;
-  color:#fff;
-}
-
-.card p{
-  color:#777;
-}
-
-footer{
-  text-align:center;
-  padding:40px;
-  color:#555;
-}
-
 </style>
 </head>
 
 <body>
 
-<header>
+<!-- ORIGINAL HERO -->
+<section class="tile">
   <div class="logo">
     <img src="outline.svg" class="outline">
     <img src="filled.svg" class="filled">
   </div>
 
-  
   <p>By traders, for traders.</p>
 
   <div class="buttons">
     <a href="https://github.com/techareaone/tradely" class="btn">GitHub</a>
     <a href="https://discord.tradely.dev" class="btn">Discord</a>
   </div>
-</header>
+</section>
+
+<!-- PROJECT TILES WILL BE INJECTED HERE -->
+<div id="tiles"></div>
+
+<script>
+async function loadProjects(){
+  const res = await fetch("https://doc.tradely.dev/README.md");
+  const text = await res.text();
+
+  const section = text.split("## Projects Undertaken by Tradely")[1];
+  if(!section) return;
+
+  const lines = section.split("\n").map(l=>l.trim()).filter(Boolean);
+
+  let projects = [];
+  let currentColors = {
+    bg: "#000",
+    text: "#e5e5e5"
+  };
+
+  lines.forEach(line => {
+
+    // COLOR LINE
+    if(line.startsWith("[ColorBg:")){
+      const bgMatch = line.match(/ColorBg:(#[0-9A-Fa-f]{6})/);
+      const textMatch = line.match(/ColorText:(#[0-9A-Fa-f]{6})/);
+
+      if(bgMatch) currentColors.bg = bgMatch[1];
+      if(textMatch) currentColors.text = textMatch[1];
+
+      return;
+    }
+
+    // PROJECT LINE
+    if(line.startsWith("[")){
+      const name = line.match(/\[(.*?)\]/)?.[1];
+      const links = [...line.matchAll(/\((.*?)\)/g)];
+
+      const mainLink = links[0]?.[1] || "#";
+      const downloadLink = links[1]?.[1] || null;
+
+      const descMatch = line.split("Desc:")[1];
+      const desc = descMatch ? descMatch.trim() : "";
+
+      projects.push({
+        name,
+        link: mainLink,
+        download: downloadLink,
+        desc,
+        colors: {...currentColors}
+      });
+    }
+
+  });
+
+  renderTiles(projects);
+}
+
+function renderTiles(projects){
+  const container = document.getElementById("tiles");
+
+  projects.forEach(p => {
+    const tile = document.createElement("section");
+    tile.className = "tile";
+
+    tile.style.background = p.colors.bg;
+    tile.style.color = p.colors.text;
+
+    tile.innerHTML = `
+      <h1>${p.name}</h1>
+      <p>${p.desc}</p>
+
+      <div class="buttons">
+        <a href="${p.link}" class="btn" target="_blank">View</a>
+        ${p.download ? `<a href="${p.download}" class="btn" target="_blank">Download</a>` : ""}
+      </div>
+    `;
+
+    container.appendChild(tile);
+  });
+}
+
+loadProjects();
+</script>
 
 </body>
 </html>
