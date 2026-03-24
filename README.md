@@ -27,4 +27,6 @@ Easy to share. Use: https://tradely.dev
 
 ## Projects Undertaken by Tradely
 
-[PyX Wizard - An Easy to Use Python to EXE Convertor with Advanced Features](https://github.com/techareaone/PyX)
+[PyX Wizard](https://github.com/techareaone/PyX) - [Latest Download](https://github.com/techareone/PyX/releases/latest) Desc: An Easy to Use Python to EXE Convertor with Advanced Features
+
+[ColorBg:#00008B,ColorText:#ADD8E6]:
