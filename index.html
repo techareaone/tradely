@@ -10,14 +10,20 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
+html{
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
+}
+
 body{
   font-family:'Inter',sans-serif;
   background:#000;
   color:#e5e5e5;
   overflow-x:hidden;
+  min-height:100%;
 }
 
-/* GRID BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -29,7 +35,6 @@ body::before{
   z-index:0;
 }
 
-/* HERO + TILES */
 .tile{
   height:100vh;
   display:flex;
@@ -40,17 +45,21 @@ body::before{
   padding:40px;
   position:relative;
   z-index:1;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .logo{
-  width:90%;
-  height:50%;
-  margin-bottom:40px;
   position:relative;
+  width:min(480px, 80vw);
+  height:min(200px, 25vh);
+  margin-bottom:40px;
+  flex-shrink:0;
 }
 
 .logo img{
   position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:contain;
@@ -78,6 +87,7 @@ p{
   display:flex;
   gap:15px;
   flex-wrap:wrap;
+  justify-content:center;
 }
 
 .btn{
@@ -99,7 +109,6 @@ p{
 
 <body>
 
-<!-- ORIGINAL HERO -->
 <section class="tile">
   <div class="logo">
     <img src="outline.svg" class="outline">
@@ -114,12 +123,11 @@ p{
   </div>
 </section>
 
-<!-- PROJECT TILES WILL BE INJECTED HERE -->
 <div id="tiles"></div>
 
 <script>
 async function loadProjects(){
-  const res = await fetch("https://doc.tradely.dev/README.md");
+  const res = await fetch("./README.md");
   const text = await res.text();
 
   const section = text.split("## Projects Undertaken by Tradely")[1];
@@ -128,30 +136,29 @@ async function loadProjects(){
   const lines = section.split("\n").map(l=>l.trim()).filter(Boolean);
 
   let projects = [];
-  let currentColors = {
-    bg: "#000",
-    text: "#e5e5e5"
-  };
 
   lines.forEach(line => {
 
-    // COLOR LINE
+    // Color line: [ColorBg:#xxxxxx,ColorText:#xxxxxx]: #
+    // These follow the project they style, so apply to the last pushed project
     if(line.startsWith("[ColorBg:")){
       const bgMatch = line.match(/ColorBg:(#[0-9A-Fa-f]{6})/);
       const textMatch = line.match(/ColorText:(#[0-9A-Fa-f]{6})/);
-
-      if(bgMatch) currentColors.bg = bgMatch[1];
-      if(textMatch) currentColors.text = textMatch[1];
-
+      if(projects.length > 0){
+        if(bgMatch)   projects[projects.length-1].colors.bg   = bgMatch[1];
+        if(textMatch) projects[projects.length-1].colors.text = textMatch[1];
+      }
       return;
     }
 
-    // PROJECT LINE
+    // Project line: [Name](link) - [Latest Download](link) Desc: ...
     if(line.startsWith("[")){
-      const name = line.match(/\[(.*?)\]/)?.[1];
-      const links = [...line.matchAll(/\((.*?)\)/g)];
+      const nameMatch = line.match(/^\[([^\]]+)\]/);
+      if(!nameMatch) return;
+      const name = nameMatch[1];
 
-      const mainLink = links[0]?.[1] || "#";
+      const links = [...line.matchAll(/\(([^)]+)\)/g)];
+      const mainLink     = links[0]?.[1] || "#";
       const downloadLink = links[1]?.[1] || null;
 
       const descMatch = line.split("Desc:")[1];
@@ -162,7 +169,7 @@ async function loadProjects(){
         link: mainLink,
         download: downloadLink,
         desc,
-        colors: {...currentColors}
+        colors: { bg: "#000", text: "#e5e5e5" }
       });
     }
 
@@ -177,14 +184,12 @@ function renderTiles(projects){
   projects.forEach(p => {
     const tile = document.createElement("section");
     tile.className = "tile";
-
     tile.style.background = p.colors.bg;
     tile.style.color = p.colors.text;
 
     tile.innerHTML = `
       <h1>${p.name}</h1>
       <p>${p.desc}</p>
-
       <div class="buttons">
         <a href="${p.link}" class="btn" target="_blank">View</a>
         ${p.download ? `<a href="${p.download}" class="btn" target="_blank">Download</a>` : ""}
