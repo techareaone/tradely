@@ -12,40 +12,261 @@
     "sqlalchemy", "alembic",
     "grpc", "grpcio", "protobuf",
     "pydantic", "fastapi", "uvicorn",
-    "rich", "textual"
+    "rich", "textual",
+    "numpy", "pandas", "lxml", "psutil", "pywin32",
+    "requests", "httpx", "aiohttp",
+    "paramiko", "fabric",
+    "boto3", "botocore",
+    "celery", "redis", "pymongo",
+    "pytest", "hypothesis",
+    "click", "typer",
+    "jinja2", "werkzeug",
+    "pyyaml", "toml", "tomli",
+    "arrow", "pendulum", "dateutil",
+    "openpyxl", "xlrd", "xlsxwriter",
+    "docx", "pptx",
+    "pydub", "librosa", "sounddevice",
+    "spacy", "nltk", "gensim",
+    "reportlab", "fpdf", "pypdf",
+    "scrapy", "selenium", "playwright",
+    "zmq", "pyzmq",
+    "attrs", "marshmallow",
+    "orjson", "msgpack", "msgspec",
+    "dask", "ray", "joblib",
+    "geopandas", "folium", "geopy",
+    "tqdm", "loguru", "colorama",
+    "pyautogui", "pynput", "keyboard",
+    "watchdog", "schedule", "apscheduler",
+    "dearpygui", "imgui",
+    "flet", "gradio", "streamlit",
+    "fastparquet", "pyarrow",
+    "h5py", "netCDF4", "xarray",
+    "sympy", "networkx",
+    "qrcode", "bcrypt", "passlib",
+    "pyjwt", "authlib",
+    "wmi", "comtypes",
+    "psycopg2", "asyncpg", "pymysql",
+    "motor", "mongoengine",
+    "elasticsearch",
+    "onnx", "onnxruntime",
+    "openai", "anthropic", "langchain",
+    "huggingface_hub", "diffusers",
+    "peft", "accelerate",
+    "sentence_transformers",
+    "chromadb", "faiss",
+    "yfinance", "ccxt",
+    "pyserial", "usb",
+    "pytesseract", "easyocr",
+    "moviepy", "av", "pyttsx3",
+    "pydicom", "SimpleITK",
+    "vtk", "pyvista", "trimesh", "open3d",
+    "pyodbc", "cx_Oracle",
+    "nats", "pika", "confluent_kafka",
+    "docker", "kubernetes",
+    "prometheus_client", "opentelemetry",
+    "dotenv", "dynaconf", "omegaconf",
+    "trio", "anyio",
+    "greenlet", "gevent",
+    "dill", "cloudpickle",
+    "pyotp", "certifi", "truststore",
+    "pyinstaller", "nuitka",
+    "invoke", "plumbum",
+    "httpx", "starlette",
+    "pint", "uncertainties",
+    "astropy", "biopython",
+    "imageio", "rawpy",
+    "cairosvg", "wand",
+    "tifffile", "pyarrow",
+    "polars", "vaex", "modin",
+    "xgboost", "lightgbm", "catboost",
+    "umap", "hdbscan",
+    "pyperclip", "pygetwindow",
+    "playsound", "gtts", "speech_recognition",
+    "imutils", "albumentations",
+    "nmap"
   ],
 
   "copy_metadata": {
-    "sklearn":        "scikit-learn",
-    "skimage":        "scikit-image",
-    "cv2":            "opencv-python",
-    "PIL":            "Pillow",
-    "bs4":            "beautifulsoup4",
-    "yaml":           "PyYAML",
-    "docx":           "python-docx",
-    "pptx":           "python-pptx",
-    "dateutil":       "python-dateutil",
-    "jwt":            "PyJWT",
-    "nacl":           "PyNaCl",
-    "Crypto":         "pycryptodome",
-    "usb":            "pyusb",
-    "serial":         "pyserial",
-    "gi":             "PyGObject",
-    "wx":             "wxPython",
-    "OpenGL":         "PyOpenGL",
-    "attr":           "attrs",
-    "pkg_resources":  "setuptools",
-    "google":         "google-auth",
-    "grpc":           "grpcio",
-    "torch":          "torch",
-    "tensorflow":     "tensorflow",
-    "transformers":   "transformers",
-    "datasets":       "datasets",
-    "pydantic":       "pydantic",
-    "sqlalchemy":     "SQLAlchemy",
-    "cryptography":   "cryptography",
-    "shapely":        "Shapely",
-    "numba":          "numba"
+    "sklearn":              "scikit-learn",
+    "skimage":              "scikit-image",
+    "cv2":                  "opencv-python",
+    "PIL":                  "Pillow",
+    "bs4":                  "beautifulsoup4",
+    "yaml":                 "PyYAML",
+    "docx":                 "python-docx",
+    "pptx":                 "python-pptx",
+    "dateutil":             "python-dateutil",
+    "jwt":                  "PyJWT",
+    "nacl":                 "PyNaCl",
+    "Crypto":               "pycryptodome",
+    "usb":                  "pyusb",
+    "serial":               "pyserial",
+    "gi":                   "PyGObject",
+    "wx":                   "wxPython",
+    "OpenGL":               "PyOpenGL",
+    "attr":                 "attrs",
+    "pkg_resources":        "setuptools",
+    "google":               "google-auth",
+    "grpc":                 "grpcio",
+    "torch":                "torch",
+    "tensorflow":           "tensorflow",
+    "transformers":         "transformers",
+    "datasets":             "datasets",
+    "pydantic":             "pydantic",
+    "sqlalchemy":           "SQLAlchemy",
+    "cryptography":         "cryptography",
+    "shapely":              "Shapely",
+    "numba":                "numba",
+    "zmq":                  "pyzmq",
+    "dotenv":               "python-dotenv",
+    "dateutil":             "python-dateutil",
+    "pyarrow":              "pyarrow",
+    "scipy":                "scipy",
+    "matplotlib":           "matplotlib",
+    "numpy":                "numpy",
+    "pandas":               "pandas",
+    "requests":             "requests",
+    "redis":                "redis",
+    "boto3":                "boto3",
+    "pymongo":              "pymongo",
+    "psycopg2":             "psycopg2-binary",
+    "asyncpg":              "asyncpg",
+    "pymysql":              "PyMySQL",
+    "motor":                "motor",
+    "mongoengine":          "mongoengine",
+    "elasticsearch":        "elasticsearch",
+    "openai":               "openai",
+    "anthropic":            "anthropic",
+    "langchain":            "langchain",
+    "huggingface_hub":      "huggingface-hub",
+    "diffusers":            "diffusers",
+    "peft":                 "peft",
+    "accelerate":           "accelerate",
+    "sentence_transformers":"sentence-transformers",
+    "chromadb":             "chromadb",
+    "faiss":                "faiss-cpu",
+    "yfinance":             "yfinance",
+    "ccxt":                 "ccxt",
+    "serial":               "pyserial",
+    "pytesseract":          "pytesseract",
+    "easyocr":              "easyocr",
+    "moviepy":              "moviepy",
+    "av":                   "av",
+    "pyttsx3":              "pyttsx3",
+    "pydicom":              "pydicom",
+    "SimpleITK":            "SimpleITK",
+    "vtk":                  "vtk",
+    "pyvista":              "pyvista",
+    "trimesh":              "trimesh",
+    "open3d":               "open3d",
+    "pyodbc":               "pyodbc",
+    "cx_Oracle":            "cx-Oracle",
+    "pika":                 "pika",
+    "confluent_kafka":      "confluent-kafka",
+    "docker":               "docker",
+    "kubernetes":           "kubernetes",
+    "prometheus_client":    "prometheus-client",
+    "opentelemetry":        "opentelemetry-api",
+    "dynaconf":             "dynaconf",
+    "omegaconf":            "omegaconf",
+    "trio":                 "trio",
+    "anyio":                "anyio",
+    "greenlet":             "greenlet",
+    "gevent":               "gevent",
+    "dill":                 "dill",
+    "cloudpickle":          "cloudpickle",
+    "pyotp":                "pyotp",
+    "certifi":              "certifi",
+    "plumbum":              "plumbum",
+    "httpx":                "httpx",
+    "starlette":            "starlette",
+    "pint":                 "pint",
+    "astropy":              "astropy",
+    "biopython":            "biopython",
+    "rawpy":                "rawpy",
+    "cairosvg":             "cairosvg",
+    "wand":                 "Wand",
+    "tifffile":             "tifffile",
+    "polars":               "polars",
+    "vaex":                 "vaex",
+    "modin":                "modin",
+    "xgboost":              "xgboost",
+    "lightgbm":             "lightgbm",
+    "catboost":             "catboost",
+    "umap":                 "umap-learn",
+    "hdbscan":              "hdbscan",
+    "pyperclip":            "pyperclip",
+    "pygetwindow":          "PyGetWindow",
+    "playsound":            "playsound",
+    "gtts":                 "gTTS",
+    "speech_recognition":   "SpeechRecognition",
+    "imutils":              "imutils",
+    "albumentations":       "albumentations",
+    "nmap":                 "python-nmap",
+    "loguru":               "loguru",
+    "tqdm":                 "tqdm",
+    "click":                "click",
+    "typer":                "typer",
+    "rich":                 "rich",
+    "textual":              "textual",
+    "colorama":             "colorama",
+    "paramiko":             "paramiko",
+    "fabric":               "fabric",
+    "celery":               "celery",
+    "joblib":               "joblib",
+    "ray":                  "ray",
+    "dask":                 "dask",
+    "geopandas":            "geopandas",
+    "folium":               "folium",
+    "geopy":                "geopy",
+    "arrow":                "arrow",
+    "pendulum":             "pendulum",
+    "openpyxl":             "openpyxl",
+    "xlrd":                 "xlrd",
+    "xlsxwriter":           "XlsxWriter",
+    "pydub":                "pydub",
+    "librosa":              "librosa",
+    "sounddevice":          "sounddevice",
+    "spacy":                "spacy",
+    "nltk":                 "nltk",
+    "gensim":               "gensim",
+    "reportlab":            "reportlab",
+    "fpdf":                 "fpdf2",
+    "pypdf":                "pypdf",
+    "scrapy":               "scrapy",
+    "selenium":             "selenium",
+    "playwright":           "playwright",
+    "jinja2":               "Jinja2",
+    "werkzeug":             "Werkzeug",
+    "toml":                 "toml",
+    "tomli":                "tomli",
+    "marshmallow":          "marshmallow",
+    "orjson":               "orjson",
+    "msgpack":              "msgpack",
+    "msgspec":              "msgspec",
+    "networkx":             "networkx",
+    "sympy":                "sympy",
+    "qrcode":               "qrcode",
+    "bcrypt":               "bcrypt",
+    "passlib":              "passlib",
+    "authlib":              "Authlib",
+    "wmi":                  "WMI",
+    "comtypes":             "comtypes",
+    "watchdog":             "watchdog",
+    "schedule":             "schedule",
+    "apscheduler":          "APScheduler",
+    "dearpygui":            "dearpygui",
+    "flet":                 "flet",
+    "gradio":               "gradio",
+    "streamlit":            "streamlit",
+    "h5py":                 "h5py",
+    "xarray":               "xarray",
+    "onnx":                 "onnx",
+    "onnxruntime":          "onnxruntime",
+    "pyautogui":            "pyautogui",
+    "pynput":               "pynput",
+    "keyboard":             "keyboard",
+    "nats":                 "nats-py"
   },
 
   "hidden_imports": {
@@ -85,7 +306,15 @@
       "PIL.PngImagePlugin",
       "PIL.BmpImagePlugin",
       "PIL.GifImagePlugin",
-      "PIL.TiffImagePlugin"
+      "PIL.TiffImagePlugin",
+      "PIL.WebPImagePlugin",
+      "PIL.IcoImagePlugin",
+      "PIL.PpmImagePlugin",
+      "PIL.ImageColor",
+      "PIL.ImageEnhance",
+      "PIL.ImageSequence",
+      "PIL.ImageChops",
+      "PIL.ImagePalette"
     ],
     "matplotlib": [
       "matplotlib.backends.backend_tkagg",
@@ -93,8 +322,16 @@
       "matplotlib.backends.backend_svg",
       "matplotlib.backends.backend_pdf",
       "matplotlib.backends.backend_ps",
+      "matplotlib.backends.backend_wxagg",
+      "matplotlib.backends.backend_qt5agg",
       "matplotlib.figure",
-      "matplotlib.pyplot"
+      "matplotlib.pyplot",
+      "matplotlib.colors",
+      "matplotlib.patches",
+      "matplotlib.collections",
+      "matplotlib.ticker",
+      "matplotlib.gridspec",
+      "matplotlib.animation"
     ],
     "scipy": [
       "scipy.special._ufuncs_cxx",
@@ -106,11 +343,25 @@
       "scipy.spatial.ckdtree",
       "scipy.io.matlab.mio5_utils",
       "scipy.io.matlab.streams",
-      "scipy.ndimage._ni_support"
+      "scipy.ndimage._ni_support",
+      "scipy.optimize._minpack2",
+      "scipy.optimize._zeros",
+      "scipy.stats._stats",
+      "scipy.fft._pocketfft"
     ],
     "numpy": [
       "numpy.core._methods",
-      "numpy.lib.format"
+      "numpy.lib.format",
+      "numpy.core._multiarray_umath",
+      "numpy.core._multiarray_tests",
+      "numpy.linalg.lapack_lite",
+      "numpy.fft._pocketfft_internal",
+      "numpy.random._bounded_integers",
+      "numpy.random._common",
+      "numpy.random._generator",
+      "numpy.random._mt19937",
+      "numpy.random._philox",
+      "numpy.random.mtrand"
     ],
     "pandas": [
       "pandas._libs.tslibs.timedeltas",
@@ -122,7 +373,18 @@
       "pandas._libs.tslibs.strptime",
       "pandas._libs.tslibs.parsing",
       "pandas._libs.reduction",
-      "pandas._libs.indexing"
+      "pandas._libs.indexing",
+      "pandas._libs.lib",
+      "pandas._libs.hashtable",
+      "pandas._libs.join",
+      "pandas._libs.interval",
+      "pandas._libs.missing",
+      "pandas._libs.ops",
+      "pandas._libs.reshape",
+      "pandas._libs.sparse",
+      "pandas._libs.writers",
+      "pandas.io.formats.style",
+      "pandas.plotting"
     ],
     "torch": [
       "torch._C",
@@ -132,8 +394,14 @@
       "torch.nn.functional",
       "torch.optim.adam",
       "torch.optim.sgd",
+      "torch.optim.adamw",
       "torch.utils.data.dataloader",
-      "torch.cuda"
+      "torch.cuda",
+      "torch.distributed",
+      "torch.autograd",
+      "torch.jit",
+      "torch.onnx",
+      "torch.backends.cudnn"
     ],
     "tensorflow": [
       "tensorflow.python.framework.ops",
@@ -141,7 +409,10 @@
       "tensorflow.python.ops.array_ops",
       "tensorflow.python.ops.nn_ops",
       "tensorflow.python.training.optimizer",
-      "tensorflow.python.keras.engine.training"
+      "tensorflow.python.keras.engine.training",
+      "tensorflow.python.eager.context",
+      "tensorflow.python.platform.gfile",
+      "tensorflow.python.saved_model.loader_impl"
     ],
     "cryptography": [
       "cryptography.hazmat.backends.openssl",
@@ -149,10 +420,15 @@
       "cryptography.hazmat.primitives.serialization.pkcs12",
       "cryptography.hazmat.primitives.asymmetric.rsa",
       "cryptography.hazmat.primitives.asymmetric.ec",
+      "cryptography.hazmat.primitives.asymmetric.ed25519",
       "cryptography.hazmat.primitives.ciphers.algorithms",
       "cryptography.hazmat.primitives.ciphers.modes",
       "cryptography.hazmat.primitives.hashes",
-      "cryptography.x509"
+      "cryptography.hazmat.primitives.hmac",
+      "cryptography.hazmat.primitives.kdf.pbkdf2",
+      "cryptography.hazmat.primitives.kdf.scrypt",
+      "cryptography.x509",
+      "cryptography.fernet"
     ],
     "nacl": [
       "nacl._sodium",
@@ -160,21 +436,33 @@
       "nacl.public",
       "nacl.secret",
       "nacl.signing",
-      "nacl.encoding"
+      "nacl.encoding",
+      "nacl.hash",
+      "nacl.pwhash",
+      "nacl.utils"
     ],
     "grpcio": [
       "grpc._cython.cygrpc",
-      "grpc.experimental"
+      "grpc.experimental",
+      "grpc._interceptor",
+      "grpc._channel",
+      "grpc._server",
+      "grpc._utilities",
+      "grpc.aio"
     ],
     "grpc": [
       "grpc._cython.cygrpc",
-      "grpc.experimental"
+      "grpc.experimental",
+      "grpc.aio"
     ],
     "protobuf": [
       "google.protobuf.descriptor",
       "google.protobuf.descriptor_pool",
       "google.protobuf.message_factory",
-      "google.protobuf.symbol_database"
+      "google.protobuf.symbol_database",
+      "google.protobuf.reflection",
+      "google.protobuf.json_format",
+      "google.protobuf.text_format"
     ],
     "sqlalchemy": [
       "sqlalchemy.dialects.sqlite",
@@ -183,32 +471,52 @@
       "sqlalchemy.dialects.mssql",
       "sqlalchemy.dialects.oracle",
       "sqlalchemy.ext.declarative",
-      "sqlalchemy.orm"
+      "sqlalchemy.orm",
+      "sqlalchemy.pool",
+      "sqlalchemy.event",
+      "sqlalchemy.exc",
+      "sqlalchemy.inspection",
+      "sqlalchemy.sql.sqltypes"
     ],
     "pydantic": [
       "pydantic.v1",
       "pydantic._internal._model_construction",
       "pydantic.networks",
-      "pydantic.types"
+      "pydantic.types",
+      "pydantic.fields",
+      "pydantic.validators",
+      "pydantic.config",
+      "pydantic.error_wrappers",
+      "pydantic.main"
     ],
     "shapely": [
       "shapely.geometry",
       "shapely.ops",
       "shapely.prepared",
       "shapely.geos",
-      "shapely._buildcfg"
+      "shapely._buildcfg",
+      "shapely.affinity",
+      "shapely.validation",
+      "shapely.wkt",
+      "shapely.wkb"
     ],
     "transformers": [
       "transformers.models.auto.modeling_auto",
       "transformers.models.auto.tokenization_auto",
       "transformers.pipelines",
-      "transformers.trainer"
+      "transformers.trainer",
+      "transformers.tokenization_utils_fast",
+      "transformers.feature_extraction_utils",
+      "transformers.image_processing_utils"
     ],
     "plotly": [
       "plotly.graph_objects",
       "plotly.express",
       "plotly.subplots",
-      "plotly.io"
+      "plotly.io",
+      "plotly.colors",
+      "plotly.figure_factory",
+      "plotly.offline"
     ],
     "pywin32": [
       "win32api",
@@ -216,7 +524,14 @@
       "win32gui",
       "win32process",
       "pywintypes",
-      "pythoncom"
+      "pythoncom",
+      "win32com",
+      "win32com.client",
+      "win32security",
+      "win32service",
+      "win32event",
+      "win32file",
+      "win32pipe"
     ],
     "wx": [
       "wx._core",
@@ -225,34 +540,53 @@
       "wx._misc",
       "wx.adv",
       "wx.html",
-      "wx.html2"
+      "wx.html2",
+      "wx.grid",
+      "wx.dataview",
+      "wx.stc"
     ],
     "PyQt5": [
       "PyQt5.QtCore",
       "PyQt5.QtGui",
       "PyQt5.QtWidgets",
       "PyQt5.QtNetwork",
-      "PyQt5.sip"
+      "PyQt5.sip",
+      "PyQt5.QtSvg",
+      "PyQt5.QtPrintSupport",
+      "PyQt5.QtMultimedia",
+      "PyQt5.QtWebEngineWidgets",
+      "PyQt5.QtOpenGL"
     ],
     "PyQt6": [
       "PyQt6.QtCore",
       "PyQt6.QtGui",
       "PyQt6.QtWidgets",
       "PyQt6.QtNetwork",
-      "PyQt6.sip"
+      "PyQt6.sip",
+      "PyQt6.QtSvg",
+      "PyQt6.QtPrintSupport",
+      "PyQt6.QtMultimedia",
+      "PyQt6.QtOpenGL"
     ],
     "PySide6": [
       "PySide6.QtCore",
       "PySide6.QtGui",
       "PySide6.QtWidgets",
-      "PySide6.QtNetwork"
+      "PySide6.QtNetwork",
+      "PySide6.QtSvg",
+      "PySide6.QtPrintSupport",
+      "PySide6.QtMultimedia",
+      "PySide6.QtOpenGL",
+      "PySide6.QtWebEngineWidgets"
     ],
     "cffi": [
       "cffi._cffi_backend",
       "cffi.api",
       "cffi.backend_ctypes",
       "cffi.ffiplatform",
-      "cffi.recompiler"
+      "cffi.recompiler",
+      "cffi.model",
+      "cffi.cparser"
     ],
     "numba": [
       "numba.core.typing.templates",
@@ -261,24 +595,967 @@
       "numba.np.ufunc",
       "numba.typed.typeddict",
       "numba.typed.typedlist",
-      "numba.cuda"
+      "numba.cuda",
+      "numba.np.numpy_support",
+      "numba.core.lowering"
     ],
     "lxml": [
       "lxml.etree",
       "lxml.objectify",
       "lxml._elementpath",
-      "lxml.html"
+      "lxml.html",
+      "lxml.cssselect",
+      "lxml.isoschematron",
+      "lxml.builder"
     ],
     "psutil": [
       "psutil._psutil_windows",
       "psutil._psutil_posix",
-      "psutil._pswindows"
+      "psutil._pswindows",
+      "psutil._pslinux",
+      "psutil._psosx",
+      "psutil._common"
     ],
     "pkg_resources": [
       "pkg_resources._vendor.jaraco.text",
       "pkg_resources._vendor.jaraco.context",
       "pkg_resources._vendor.jaraco.functools",
       "pkg_resources.extern"
+    ],
+    "requests": [
+      "requests.adapters",
+      "requests.auth",
+      "requests.cookies",
+      "requests.exceptions",
+      "requests.models",
+      "requests.packages",
+      "requests.sessions",
+      "requests.structures",
+      "requests.utils",
+      "urllib3",
+      "urllib3.contrib",
+      "urllib3.util",
+      "charset_normalizer",
+      "idna",
+      "certifi"
+    ],
+    "httpx": [
+      "httpx._transports.default",
+      "httpx._transports.asgi",
+      "httpx._transports.wsgi",
+      "httpcore",
+      "httpcore._async",
+      "httpcore._sync",
+      "h11"
+    ],
+    "aiohttp": [
+      "aiohttp._http_parser",
+      "aiohttp._http_writer",
+      "aiohttp._websocket",
+      "aiohttp.connector",
+      "aiohttp.client",
+      "aiohttp.server",
+      "aiohttp.web",
+      "multidict._multidict",
+      "yarl._quoting"
+    ],
+    "boto3": [
+      "boto3.s3.inject",
+      "boto3.ec2.createtags",
+      "boto3.ec2.deletetags",
+      "botocore.loaders",
+      "botocore.handlers",
+      "botocore.parsers",
+      "botocore.serialize",
+      "botocore.retryhandler",
+      "botocore.translate",
+      "botocore.utils",
+      "botocore.regions",
+      "botocore.credentials",
+      "botocore.session",
+      "botocore.configprovider",
+      "botocore.endpoint",
+      "botocore.hooks",
+      "botocore.awsrequest",
+      "botocore.httpsession",
+      "botocore.signers",
+      "botocore.auth",
+      "botocore.compat"
+    ],
+    "celery": [
+      "celery.app.builtins",
+      "celery.backends.redis",
+      "celery.backends.amqp",
+      "celery.loaders.app",
+      "celery.concurrency.prefork",
+      "celery.fixups.django",
+      "billiard.pool"
+    ],
+    "redis": [
+      "redis.client",
+      "redis.connection",
+      "redis.commands",
+      "redis.exceptions",
+      "redis.retry",
+      "redis.asyncio"
+    ],
+    "pymongo": [
+      "pymongo.network",
+      "pymongo.monitor",
+      "pymongo.pool",
+      "pymongo.periodic_executor",
+      "pymongo.topology",
+      "pymongo.auth",
+      "bson.objectid",
+      "bson.codec_options",
+      "bson.decimal128"
+    ],
+    "spacy": [
+      "spacy.lang.en",
+      "spacy.lang.de",
+      "spacy.lang.fr",
+      "spacy.lang.es",
+      "spacy.pipeline.tok2vec",
+      "spacy.pipeline.ner",
+      "spacy.pipeline.tagger",
+      "spacy.pipeline.dep_parser",
+      "spacy.pipeline.lemmatizer",
+      "spacy._ml",
+      "spacy.tokenizer",
+      "spacy.tokens"
+    ],
+    "nltk": [
+      "nltk.tokenize",
+      "nltk.stem",
+      "nltk.corpus",
+      "nltk.tag",
+      "nltk.parse",
+      "nltk.chunk",
+      "nltk.classify",
+      "nltk.sentiment",
+      "nltk.data"
+    ],
+    "pytest": [
+      "pytest",
+      "_pytest.assertion.rewrite",
+      "_pytest.cacheprovider",
+      "_pytest.capture",
+      "_pytest.config",
+      "_pytest.debugging",
+      "_pytest.fixtures",
+      "_pytest.logging",
+      "_pytest.mark",
+      "_pytest.monkeypatch",
+      "_pytest.outcomes",
+      "_pytest.python",
+      "_pytest.reports",
+      "_pytest.runner",
+      "_pytest.skipping",
+      "_pytest.terminal",
+      "_pytest.tmpdir",
+      "_pytest.unittest"
+    ],
+    "fastapi": [
+      "fastapi.applications",
+      "fastapi.routing",
+      "fastapi.exception_handlers",
+      "fastapi.openapi.docs",
+      "fastapi.openapi.utils",
+      "fastapi.security",
+      "fastapi.staticfiles",
+      "fastapi.templating",
+      "fastapi.middleware.cors",
+      "fastapi.middleware.gzip",
+      "starlette.middleware.base",
+      "starlette.responses",
+      "starlette.requests",
+      "starlette.websockets",
+      "starlette.staticfiles",
+      "starlette.templating",
+      "starlette.routing",
+      "starlette.background",
+      "starlette.testclient"
+    ],
+    "uvicorn": [
+      "uvicorn.loops.auto",
+      "uvicorn.loops.asyncio",
+      "uvicorn.loops.uvloop",
+      "uvicorn.protocols.http.auto",
+      "uvicorn.protocols.http.h11_impl",
+      "uvicorn.protocols.http.httptools_impl",
+      "uvicorn.protocols.websockets.auto",
+      "uvicorn.protocols.websockets.websockets_impl",
+      "uvicorn.protocols.websockets.wsproto_impl",
+      "uvicorn.lifespan.on",
+      "uvicorn.lifespan.off"
+    ],
+    "jinja2": [
+      "jinja2.ext",
+      "jinja2.filters",
+      "jinja2.tests",
+      "jinja2.utils",
+      "jinja2.compiler",
+      "jinja2.optimizer",
+      "jinja2.sandbox",
+      "markupsafe"
+    ],
+    "rich": [
+      "rich.console",
+      "rich.table",
+      "rich.progress",
+      "rich.panel",
+      "rich.text",
+      "rich.syntax",
+      "rich.markup",
+      "rich.logging",
+      "rich.prompt",
+      "rich.columns",
+      "rich.live",
+      "rich.spinner",
+      "rich.tree",
+      "rich.traceback"
+    ],
+    "textual": [
+      "textual.app",
+      "textual.widgets",
+      "textual.containers",
+      "textual.screen",
+      "textual.binding",
+      "textual.css.query",
+      "textual.reactive"
+    ],
+    "paramiko": [
+      "paramiko.transport",
+      "paramiko.sftp_client",
+      "paramiko.ssh_exception",
+      "paramiko.auth_handler",
+      "paramiko.rsakey",
+      "paramiko.ecdsakey",
+      "paramiko.ed25519key",
+      "paramiko.agent",
+      "paramiko.config",
+      "paramiko.proxy"
+    ],
+    "click": [
+      "click.core",
+      "click.decorators",
+      "click.exceptions",
+      "click.formatting",
+      "click.parser",
+      "click.termui",
+      "click.testing",
+      "click.types",
+      "click.utils"
+    ],
+    "typer": [
+      "typer.core",
+      "typer.main",
+      "typer.params",
+      "typer.models",
+      "typer.utils",
+      "typer.testing"
+    ],
+    "pyautogui": [
+      "pyautogui._pyautogui_win",
+      "pyautogui._pyautogui_osx",
+      "pyautogui._pyautogui_x11",
+      "pyscreeze",
+      "mouseinfo"
+    ],
+    "pynput": [
+      "pynput.keyboard._win32",
+      "pynput.keyboard._darwin",
+      "pynput.keyboard._xorg",
+      "pynput.mouse._win32",
+      "pynput.mouse._darwin",
+      "pynput.mouse._xorg"
+    ],
+    "selenium": [
+      "selenium.webdriver.chrome.webdriver",
+      "selenium.webdriver.firefox.webdriver",
+      "selenium.webdriver.edge.webdriver",
+      "selenium.webdriver.common.action_chains",
+      "selenium.webdriver.common.by",
+      "selenium.webdriver.common.keys",
+      "selenium.webdriver.support.ui",
+      "selenium.webdriver.support.expected_conditions",
+      "selenium.webdriver.remote.webelement",
+      "selenium.webdriver.remote.command"
+    ],
+    "scrapy": [
+      "scrapy.spiders",
+      "scrapy.selector",
+      "scrapy.http",
+      "scrapy.item",
+      "scrapy.loader",
+      "scrapy.exporters",
+      "scrapy.pipelines",
+      "scrapy.downloadermiddlewares",
+      "scrapy.extensions",
+      "scrapy.crawler",
+      "w3lib",
+      "parsel"
+    ],
+    "zmq": [
+      "zmq.backend.cython",
+      "zmq.backend.cython.context",
+      "zmq.backend.cython.socket",
+      "zmq.backend.cython.message",
+      "zmq.sugar",
+      "zmq.asyncio",
+      "zmq.eventloop"
+    ],
+    "dask": [
+      "dask.array.core",
+      "dask.dataframe.core",
+      "dask.bag.core",
+      "dask.distributed",
+      "dask.callbacks",
+      "dask.base",
+      "dask.threaded",
+      "dask.multiprocessing",
+      "dask.local",
+      "dask.bytes"
+    ],
+    "ray": [
+      "ray.actor",
+      "ray.remote_function",
+      "ray.runtime_context",
+      "ray.data",
+      "ray.serve",
+      "ray.tune",
+      "ray.rllib",
+      "ray._private.worker",
+      "ray._raylet"
+    ],
+    "tqdm": [
+      "tqdm.auto",
+      "tqdm.std",
+      "tqdm.notebook",
+      "tqdm.rich",
+      "tqdm.contrib",
+      "tqdm.contrib.concurrent",
+      "tqdm.contrib.logging"
+    ],
+    "loguru": [
+      "loguru._logger",
+      "loguru._defaults",
+      "loguru._datetime",
+      "loguru._colorizer",
+      "loguru._filters",
+      "loguru._handler"
+    ],
+    "geopandas": [
+      "geopandas.array",
+      "geopandas.geodataframe",
+      "geopandas.geoseries",
+      "geopandas.io.file",
+      "geopandas.io.arrow",
+      "geopandas.tools",
+      "fiona",
+      "pyproj",
+      "rtree"
+    ],
+    "openpyxl": [
+      "openpyxl.cell._cells_index",
+      "openpyxl.worksheet._read_only",
+      "openpyxl.worksheet._write_only",
+      "openpyxl.worksheet.worksheet",
+      "openpyxl.chartsheet.chartsheet",
+      "openpyxl.reader.excel",
+      "openpyxl.writer.excel",
+      "openpyxl.styles",
+      "openpyxl.drawing.image",
+      "openpyxl.chart"
+    ],
+    "reportlab": [
+      "reportlab.pdfgen.canvas",
+      "reportlab.lib.pagesizes",
+      "reportlab.lib.styles",
+      "reportlab.lib.units",
+      "reportlab.lib.colors",
+      "reportlab.platypus",
+      "reportlab.platypus.tables",
+      "reportlab.platypus.flowables",
+      "reportlab.graphics.shapes",
+      "reportlab.graphics.charts"
+    ],
+    "pydub": [
+      "pydub.audio_segment",
+      "pydub.effects",
+      "pydub.generators",
+      "pydub.silence",
+      "pydub.utils",
+      "pydub.playback"
+    ],
+    "librosa": [
+      "librosa.core",
+      "librosa.feature",
+      "librosa.display",
+      "librosa.effects",
+      "librosa.filters",
+      "librosa.onset",
+      "librosa.beat",
+      "librosa.decompose",
+      "numba.core",
+      "soundfile"
+    ],
+    "watchdog": [
+      "watchdog.observers",
+      "watchdog.observers.polling",
+      "watchdog.events",
+      "watchdog.tricks"
+    ],
+    "apscheduler": [
+      "apscheduler.schedulers.background",
+      "apscheduler.schedulers.blocking",
+      "apscheduler.schedulers.asyncio",
+      "apscheduler.triggers.cron",
+      "apscheduler.triggers.interval",
+      "apscheduler.triggers.date",
+      "apscheduler.executors.pool",
+      "apscheduler.jobstores.memory",
+      "apscheduler.jobstores.sqlalchemy"
+    ],
+    "openai": [
+      "openai._client",
+      "openai.resources",
+      "openai.types",
+      "openai._streaming",
+      "openai._models",
+      "openai._utils",
+      "httpx"
+    ],
+    "anthropic": [
+      "anthropic._client",
+      "anthropic.resources",
+      "anthropic.types",
+      "anthropic._streaming",
+      "anthropic._models",
+      "httpx"
+    ],
+    "langchain": [
+      "langchain.chains",
+      "langchain.llms",
+      "langchain.chat_models",
+      "langchain.embeddings",
+      "langchain.vectorstores",
+      "langchain.document_loaders",
+      "langchain.text_splitter",
+      "langchain.agents",
+      "langchain.memory",
+      "langchain.callbacks",
+      "langchain.schema",
+      "langchain.prompts",
+      "langchain_community",
+      "langchain_core"
+    ],
+    "chromadb": [
+      "chromadb.api",
+      "chromadb.db",
+      "chromadb.segment",
+      "chromadb.server",
+      "chromadb.types",
+      "chromadb.utils",
+      "hnswlib"
+    ],
+    "xgboost": [
+      "xgboost.core",
+      "xgboost.sklearn",
+      "xgboost.training",
+      "xgboost.callback",
+      "xgboost.compat",
+      "xgboost.plotting"
+    ],
+    "lightgbm": [
+      "lightgbm.basic",
+      "lightgbm.sklearn",
+      "lightgbm.engine",
+      "lightgbm.callback",
+      "lightgbm.compat",
+      "lightgbm.plotting"
+    ],
+    "catboost": [
+      "catboost.core",
+      "catboost._catboost",
+      "catboost.utils",
+      "catboost.eval",
+      "catboost.datasets"
+    ],
+    "polars": [
+      "polars.internals",
+      "polars.datatypes",
+      "polars.io",
+      "polars.lazy",
+      "polars.series",
+      "polars.dataframe",
+      "polars._utils"
+    ],
+    "onnxruntime": [
+      "onnxruntime.capi",
+      "onnxruntime.capi._pybind_state",
+      "onnxruntime.backend",
+      "onnxruntime.datasets"
+    ],
+    "streamlit": [
+      "streamlit.runtime",
+      "streamlit.web",
+      "streamlit.components",
+      "streamlit.elements",
+      "streamlit.delta_generator",
+      "streamlit.config",
+      "streamlit.session_state",
+      "streamlit.cache_data",
+      "streamlit.cache_resource",
+      "altair"
+    ],
+    "gradio": [
+      "gradio.components",
+      "gradio.layouts",
+      "gradio.inputs",
+      "gradio.outputs",
+      "gradio.interface",
+      "gradio.blocks",
+      "gradio.routes",
+      "gradio.themes",
+      "aiofiles",
+      "httpx",
+      "uvicorn",
+      "starlette"
+    ],
+    "bcrypt": [
+      "bcrypt._bcrypt"
+    ],
+    "passlib": [
+      "passlib.handlers.bcrypt",
+      "passlib.handlers.argon2",
+      "passlib.handlers.pbkdf2",
+      "passlib.handlers.sha2_crypt",
+      "passlib.handlers.des_crypt",
+      "passlib.crypto.digest",
+      "passlib.utils.binary",
+      "passlib.context"
+    ],
+    "qrcode": [
+      "qrcode.image.base",
+      "qrcode.image.pure",
+      "qrcode.image.svg",
+      "qrcode.image.pil",
+      "qrcode.encoder",
+      "qrcode.constants"
+    ],
+    "moviepy": [
+      "moviepy.editor",
+      "moviepy.video.io.VideoFileClip",
+      "moviepy.video.VideoClip",
+      "moviepy.video.compositing.CompositeVideoClip",
+      "moviepy.video.fx.all",
+      "moviepy.audio.AudioClip",
+      "moviepy.audio.io.AudioFileClip",
+      "imageio",
+      "imageio_ffmpeg",
+      "proglog"
+    ],
+    "pytesseract": [
+      "pytesseract.pytesseract"
+    ],
+    "easyocr": [
+      "easyocr.easyocr",
+      "easyocr.model",
+      "easyocr.utils",
+      "torch",
+      "torchvision"
+    ],
+    "wmi": [
+      "wmi",
+      "win32com.client",
+      "pywintypes",
+      "pythoncom"
+    ],
+    "comtypes": [
+      "comtypes.client",
+      "comtypes.server",
+      "comtypes.automation",
+      "comtypes.typeinfo",
+      "comtypes.connectionpoints"
+    ],
+    "pyzmq": [
+      "zmq.backend.cython",
+      "zmq.backend.cython.context",
+      "zmq.backend.cython.socket",
+      "zmq.backend.cython.message",
+      "zmq.sugar",
+      "zmq.asyncio",
+      "zmq.eventloop"
+    ],
+    "asyncpg": [
+      "asyncpg.protocol",
+      "asyncpg.protocol.protocol",
+      "asyncpg.connection",
+      "asyncpg.pool",
+      "asyncpg.cursor",
+      "asyncpg.exceptions"
+    ],
+    "psycopg2": [
+      "psycopg2._psycopg",
+      "psycopg2.extensions",
+      "psycopg2.extras",
+      "psycopg2.pool",
+      "psycopg2.sql"
+    ],
+    "networkx": [
+      "networkx.classes",
+      "networkx.algorithms",
+      "networkx.generators",
+      "networkx.readwrite",
+      "networkx.drawing",
+      "networkx.linalg"
+    ],
+    "sympy": [
+      "sympy.core",
+      "sympy.functions",
+      "sympy.solvers",
+      "sympy.matrices",
+      "sympy.geometry",
+      "sympy.calculus",
+      "sympy.printing",
+      "sympy.parsing",
+      "sympy.integrals",
+      "sympy.combinatorics",
+      "sympy.physics"
+    ],
+    "docx": [
+      "docx.oxml",
+      "docx.oxml.ns",
+      "docx.oxml.text.run",
+      "docx.oxml.text.paragraph",
+      "docx.oxml.table",
+      "docx.oxml.section",
+      "docx.table",
+      "docx.text",
+      "docx.document",
+      "docx.styles",
+      "docx.shared",
+      "docx.image"
+    ],
+    "pptx": [
+      "pptx.oxml",
+      "pptx.util",
+      "pptx.enum",
+      "pptx.dml.color",
+      "pptx.parts.chart",
+      "pptx.parts.image",
+      "pptx.parts.presentation",
+      "pptx.parts.slide",
+      "pptx.shapes.autoshape",
+      "pptx.shapes.graphfrm",
+      "pptx.shapes.picture",
+      "pptx.shapes.placeholder",
+      "pptx.shapes.table"
+    ],
+    "h5py": [
+      "h5py._hl",
+      "h5py.h5",
+      "h5py.h5f",
+      "h5py.h5g",
+      "h5py.h5d",
+      "h5py.h5a",
+      "h5py.h5t",
+      "h5py.h5s",
+      "h5py.h5p",
+      "h5py.h5r",
+      "h5py.h5z",
+      "h5py.h5ac"
+    ],
+    "pydicom": [
+      "pydicom.uid",
+      "pydicom.dataset",
+      "pydicom.datadict",
+      "pydicom.dataelem",
+      "pydicom.sequence",
+      "pydicom.filebase",
+      "pydicom.filereader",
+      "pydicom.filewriter",
+      "pydicom.handlers",
+      "pydicom.pixels",
+      "pydicom.encoders"
+    ],
+    "vtk": [
+      "vtkmodules.all",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkCommonDataModel",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkRenderingOpenGL2",
+      "vtkmodules.vtkInteractionStyle",
+      "vtkmodules.vtkIOLegacy",
+      "vtkmodules.vtkFiltersCore"
+    ],
+    "pyvista": [
+      "pyvista.core",
+      "pyvista.plotting",
+      "pyvista.utilities",
+      "pyvista.ext",
+      "vtk",
+      "vtkmodules.all"
+    ],
+    "trimesh": [
+      "trimesh.base",
+      "trimesh.creation",
+      "trimesh.io",
+      "trimesh.primitives",
+      "trimesh.repair",
+      "trimesh.scene",
+      "trimesh.transformations",
+      "trimesh.visual",
+      "trimesh.boolean"
+    ],
+    "open3d": [
+      "open3d.cpu.pybind",
+      "open3d.geometry",
+      "open3d.visualization",
+      "open3d.io",
+      "open3d.utility",
+      "open3d.pipelines"
+    ],
+    "sentence_transformers": [
+      "sentence_transformers.SentenceTransformer",
+      "sentence_transformers.models",
+      "sentence_transformers.losses",
+      "sentence_transformers.readers",
+      "sentence_transformers.evaluation",
+      "sentence_transformers.cross_encoder"
+    ],
+    "diffusers": [
+      "diffusers.models",
+      "diffusers.pipelines",
+      "diffusers.schedulers",
+      "diffusers.configuration_utils",
+      "diffusers.loaders",
+      "diffusers.optimization",
+      "diffusers.image_processor"
+    ],
+    "albumentations": [
+      "albumentations.augmentations",
+      "albumentations.core.transforms_interface",
+      "albumentations.core.composition",
+      "albumentations.pytorch",
+      "albumentations.imgaug",
+      "albumentations.random_utils",
+      "yaml"
+    ],
+    "arrow": [
+      "arrow.factory",
+      "arrow.arrow",
+      "arrow.formatter",
+      "arrow.parser",
+      "arrow.locales"
+    ],
+    "pendulum": [
+      "pendulum.datetime",
+      "pendulum.date",
+      "pendulum.time",
+      "pendulum.duration",
+      "pendulum.period",
+      "pendulum.timezone",
+      "pendulum.locales",
+      "pendulum.formatting"
+    ],
+    "marshmallow": [
+      "marshmallow.schema",
+      "marshmallow.fields",
+      "marshmallow.validate",
+      "marshmallow.decorators",
+      "marshmallow.exceptions",
+      "marshmallow.utils",
+      "marshmallow.class_registry"
+    ],
+    "orjson": [
+      "orjson"
+    ],
+    "msgspec": [
+      "msgspec._core",
+      "msgspec.json",
+      "msgspec.msgpack",
+      "msgspec.structs"
+    ],
+    "msgpack": [
+      "msgpack._cmsgpack",
+      "msgpack.fallback"
+    ],
+    "dill": [
+      "dill._dill",
+      "dill.detect",
+      "dill.pointers",
+      "dill.source",
+      "dill.temp",
+      "dill.session"
+    ],
+    "pika": [
+      "pika.adapters",
+      "pika.adapters.asyncio_connection",
+      "pika.adapters.blocking_connection",
+      "pika.adapters.select_connection",
+      "pika.channel",
+      "pika.connection",
+      "pika.credentials",
+      "pika.spec"
+    ],
+    "confluent_kafka": [
+      "confluent_kafka.cimpl",
+      "confluent_kafka.admin",
+      "confluent_kafka.avro",
+      "confluent_kafka.schema_registry"
+    ],
+    "nats": [
+      "nats.aio.client",
+      "nats.aio.subscription",
+      "nats.jetstream",
+      "nats.micro"
+    ],
+    "elasticsearch": [
+      "elasticsearch._sync.client",
+      "elasticsearch._async.client",
+      "elasticsearch.connection",
+      "elasticsearch.helpers",
+      "elastic_transport"
+    ],
+    "docker": [
+      "docker.api",
+      "docker.models",
+      "docker.transport",
+      "docker.credentials",
+      "docker.errors",
+      "docker.tls",
+      "docker.utils"
+    ],
+    "kubernetes": [
+      "kubernetes.client",
+      "kubernetes.config",
+      "kubernetes.watch",
+      "kubernetes.dynamic",
+      "kubernetes.stream"
+    ],
+    "prometheus_client": [
+      "prometheus_client.core",
+      "prometheus_client.metrics",
+      "prometheus_client.exposition",
+      "prometheus_client.registry",
+      "prometheus_client.multiprocess"
+    ],
+    "opentelemetry": [
+      "opentelemetry.trace",
+      "opentelemetry.metrics",
+      "opentelemetry.logs",
+      "opentelemetry.baggage",
+      "opentelemetry.context",
+      "opentelemetry.propagate",
+      "opentelemetry.sdk.trace",
+      "opentelemetry.sdk.metrics",
+      "opentelemetry.sdk.logs",
+      "opentelemetry.sdk.resources",
+      "opentelemetry.exporter.otlp.proto.grpc.trace_exporter",
+      "opentelemetry.instrumentation.requests"
+    ],
+    "omegaconf": [
+      "omegaconf._internal",
+      "omegaconf.basecontainer",
+      "omegaconf.dictconfig",
+      "omegaconf.listconfig",
+      "omegaconf.resolvers",
+      "omegaconf.grammar_visitor"
+    ],
+    "huggingface_hub": [
+      "huggingface_hub.file_download",
+      "huggingface_hub.hf_api",
+      "huggingface_hub.repository",
+      "huggingface_hub.snapshot_download",
+      "huggingface_hub._commit_api",
+      "huggingface_hub.utils"
+    ],
+    "faiss": [
+      "faiss.swigfaiss",
+      "faiss.extra_wrappers",
+      "faiss.loader"
+    ],
+    "yfinance": [
+      "yfinance.base",
+      "yfinance.ticker",
+      "yfinance.tickers",
+      "yfinance.download",
+      "yfinance.utils",
+      "yfinance.financials",
+      "yfinance.holders",
+      "yfinance.history",
+      "yfinance.analysis"
+    ],
+    "ccxt": [
+      "ccxt.base.exchange",
+      "ccxt.base.errors",
+      "ccxt.base.types",
+      "ccxt.async_support"
+    ],
+    "speech_recognition": [
+      "speech_recognition",
+      "pyaudio",
+      "audioread"
+    ],
+    "pyttsx3": [
+      "pyttsx3.engine",
+      "pyttsx3.driver",
+      "pyttsx3.drivers",
+      "pyttsx3.drivers.sapi5",
+      "pyttsx3.drivers.nsss",
+      "pyttsx3.drivers.espeak"
+    ],
+    "dearpygui": [
+      "dearpygui.dearpygui",
+      "dearpygui.demo"
+    ],
+    "flet": [
+      "flet.app",
+      "flet.core",
+      "flet.controls",
+      "flet_core"
+    ],
+    "trio": [
+      "trio._core",
+      "trio._channel",
+      "trio._file_io",
+      "trio._highlevel_open_tcp_listeners",
+      "trio._highlevel_open_tcp_stream",
+      "trio._highlevel_serve_listeners",
+      "trio._highlevel_socket",
+      "trio._highlevel_ssl_helpers",
+      "trio._sync",
+      "trio._threads",
+      "trio._timeouts"
+    ],
+    "anyio": [
+      "anyio._core",
+      "anyio.abc",
+      "anyio.streams",
+      "anyio.lowlevel",
+      "anyio.from_thread",
+      "anyio.to_thread"
+    ],
+    "joblib": [
+      "joblib.parallel",
+      "joblib.memory",
+      "joblib.externals.loky",
+      "joblib.externals.loky.backend",
+      "joblib.numpy_pickle",
+      "joblib.disk"
+    ],
+    "imutils": [
+      "imutils.convenience",
+      "imutils.contours",
+      "imutils.edge",
+      "imutils.face_utils",
+      "imutils.feature",
+      "imutils.object_detection",
+      "imutils.paths",
+      "imutils.perspective",
+      "imutils.video"
     ]
   },
 
@@ -288,7 +1565,12 @@
       "sklearn", "scikit-learn", "statsmodels", "xgboost", "lightgbm",
       "catboost", "numba", "sympy", "networkx", "pyarrow", "polars",
       "dask", "vaex", "modin", "cupy", "bottleneck", "numexpr",
-      "tables", "h5py", "netCDF4", "xarray", "zarr"
+      "tables", "h5py", "netCDF4", "xarray", "zarr", "pint",
+      "uncertainties", "astropy", "biopython", "pymc", "arviz",
+      "bambi", "formulaic", "patsy", "pingouin", "researchpy",
+      "missingno", "pandas-profiling", "ydata-profiling", "sweetviz",
+      "great-expectations", "pandera", "cerberus", "fastparquet",
+      "openpyxl", "xlrd", "xlsxwriter"
     ],
 
     "Machine Learning / AI": [
@@ -297,14 +1579,30 @@
       "peft", "trl", "sentence_transformers", "spacy", "nltk", "gensim",
       "fastai", "lightning", "ignite", "onnx", "onnxruntime",
       "openai", "anthropic", "langchain", "llama_index", "haystack",
-      "chromadb", "faiss", "annoy", "umap", "hdbscan"
+      "chromadb", "faiss", "annoy", "umap", "hdbscan",
+      "huggingface_hub", "timm", "torchvision", "torchaudio",
+      "torchtext", "einops", "albumentations", "imgaug",
+      "optuna", "hyperopt", "ray", "mlflow", "wandb", "comet_ml",
+      "bentoml", "seldon", "triton", "gradio", "streamlit",
+      "shap", "lime", "eli5", "interpret",
+      "imbalanced-learn", "category-encoders", "feature-engine",
+      "auto-sklearn", "autokeras", "pycaret",
+      "sktime", "darts", "prophet", "statsforecast",
+      "gluonts", "neuralforecast", "tslearn",
+      "stable-baselines3", "gym", "gymnasium", "rl-coach"
     ],
 
     "Image Processing": [
       "PIL", "Pillow", "cv2", "imageio", "skimage", "scikit-image",
       "rawpy", "imagecodecs", "tifffile", "pydicom", "SimpleITK",
       "mahotas", "pyvips", "wand", "cairosvg", "svglib",
-      "pdf2image", "pytesseract", "easyocr"
+      "pdf2image", "pytesseract", "easyocr",
+      "imutils", "albumentations", "imgaug", "kornia",
+      "rasterio", "gdal", "osgeo",
+      "svgwrite", "reportlab", "fpdf", "fpdf2",
+      "qrcode", "python-barcode", "pyzbar",
+      "turbojpeg", "pyheif", "pillow-heif",
+      "openslide-python", "large-image"
     ],
 
     "Web": [
@@ -316,13 +1614,22 @@
       "werkzeug", "itsdangerous",
       "beautifulsoup4", "bs4", "lxml", "html5lib", "cssselect",
       "scrapy", "mechanize", "playwright", "selenium", "pyppeteer",
-      "grpc", "grpcio", "protobuf", "thrift"
+      "grpc", "grpcio", "protobuf", "thrift",
+      "websockets", "websocket-client", "socketio", "python-socketio",
+      "httpretty", "responses", "respx", "vcrpy",
+      "curl-cffi", "tls-client", "cloudscraper",
+      "httptools", "h11", "h2", "wsproto",
+      "certifi", "truststore", "pyOpenSSL",
+      "parsel", "w3lib", "cssutils"
     ],
 
     "REST / API": [
       "fastapi", "flask_restful", "flask_restx",
       "apispec", "flasgger", "connexion", "hug",
-      "httpretty", "responses", "respx", "vcrpy"
+      "httpretty", "responses", "respx", "vcrpy",
+      "marshmallow", "pydantic", "attrs",
+      "openapi-core", "openapi-spec-validator",
+      "swagger-ui-bundle", "redoc"
     ],
 
     "Database": [
@@ -335,7 +1642,12 @@
       "influxdb", "influxdb-client",
       "neo4j", "py2neo",
       "tinydb", "peewee", "pony",
-      "cx_Oracle", "pyodbc", "pypika"
+      "cx_Oracle", "pyodbc", "pypika",
+      "cassandra-driver", "aioredis", "fakeredis",
+      "motor", "odmantic", "mongomock",
+      "couchdb", "pycouchdb",
+      "clickhouse-driver", "duckdb", "sqlite-utils",
+      "dataset", "records", "ormar"
     ],
 
     "GUI": [
@@ -346,21 +1658,31 @@
       "pygame", "pyglet", "arcade",
       "dearpygui", "imgui", "pyimgui",
       "flet", "nicegui", "gradio", "streamlit", "panel", "dash",
-      "pywebview", "eel"
+      "pywebview", "eel",
+      "toga", "briefcase",
+      "tkdnd", "tkintertable", "tksheet",
+      "pySimpleGUI", "PySimpleGUI", "FreeSimpleGUI"
     ],
 
     "Graphics / OpenGL": [
       "OpenGL", "glfw", "moderngl", "vispy",
       "pyopengl", "pyopengl-accelerate",
       "glm", "pyrr", "trimesh", "pyvista", "open3d",
-      "vtk", "mayavi", "glumpy"
+      "vtk", "mayavi", "glumpy",
+      "vedo", "k3d", "ipyvolume",
+      "pyrender", "pyosmesa", "pyglfw",
+      "sfml", "raylib", "pygames"
     ],
 
     "Async": [
       "asyncio", "trio", "anyio", "curio",
       "aiofiles", "aiohttp", "aiobotocore", "aiopg",
       "aioredis", "aiokafka", "aiomysql",
-      "twisted", "gevent", "eventlet"
+      "twisted", "gevent", "eventlet",
+      "asyncpg", "aiomysql", "aiosqlite",
+      "httpx", "uvicorn", "starlette",
+      "greenlet", "uvloop",
+      "asyncer", "fastapi"
     ],
 
     "Networking": [
@@ -368,7 +1690,12 @@
       "paramiko", "fabric", "netmiko", "napalm",
       "scapy", "dpkt", "pyshark",
       "zeromq", "zmq", "pyzmq", "nanomsg", "pynng",
-      "nmap", "python-nmap"
+      "nmap", "python-nmap",
+      "impacket", "netifaces", "psutil",
+      "requests", "httpx", "aiohttp",
+      "dnspython", "pysnmp",
+      "ftplib", "ftputil", "pysftp",
+      "ping3", "pythonping"
     ],
 
     "Messaging / Queue": [
@@ -376,7 +1703,9 @@
       "pika", "aio_pika", "kombu", "celery",
       "nats", "nats-py",
       "redis", "rq", "dramatiq",
-      "azure-servicebus", "google-cloud-pubsub"
+      "azure-servicebus", "google-cloud-pubsub",
+      "huey", "arq", "taskiq",
+      "apscheduler", "schedule"
     ],
 
     "Security / Cryptography": [
@@ -385,7 +1714,11 @@
       "pyjwt", "python-jose", "authlib",
       "pyotp", "qrcode",
       "paramiko", "pycryptodome", "Crypto",
-      "certifi", "truststore"
+      "certifi", "truststore",
+      "pyOpenSSL", "ssl", "secrets",
+      "itsdangerous", "fernet",
+      "keyring", "secretstorage",
+      "bandit", "safety"
     ],
 
     "File Formats": [
@@ -399,7 +1732,14 @@
       "csvkit", "tabulate", "prettytable",
       "chardet", "charset-normalizer", "ftfy",
       "pyarrow", "fastparquet",
-      "py7zr", "rarfile", "patool"
+      "py7zr", "rarfile", "patool",
+      "h5py", "netCDF4", "zarr", "hdf5plugin",
+      "pydicom", "nibabel",
+      "eyed3", "mutagen", "tinytag",
+      "pillow", "rawpy", "imageio", "tifffile",
+      "svglib", "cairosvg", "pypdf",
+      "markdown", "mistune", "sphinx",
+      "docutils", "rst2pdf"
     ],
 
     "CLI / Terminal": [
@@ -407,7 +1747,11 @@
       "rich", "textual", "prompt_toolkit", "questionary",
       "colorama", "termcolor", "blessed", "urwid",
       "tqdm", "alive_progress", "enlighten", "progressbar2",
-      "loguru", "structlog", "logbook"
+      "loguru", "structlog", "logbook",
+      "argparse", "plumbum", "invoke", "fabric",
+      "pexpect", "ptyprocess",
+      "tabulate", "prettytable", "texttable",
+      "consolemenu", "pick", "beaupy"
     ],
 
     "Testing": [
@@ -416,7 +1760,13 @@
       "mock", "responses", "httpretty",
       "coverage", "pytest-cov",
       "selenium", "playwright", "pyppeteer", "helium",
-      "locust"
+      "locust",
+      "pytest-asyncio", "pytest-mock", "pytest-xdist",
+      "pytest-benchmark", "pytest-timeout",
+      "freezegun", "time-machine", "moto",
+      "respx", "vcrpy", "aioresponses",
+      "mongomock", "fakeredis",
+      "appium", "pywinauto", "pyautogui"
     ],
 
     "DevOps / Cloud": [
@@ -425,13 +1775,21 @@
       "google-cloud-storage", "google-cloud-bigquery", "google-auth",
       "kubernetes", "docker",
       "paramiko", "fabric",
-      "prometheus_client", "opentelemetry", "datadog"
+      "prometheus_client", "opentelemetry", "datadog",
+      "ansible", "pulumi", "cdktf",
+      "terraform-cdk", "aws-cdk-lib",
+      "sagemaker", "google-cloud-aiplatform",
+      "mlflow", "wandb", "comet-ml",
+      "prefect", "airflow", "dagster", "luigi",
+      "dvc", "great-expectations"
     ],
 
     "Date / Time": [
       "arrow", "pendulum", "dateutil", "python-dateutil",
       "pytz", "babel",
-      "dateparser", "humanize"
+      "dateparser", "humanize",
+      "zoneinfo", "whenever", "tempo",
+      "maya", "moment"
     ],
 
     "Serialisation": [
@@ -439,32 +1797,50 @@
       "dataclasses_json", "dacite",
       "msgpack", "msgspec", "orjson", "ujson", "simplejson",
       "dill", "cloudpickle",
-      "protobuf", "avro", "fastavro", "thrift"
+      "protobuf", "avro", "fastavro", "thrift",
+      "pickle", "shelve",
+      "cbor2", "bson", "toml", "yaml"
     ],
 
     "Configuration": [
       "python-dotenv", "dotenv", "dynaconf", "decouple",
       "hydra", "omegaconf",
-      "environs", "pydantic-settings"
+      "environs", "pydantic-settings",
+      "confuse", "configobj", "configparser",
+      "platformdirs", "appdirs",
+      "keyring", "toml", "yaml"
     ],
 
     "Packaging / Distribution": [
       "setuptools", "wheel", "build", "flit", "hatch",
       "twine", "nuitka", "cx_Freeze", "py2exe", "pyinstaller",
-      "briefcase", "py2app"
+      "briefcase", "py2app",
+      "poetry", "pdm", "pip-tools",
+      "virtualenv", "venv", "conda",
+      "importlib_resources", "importlib_metadata",
+      "pkg_resources"
     ],
 
     "Concurrency": [
       "threading", "multiprocessing",
       "joblib", "loky", "ray", "dask",
-      "gevent", "eventlet", "greenlet"
+      "gevent", "eventlet", "greenlet",
+      "concurrent.futures", "asyncio",
+      "trio", "anyio", "curio",
+      "uvloop", "aiomultiprocess"
     ],
 
     "Parsing / NLP": [
       "spacy", "nltk", "gensim", "textblob",
       "transformers", "tokenizers",
       "pyparsing", "lark", "parso", "antlr4",
-      "ply", "sly", "tatsu"
+      "ply", "sly", "tatsu",
+      "stanza", "flair", "allennlp",
+      "huggingface_hub", "sentence_transformers",
+      "langdetect", "langid", "fasttext",
+      "polyglot", "pattern",
+      "pypdf", "pdfplumber", "camelot-py",
+      "pdfminer.six", "tika"
     ],
 
     "Audio / Video": [
@@ -472,14 +1848,25 @@
       "librosa", "aubio",
       "moviepy", "ffmpeg-python", "av",
       "python-vlc",
-      "speech_recognition", "pyttsx3", "gtts"
+      "speech_recognition", "pyttsx3", "gtts",
+      "playsound", "pygame", "pyglet",
+      "whisper", "openai-whisper",
+      "deepspeech", "TTS",
+      "noisereduce", "spleeter",
+      "mutagen", "eyed3", "tinytag",
+      "imageio-ffmpeg", "imageio"
     ],
 
     "Geospatial": [
       "shapely", "fiona", "pyproj", "rtree",
       "geopandas", "rasterio", "gdal", "osgeo",
       "folium", "contextily", "cartopy",
-      "geopy", "h3"
+      "geopy", "h3",
+      "pyepsg", "pymap3d", "pyproj",
+      "movingpandas", "skmob",
+      "osmnx", "networkx",
+      "keplergl", "deck.gl",
+      "ipyleaflet", "ipywidgets"
     ],
 
     "Finance": [
@@ -487,7 +1874,13 @@
       "ccxt", "pycoingecko",
       "ta", "talib", "pandas-ta",
       "backtrader", "bt", "vectorbt",
-      "QuantLib"
+      "QuantLib", "pyfolio",
+      "zipline-reloaded", "alphalens-reloaded",
+      "ffn", "empyrical", "pyfinance",
+      "nasdaq-data-link", "quandl",
+      "ibapi", "ib-insync",
+      "alpaca-trade-api", "polygon-api-client",
+      "robin-stocks", "webull"
     ],
 
     "Automation / OS": [
@@ -495,7 +1888,63 @@
       "psutil", "pywin32", "win32api", "win32con", "win32gui",
       "wmi", "comtypes",
       "watchdog", "schedule", "apscheduler",
-      "sh", "plumbum", "invoke", "fabric"
+      "sh", "plumbum", "invoke", "fabric",
+      "pyperclip", "pygetwindow", "pywinauto",
+      "send2trash", "pathlib", "glob",
+      "pexpect", "ptyprocess",
+      "pyobjc", "AppKit", "Cocoa",
+      "xdotool", "wnck", "ewmh",
+      "uiautomation", "comtypes"
+    ],
+
+    "Scientific / Engineering": [
+      "scipy", "numpy", "sympy", "numba",
+      "astropy", "biopython", "rdkit",
+      "pint", "uncertainties",
+      "fenics", "fipy", "deap",
+      "pyomo", "cvxpy", "pulp",
+      "scikit-optimize", "optuna", "hyperopt",
+      "lmfit", "iminuit",
+      "mendeleev", "periodictable",
+      "obspy", "pyproj", "astropy",
+      "qutip", "pennylane", "cirq", "qiskit"
+    ],
+
+    "Web Scraping": [
+      "scrapy", "selenium", "playwright", "pyppeteer",
+      "beautifulsoup4", "bs4", "lxml",
+      "requests-html", "mechanize",
+      "httpx", "requests", "aiohttp",
+      "parsel", "w3lib", "cssselect",
+      "html5lib", "cssutils",
+      "curl-cffi", "tls-client", "cloudscraper",
+      "dryscrape", "splash", "helium"
+    ],
+
+    "Document Processing": [
+      "python-docx", "docx", "docx2txt", "docxtpl",
+      "python-pptx", "pptx",
+      "openpyxl", "xlrd", "xlsxwriter",
+      "pypdf", "pypdf2", "pdfplumber", "pdfminer.six",
+      "reportlab", "fpdf", "fpdf2", "weasyprint",
+      "camelot-py", "tabula-py",
+      "pytesseract", "easyocr",
+      "markdown", "mistune", "docutils",
+      "rst2pdf", "sphinx", "pdoc",
+      "jinja2", "mako"
+    ],
+
+    "IoT / Hardware": [
+      "pyserial", "serial",
+      "usb", "pyusb", "libusb",
+      "RPi.GPIO", "gpiozero", "pigpio",
+      "smbus2", "spidev", "i2c-tools",
+      "paho-mqtt", "gmqtt",
+      "modbus", "pymodbus", "minimalmodbus",
+      "can", "python-can",
+      "hid", "hidapi",
+      "pyzmq", "zmq",
+      "bleak", "bluepy", "gatt"
     ]
   }
 }
