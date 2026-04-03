@@ -31,3 +31,7 @@ Easy to share. Use: https://tradely.dev
 [Quiver CongressReport](https://github.com/techareaone/CongressReport) - [Latest Download](https://github.com/techareaone/CongressReport) Desc: A standalone Python daemon that monitors U.S. Congress stock trades via the Quiver Quantitative API and sends real‑time notifications to a Discord channel.
 
 [ColorBg:#8B0000,ColorText:#FFFFFF]: #
+
+[DiscRSS](https://github.com/techareaone/DiscRSS) - [Latest Download](https://github.com/techareaone/DiscRSS) Desc: A standalone Python daemon that monitors RSS and Atom feeds and sends rich embed notifications to Discord channels via webhooks.
+
+[ColorBg:#39FF14,ColorText:#000000]: #
