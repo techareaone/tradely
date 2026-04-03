@@ -27,3 +27,7 @@ Easy to share. Use: https://tradely.dev
 [PyX Wizard](https://github.com/techareaone/PyX) - [Latest Download](https://github.com/techareaone/PyX/releases/latest) Desc: An Easy to Use Python to EXE Convertor with Advanced Features
 
 [ColorBg:#00008B,ColorText:#ADD8E6]: #
+
+[Quiver CongressReport](https://github.com/techareaone/CongressReport) - [Latest Download](https://github.com/techareaone/CongressReport) Desc: A standalone Python daemon that monitors U.S. Congress stock trades via the Quiver Quantitative API and sends real‑time notifications to a Discord channel.
+
+[ColorBg:#8B0000,ColorText:#FFFFFF]: #
