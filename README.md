@@ -35,3 +35,7 @@ Easy to share. Use: https://tradely.dev
 [DiscRSS](https://github.com/techareaone/DiscRSS) - [Latest Download](https://github.com/techareaone/DiscRSS) Desc: A standalone Python daemon that monitors RSS and Atom feeds and sends rich embed notifications to Discord channels via webhooks.
 
 [ColorBg:#006400,ColorText:#90EE90]: #
+
+[TradeChart](https://github.com/techareaone/TradeChart) - [Latest Download](https://github.com/techareaone/TradeChart) Desc: A standalone Python daemon that monitors RSS and Atom feeds and sends rich embed notifications to Discord channels via webhooks.
+
+[ColorBg#DAFFD5,ColorText:#C43D5A]: #
