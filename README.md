@@ -36,6 +36,6 @@ Easy to share. Use: https://tradely.dev
 
 [ColorBg:#006400,ColorText:#90EE90]: #
 
-[TradeChart](https://github.com/techareaone/TradeChart) - [Latest Download](https://github.com/techareaone/TradeChart) Desc: A standalone Python daemon that monitors RSS and Atom feeds and sends rich embed notifications to Discord channels via webhooks.
+[TradeChart](https://github.com/techareaone/TradeChart) - [Latest Download](https://github.com/techareaone/TradeChart) Desc: An easy stock graph visualiser python library.
 
 [ColorBg#DAFFD5,ColorText:#C43D5A]: #
