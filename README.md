@@ -38,4 +38,4 @@ Easy to share. Use: https://tradely.dev
 
 [TradeChart](https://github.com/techareaone/TradeChart) - [Latest Download](https://github.com/techareaone/TradeChart) Desc: An easy stock graph visualiser python library.
 
-[ColorBg#DAFFD5,ColorText:#C43D5A]: #
+[ColorBg:#DAFFD5,ColorText:#C43D5A]: #
