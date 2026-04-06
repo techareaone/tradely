@@ -102,7 +102,7 @@
         .support-link:hover {
             color: #fff;
         }
-        .invite-placeholder {
+        .invite-btn {
             background: var(--discord-blurple);
             border: none;
             padding: 8px 22px;
@@ -113,8 +113,10 @@
             color: white;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-        .invite-placeholder:hover {
+        .invite-btn:hover {
             background: var(--discord-blurple-hover);
             transform: translateY(-2px);
         }
@@ -126,7 +128,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 48px;
-            padding: 50px 0 40px;
+            padding: 60px 0 40px;
         }
         .hero-left {
             flex: 1.2;
@@ -165,34 +167,6 @@
         .btn-secondary:hover {
             background: #383a40;
             transform: translateX(3px);
-        }
-
-        /* avatar showcase */
-        .avatar-showcase {
-            flex: 0.9;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .avatar-card {
-            background: var(--discord-card);
-            border-radius: 48px;
-            padding: 16px;
-            transition: all 0.3s ease;
-            animation: floatVertical 4s infinite alternate ease-in-out;
-            border: 1px solid rgba(88,101,242,0.3);
-        }
-        .avatar-card img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 36px;
-            display: block;
-        }
-        @keyframes floatVertical {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-12px); }
         }
 
         /* features grid */
@@ -287,17 +261,9 @@
             font-size: 0.8rem;
             color: var(--discord-muted);
         }
-        .dev-note {
-            background: #1b1d21;
-            padding: 6px 14px;
-            border-radius: 60px;
-            font-family: monospace;
-            font-size: 0.7rem;
-        }
 
         @media (max-width: 780px) {
             .hero-left h1 { font-size: 2rem; }
-            .avatar-card img { width: 110px; height: 110px; }
         }
     </style>
 </head>
@@ -314,11 +280,11 @@
         </div>
         <div class="nav-links">
             <a href="https://discord.tradely.dev" target="_blank" class="support-link">Support Discord</a>
-            <button class="invite-placeholder" id="inviteBtn">Invite Bot</button>
+            <a href="https://discord.com/oauth2/authorize?client_id=1490113211729445165" target="_blank" class="invite-btn">Invite Bot</a>
         </div>
     </div>
 
-    <!-- Hero -->
+    <!-- Hero (no avatar showcase) -->
     <div class="hero">
         <div class="hero-left">
             <h1>Financial charts,<br>straight to Discord</h1>
@@ -326,16 +292,8 @@
                 Real-time stock, crypto & forex charts. Compare assets, set permissions, and let your community trade smarter.
             </p>
             <div class="hero-buttons">
-                <button class="invite-placeholder" id="heroInviteBtn" style="background:#4752c4;">Add to Server</button>
+                <a href="https://discord.com/oauth2/authorize?client_id=1490113211729445165" target="_blank" class="invite-btn" style="background:#4752c4;">Add to Server</a>
                 <a href="#features" class="btn-secondary">Explore commands</a>
-            </div>
-        </div>
-        <div class="avatar-showcase">
-            <div class="avatar-card">
-                <img src="./TradeChartPFP.gif" alt="TradeChart animated avatar" onerror="this.onerror=null; this.src='https://placehold.co/150x150/2b2d31/5865f2?text=GIF'">
-            </div>
-            <div class="avatar-card">
-                <img src="./TradeChartPFP.png" alt="TradeChart static avatar" onerror="this.onerror=null; this.src='https://placehold.co/150x150/2b2d31/5865f2?text=PNG'">
             </div>
         </div>
     </div>
@@ -380,7 +338,7 @@
         </div>
     </div>
 
-    <!-- Demo note & library info -->
+    <!-- Library & community info -->
     <div style="display: flex; gap: 24px; flex-wrap: wrap; margin: 40px 0 20px;">
         <div class="feature-card" style="flex:1; background:#1e1f22;">
             <div class="feature-icon"><i class="fab fa-python"></i></div>
@@ -398,10 +356,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        <div>TradeChart demo — powered by Tradely</div>
-        <div class="dev-note">
-            <i class="fas fa-code"></i> Development preview — invite button is a [placeholder]
-        </div>
+        <div>TradeChart demo</div>
         <div>No user tracking · open source</div>
     </div>
 </div>
@@ -410,15 +365,6 @@
     // Logo click -> doc.tradely.dev
     document.getElementById('logoLink').addEventListener('click', () => {
         window.open('https://doc.tradely.dev', '_blank');
-    });
-
-    // Invite button placeholder (alert only)
-    const inviteBtns = document.querySelectorAll('#inviteBtn, #heroInviteBtn');
-    inviteBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('[Placeholder] Invite link will be available after final review.\nYou can self‑host the bot from GitHub.');
-        });
     });
 
     // Intersection Observer for feature cards
@@ -458,7 +404,7 @@
         scroller.style.cursor = 'grab';
     }
 
-    // Manually trigger visible on already visible cards (just in case)
+    // Ensure visible class on cards that are already visible
     setTimeout(() => {
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
