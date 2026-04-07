@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Tradely • animated showcase</title>
+<title>Tradely • animated projects</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,800&display=swap" rel="stylesheet">
 <style>
   * {
@@ -27,6 +27,7 @@
     min-height: 100%;
   }
 
+  /* animated grid background */
   body::before {
     content: "";
     position: fixed;
@@ -69,6 +70,7 @@
     transform: translateY(0) scale(1);
   }
 
+  /* background image overlay */
   .tile[data-bgimage]::before {
     content: "";
     position: absolute;
@@ -150,6 +152,7 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   }
 
+  /* hero logo tile */
   .logo-tile .logo {
     position: relative;
     width: min(500px, 80vw);
@@ -204,6 +207,7 @@
 </head>
 <body>
 
+<!-- Hero tile with animated logo -->
 <section class="tile logo-tile" id="heroTile">
   <div class="logo">
     <img src="outline.svg" class="outline" alt="Tradely outline">
@@ -237,6 +241,7 @@
     let projects = [];
     let currentProject = null;
 
+    // Parse a project definition line: [Name](link) - [Download](link) Desc: ...
     function parseProjectLine(line) {
       const nameMatch = line.match(/^\[([^\]]+)\]/);
       if (!nameMatch) return null;
@@ -255,53 +260,62 @@
       };
     }
 
-    function processDirective(line, project) {
-      // strip leading '#' and optional space
-      let clean = line.replace(/^#\s*/, '');
+    // Process a directive string (content inside brackets before `]: #`)
+    function processDirective(directive, project) {
       // Color directive
-      if (clean.includes("ColorBg:") || clean.includes("ColorText:")) {
-        const bgMatch = clean.match(/ColorBg:([#0-9A-Fa-f]{6})/);
-        const textMatch = clean.match(/ColorText:([#0-9A-Fa-f]{6})/);
+      if (directive.includes("ColorBg:") || directive.includes("ColorText:")) {
+        const bgMatch = directive.match(/ColorBg:([#0-9A-Fa-f]{6})/);
+        const textMatch = directive.match(/ColorText:([#0-9A-Fa-f]{6})/);
         if (bgMatch) project.colors.bg = bgMatch[1];
         if (textMatch) project.colors.text = textMatch[1];
       }
       // Background image directive
-      if (clean.startsWith("[BgImage:")) {
-        const urlMatch = clean.match(/\[BgImage:([^\]]+)\]/);
-        if (urlMatch && urlMatch[1].trim()) project.bgImage = urlMatch[1].trim();
+      if (directive.startsWith("BgImage:")) {
+        const url = directive.replace(/^BgImage:/, '').trim();
+        if (url) project.bgImage = url;
       }
-      // Button text directive (supports [ButtonText:label1,label2])
-      if (clean.startsWith("[ButtonText:")) {
-        const match = clean.match(/\[ButtonText:([^,\]]+),([^\]]+)\]/);
-        if (match) {
-          project.primaryLabel = match[1].trim();
-          project.secondaryLabel = match[2].trim();
+      // ButtonText directive (format: ButtonText:label1,label2)
+      if (directive.startsWith("ButtonText:")) {
+        const parts = directive.replace(/^ButtonText:/, '').split(',');
+        if (parts.length >= 2) {
+          project.primaryLabel = parts[0].trim();
+          project.secondaryLabel = parts[1].trim();
+        } else if (parts.length === 1) {
+          project.primaryLabel = parts[0].trim();
         }
       }
-      // Separate primary/secondary (fallback)
-      const primaryMatch = clean.match(/\[ButtonPrimary:([^\]]+)\]/);
-      if (primaryMatch) project.primaryLabel = primaryMatch[1].trim();
-      const secondaryMatch = clean.match(/\[ButtonSecondary:([^\]]+)\]/);
-      if (secondaryMatch) project.secondaryLabel = secondaryMatch[1].trim();
+      // Individual primary/secondary (optional)
+      if (directive.startsWith("ButtonPrimary:")) {
+        project.primaryLabel = directive.replace(/^ButtonPrimary:/, '').trim();
+      }
+      if (directive.startsWith("ButtonSecondary:")) {
+        project.secondaryLabel = directive.replace(/^ButtonSecondary:/, '').trim();
+      }
     }
 
     for (let line of lines) {
+      // Check if line is a project definition (starts with [Name](link))
       const isProjectLine = /^\[[^\]]+\]\([^\)]+\)/.test(line);
       if (isProjectLine) {
         if (currentProject) projects.push(currentProject);
         currentProject = parseProjectLine(line);
-      } 
-      else if (currentProject && line.startsWith("#")) {
-        // This is a hidden configuration line
-        processDirective(line, currentProject);
+      }
+      // Check for comment line: ends with "]: #" and contains a directive inside brackets
+      else if (currentProject && line.match(/\[.*\]: #$/)) {
+        const match = line.match(/\[(.*)\]: #$/);
+        if (match) {
+          const directive = match[1];
+          processDirective(directive, currentProject);
+        }
       }
     }
     if (currentProject) projects.push(currentProject);
 
+    // Clear loading and render
     container.innerHTML = '';
     renderTiles(projects);
     observeTiles();
-    fixImageErrors();
+    handleBackgroundImageErrors();
   } catch (err) {
     console.error(err);
     container.innerHTML = `<div class="loading-tile" style="color:#ff8888;">⚠️ Could not load projects. Make sure README.md exists with "## Projects Undertaken by Tradely" section.</div>`;
@@ -320,28 +334,35 @@
         tile.style.background = p.colors.bg;
       }
       tile.style.color = p.colors.text;
+
       const content = document.createElement('div');
       content.className = 'tile-content';
+
       const title = document.createElement('h1');
       title.textContent = p.name;
+
       const desc = document.createElement('p');
       desc.textContent = p.desc;
+
       const btnDiv = document.createElement('div');
       btnDiv.className = 'buttons';
-      const primary = document.createElement('a');
-      primary.href = p.link;
-      primary.target = "_blank";
-      primary.className = "btn";
-      primary.textContent = p.primaryLabel;
-      btnDiv.appendChild(primary);
+
+      const primaryBtn = document.createElement('a');
+      primaryBtn.href = p.link;
+      primaryBtn.target = "_blank";
+      primaryBtn.className = "btn";
+      primaryBtn.textContent = p.primaryLabel;
+      btnDiv.appendChild(primaryBtn);
+
       if (p.download && p.download !== "#") {
-        const secondary = document.createElement('a');
-        secondary.href = p.download;
-        secondary.target = "_blank";
-        secondary.className = "btn";
-        secondary.textContent = p.secondaryLabel;
-        btnDiv.appendChild(secondary);
+        const secondaryBtn = document.createElement('a');
+        secondaryBtn.href = p.download;
+        secondaryBtn.target = "_blank";
+        secondaryBtn.className = "btn";
+        secondaryBtn.textContent = p.secondaryLabel;
+        btnDiv.appendChild(secondaryBtn);
       }
+
       content.appendChild(title);
       content.appendChild(desc);
       content.appendChild(btnDiv);
@@ -361,11 +382,12 @@
       });
     }, { threshold: 0.25 });
     tiles.forEach(t => observer.observe(t));
+    // Hero tile becomes visible immediately
     const hero = document.getElementById('heroTile');
     if (hero) hero.classList.add('in-view');
   }
 
-  function fixImageErrors() {
+  function handleBackgroundImageErrors() {
     document.querySelectorAll('.tile[data-bgimage]').forEach(tile => {
       const bg = tile.style.backgroundImage;
       if (bg && bg !== 'none') {
