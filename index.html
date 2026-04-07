@@ -2,206 +2,579 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tradely</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tradely • animated showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html{
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100%;
-}
+  html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 100%;
+  }
 
-body{
-  font-family:'Inter',sans-serif;
-  background:#000;
-  color:#e5e5e5;
-  overflow-x:hidden;
-  min-height:100%;
-}
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #000;
+    color: #e5e5e5;
+    overflow-x: hidden;
+    min-height: 100%;
+  }
 
-body::before{
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background-image: linear-gradient(rgba(255,255,255,0.04) 4px, transparent 4px),
-                    linear-gradient(90deg, rgba(255,255,255,0.04) 4px, transparent 4px);
-  background-size: 60px 60px;
-  z-index:0;
-}
+  /* animated grid background (enhanced) */
+  body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 2px, transparent 2px);
+    background-size: 48px 48px;
+    z-index: 0;
+    pointer-events: none;
+    animation: gridFloat 30s linear infinite;
+  }
 
-.tile{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px;
-  position:relative;
-  z-index:1;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
+  @keyframes gridFloat {
+    0% { background-position: 0 0; }
+    100% { background-position: 48px 48px; }
+  }
 
-.logo{
-  position:relative;
-  width:min(480px, 80vw);
-  height:min(200px, 25vh);
-  margin-bottom:40px;
-  flex-shrink:0;
-}
+  /* tile master style */
+  .tile {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    isolation: isolate;
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    will-change: transform, opacity;
+    backdrop-filter: blur(0px);
+  }
 
-.logo img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
+  .tile.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 
-.outline{opacity:0;animation:fadeIn .5s forwards}
-.filled{clip-path: inset(0 100% 0 0);animation:reveal 2s ease forwards .5s}
+  /* background overlay for images + readability layer */
+  .tile[data-bgimage]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: brightness(0.9);
+    z-index: -1;
+    transition: backdrop-filter 0.3s ease;
+  }
 
-@keyframes fadeIn{to{opacity:1}}
-@keyframes reveal{to{clip-path: inset(0 0 0 0)}}
+  .tile[data-bgimage]:hover::before {
+    backdrop-filter: brightness(1) blur(1px);
+  }
 
-h1{
-  font-size: clamp(2.5rem,5vw,4rem);
-  font-weight:800;
-  margin-bottom:15px;
-}
+  /* optional overlay for pure color tiles (soft glow) */
+  .tile:not([data-bgimage]) {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
 
-p{
-  max-width:600px;
-  color:#aaa;
-  margin-bottom:30px;
-}
+  /* animated content group */
+  .tile-content {
+    max-width: 780px;
+    width: 100%;
+    animation: floatUp 0.9s ease-out forwards;
+    position: relative;
+    z-index: 3;
+  }
 
-.buttons{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
 
-.btn{
-  padding:12px 26px;
-  border:1px solid #333;
-  background:#111;
-  color:#fff;
-  text-decoration:none;
-  border-radius:6px;
-  transition:.2s;
-}
+  h1 {
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(135deg, #fff 0%, #ddd 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: inherit;
+    transition: text-shadow 0.2s;
+  }
 
-.btn:hover{
-  transform:translateY(-2px);
-  border-color:#555;
-}
+  /* dynamic text color override */
+  .tile h1, .tile p, .tile .btn {
+    transition: color 0.2s ease;
+  }
+
+  .tile p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    font-weight: 400;
+    opacity: 0.9;
+    backdrop-filter: blur(2px);
+  }
+
+  /* modern button group */
+  .buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.9rem 2rem;
+    background: rgba(10, 10, 10, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid currentColor;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: currentColor;
+    color: #000000;
+    border-color: currentColor;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+  }
+
+  /* first tile specific (logo) stays fresh */
+  .logo-tile .logo {
+    position: relative;
+    width: min(500px, 80vw);
+    height: min(210px, 26vh);
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-tile:hover .logo {
+    transform: scale(1.02);
+  }
+
+  .logo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .outline {
+    opacity: 0;
+    animation: fadeInLogo 0.6s ease forwards;
+  }
+
+  .filled {
+    clip-path: inset(0 100% 0 0);
+    animation: revealLogo 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s;
+  }
+
+  @keyframes fadeInLogo {
+    to { opacity: 1; }
+  }
+
+  @keyframes revealLogo {
+    to { clip-path: inset(0 0 0 0); }
+  }
+
+  /* responsive extras */
+  @media (max-width: 680px) {
+    .tile {
+      padding: 1.5rem;
+    }
+    .btn {
+      padding: 0.7rem 1.4rem;
+      font-size: 0.85rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  /* custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 8px;
+  }
+
+  /* loading indicator */
+  .loading-tile {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #aaa;
+    gap: 12px;
+    background: #000;
+  }
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
-
 <body>
 
-<section class="tile">
+<!-- FIRST TILE (HERO + animated logo) -->
+<section class="tile logo-tile" id="heroTile">
   <div class="logo">
-    <img src="outline.svg" class="outline">
-    <img src="filled.svg" class="filled">
+    <img src="outline.svg" class="outline" alt="Tradely outline">
+    <img src="filled.svg" class="filled" alt="Tradely filled">
   </div>
-
-  <p>By traders, for traders.</p>
-
-  <div class="buttons">
-    <a href="https://github.com/techareaone/tradely" class="btn">GitHub</a>
-    <a href="https://discord.tradely.dev" class="btn">Discord</a>
+  <div class="tile-content">
+    <p style="font-size:1.2rem; font-weight:400;">By traders, for traders.</p>
+    <div class="buttons">
+      <a href="https://github.com/techareaone/tradely" class="btn">GitHub</a>
+      <a href="https://discord.tradely.dev" class="btn">Discord</a>
+    </div>
   </div>
 </section>
 
-<div id="tiles"></div>
+<div id="tiles-container"></div>
 
 <script>
-async function loadProjects(){
-  const res = await fetch("./README.md");
-  const text = await res.text();
+  // ---------- ADVANCED PARSER (supports colors, background images, custom button texts) ----------
+  async function loadProjects() {
+    const container = document.getElementById('tiles-container');
+    container.innerHTML = `<div class="loading-tile"><div class="spinner"></div><span>loading projects...</span></div>`;
 
-  const section = text.split("## Projects Undertaken by Tradely")[1];
-  if(!section) return;
+    try {
+      const res = await fetch("./README.md");
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
 
-  const lines = section.split("\n").map(l=>l.trim()).filter(Boolean);
-
-  let projects = [];
-
-  lines.forEach(line => {
-
-    // Color line: [ColorBg:#xxxxxx,ColorText:#xxxxxx]: #
-    // These follow the project they style, so apply to the last pushed project
-    if(line.startsWith("[ColorBg:")){
-      const bgMatch = line.match(/ColorBg:(#[0-9A-Fa-f]{6})/);
-      const textMatch = line.match(/ColorText:(#[0-9A-Fa-f]{6})/);
-      if(projects.length > 0){
-        if(bgMatch)   projects[projects.length-1].colors.bg   = bgMatch[1];
-        if(textMatch) projects[projects.length-1].colors.text = textMatch[1];
+      const section = text.split("## Projects Undertaken by Tradely")[1];
+      if (!section) {
+        container.innerHTML = '';
+        console.warn("No projects section found");
+        return;
       }
-      return;
+
+      const lines = section.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+      
+      let projects = [];
+      let currentProject = null;
+
+      // helper: parse project line
+      function parseProjectLine(line) {
+        // pattern: [Name](link) - [Latest Download](link) Desc: description
+        const nameMatch = line.match(/^\[([^\]]+)\]/);
+        if (!nameMatch) return null;
+        const name = nameMatch[1];
+
+        // extract all links inside parentheses
+        const linkMatches = [...line.matchAll(/\(([^)]+)\)/g)];
+        const mainLink = linkMatches[0]?.[1] || "#";
+        const downloadLink = linkMatches[1]?.[1] || null;
+
+        let desc = "";
+        const descPart = line.split("Desc:")[1];
+        if (descPart) desc = descPart.trim();
+        
+        return {
+          name,
+          link: mainLink,
+          download: downloadLink,
+          desc,
+          colors: { bg: "#000000", text: "#e5e5e5" },
+          bgImage: null,
+          primaryLabel: "View",
+          secondaryLabel: "Download"
+        };
+      }
+
+      // directive parsers
+      function applyColorDirective(line, project) {
+        // format: [ColorBg:#xxxxxx,ColorText:#xxxxxx] or [ColorBg:#xxxxxx,ColorText:#xxxxxx]: #
+        const bgMatch = line.match(/ColorBg:([#0-9A-Fa-f]{6})/);
+        const textMatch = line.match(/ColorText:([#0-9A-Fa-f]{6})/);
+        if (bgMatch) project.colors.bg = bgMatch[1];
+        if (textMatch) project.colors.text = textMatch[1];
+      }
+
+      function applyBgImageDirective(line, project) {
+        // [BgImage:https://...] or [BgImage:/images/bg.jpg]
+        const urlMatch = line.match(/\[BgImage:([^\]]+)\]/);
+        if (urlMatch && urlMatch[1].trim()) {
+          project.bgImage = urlMatch[1].trim();
+        }
+      }
+
+      function applyButtonTextDirective(line, project) {
+        // [ButtonText:Explore,Get Latest]  or [ButtonPrimary:Cases] etc.
+        // support both: [ButtonText:label1,label2]  (primary, secondary)
+        const fullMatch = line.match(/\[ButtonText:([^,\]]+),([^\]]+)\]/);
+        if (fullMatch) {
+          project.primaryLabel = fullMatch[1].trim();
+          project.secondaryLabel = fullMatch[2].trim();
+          return;
+        }
+        // fallback: single [ButtonPrimary:...]
+        const primaryMatch = line.match(/\[ButtonPrimary:([^\]]+)\]/);
+        if (primaryMatch) project.primaryLabel = primaryMatch[1].trim();
+        const secondaryMatch = line.match(/\[ButtonSecondary:([^\]]+)\]/);
+        if (secondaryMatch) project.secondaryLabel = secondaryMatch[1].trim();
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        
+        // check if it's a project definition line: starts with "[...]("
+        const isProjectLine = /^\[[^\]]+\]\([^\)]+\)/.test(line);
+        
+        if (isProjectLine) {
+          // push previous project if exists
+          if (currentProject) {
+            projects.push(currentProject);
+          }
+          const newProj = parseProjectLine(line);
+          if (newProj) {
+            currentProject = newProj;
+          } else {
+            currentProject = null;
+          }
+        } 
+        else if (currentProject) {
+          // directives that modify the current project
+          if (line.startsWith("[ColorBg:") || line.includes("ColorBg:")) {
+            applyColorDirective(line, currentProject);
+          }
+          else if (line.startsWith("[BgImage:")) {
+            applyBgImageDirective(line, currentProject);
+          }
+          else if (line.startsWith("[ButtonText:") || line.startsWith("[ButtonPrimary:") || line.startsWith("[ButtonSecondary:")) {
+            applyButtonTextDirective(line, currentProject);
+          }
+          // also handle legacy [ColorBg:#xxxxxx,ColorText:#xxxxxx]: # (exactly same as above, already captured)
+          else if (line.includes("ColorBg:") && line.includes("ColorText:")) {
+            applyColorDirective(line, currentProject);
+          }
+        }
+      }
+      // push last project
+      if (currentProject) {
+        projects.push(currentProject);
+      }
+
+      // clean container and render tiles
+      container.innerHTML = '';
+      renderTiles(projects);
+      observeTilesAnimation();    // activate scroll animations
+      enhanceTileInteractivity(); // background image zoom subtle
+    } catch (err) {
+      console.error("Failed to load README:", err);
+      container.innerHTML = `<div class="loading-tile" style="color:#ff8888;">⚠️ Could not load projects. Make sure README.md exists with "## Projects Undertaken by Tradely" section.</div>`;
     }
+  }
 
-    // Project line: [Name](link) - [Latest Download](link) Desc: ...
-    if(line.startsWith("[")){
-      const nameMatch = line.match(/^\[([^\]]+)\]/);
-      if(!nameMatch) return;
-      const name = nameMatch[1];
+  // RENDER each project tile with FULL animation + bg image / color / custom button texts
+  function renderTiles(projects) {
+    const container = document.getElementById('tiles-container');
+    if (!container) return;
+    
+    projects.forEach(proj => {
+      const tile = document.createElement('section');
+      tile.className = 'tile';
+      
+      // apply background COLOR or IMAGE
+      if (proj.bgImage && proj.bgImage.trim() !== "") {
+        tile.style.background = `url('${proj.bgImage}') center/cover no-repeat fixed`;
+        tile.style.backgroundAttachment = 'fixed';  // subtle parallax
+        tile.setAttribute('data-bgimage', 'true');
+        // fallback bg color while loading
+        tile.style.backgroundColor = proj.colors.bg;
+      } else {
+        tile.style.background = proj.colors.bg;
+        tile.style.backgroundColor = proj.colors.bg;
+      }
+      
+      // set text color (global for all children)
+      tile.style.color = proj.colors.text;
+      
+      // create inner content wrapper (for consistent animation)
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'tile-content';
+      
+      // project title
+      const title = document.createElement('h1');
+      title.textContent = proj.name;
+      
+      // description
+      const desc = document.createElement('p');
+      desc.textContent = proj.desc;
+      
+      // buttons container
+      const btnContainer = document.createElement('div');
+      btnContainer.className = 'buttons';
+      
+      // primary button (always visible)
+      const primaryBtn = document.createElement('a');
+      primaryBtn.href = proj.link;
+      primaryBtn.target = "_blank";
+      primaryBtn.className = "btn";
+      primaryBtn.textContent = proj.primaryLabel || "View";
+      
+      // secondary button (only if download link exists)
+      let secondaryBtn = null;
+      if (proj.download && proj.download !== "#") {
+        secondaryBtn = document.createElement('a');
+        secondaryBtn.href = proj.download;
+        secondaryBtn.target = "_blank";
+        secondaryBtn.className = "btn";
+        secondaryBtn.textContent = proj.secondaryLabel || "Download";
+      }
+      
+      btnContainer.appendChild(primaryBtn);
+      if (secondaryBtn) btnContainer.appendChild(secondaryBtn);
+      
+      contentDiv.appendChild(title);
+      contentDiv.appendChild(desc);
+      contentDiv.appendChild(btnContainer);
+      tile.appendChild(contentDiv);
+      
+      container.appendChild(tile);
+    });
+  }
 
-      const links = [...line.matchAll(/\(([^)]+)\)/g)];
-      const mainLink     = links[0]?.[1] || "#";
-      const downloadLink = links[1]?.[1] || null;
-
-      const descMatch = line.split("Desc:")[1];
-      const desc = descMatch ? descMatch.trim() : "";
-
-      projects.push({
-        name,
-        link: mainLink,
-        download: downloadLink,
-        desc,
-        colors: { bg: "#000", text: "#e5e5e5" }
+  // Intersection Observer for smooth reveal animation (improved)
+  function observeTilesAnimation() {
+    const tiles = document.querySelectorAll('.tile');
+    if (!tiles.length) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          // optional: keep watching but only once
+          observer.unobserve(entry.target);
+        }
       });
+    }, { threshold: 0.25, rootMargin: "0px 0px -60px 0px" });
+    
+    tiles.forEach(tile => observer.observe(tile));
+    
+    // also ensure hero tile gets animation (already in view)
+    const hero = document.getElementById('heroTile');
+    if (hero && !hero.classList.contains('in-view')) {
+      setTimeout(() => hero.classList.add('in-view'), 100);
     }
+  }
 
-  });
-
-  renderTiles(projects);
-}
-
-function renderTiles(projects){
-  const container = document.getElementById("tiles");
-
-  projects.forEach(p => {
-    const tile = document.createElement("section");
-    tile.className = "tile";
-    tile.style.background = p.colors.bg;
-    tile.style.color = p.colors.text;
-
-    tile.innerHTML = `
-      <h1>${p.name}</h1>
-      <p>${p.desc}</p>
-      <div class="buttons">
-        <a href="${p.link}" class="btn" target="_blank">View</a>
-        ${p.download ? `<a href="${p.download}" class="btn" target="_blank">Download</a>` : ""}
-      </div>
+  // additional enhancement: hover glow, button active states + dynamic background image readability
+  function enhanceTileInteractivity() {
+    // attach event listeners to dynamically adjust subtle shadow for bg-image tiles
+    const style = document.createElement('style');
+    style.textContent = `
+      .tile[data-bgimage] .btn {
+        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.6);
+        border-color: currentColor;
+      }
+      .tile[data-bgimage] .btn:hover {
+        background: currentColor;
+        color: #000;
+      }
+      .tile h1 {
+        text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      }
+      .tile p {
+        text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+      }
     `;
+    document.head.appendChild(style);
+  }
 
-    container.appendChild(tile);
+  // fallback for background image loading errors (graceful)
+  function handleBgImageErrors() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const tilesWithBg = document.querySelectorAll('.tile[data-bgimage]');
+      tilesWithBg.forEach(tile => {
+        const bgImage = tile.style.backgroundImage;
+        if (bgImage && bgImage !== 'none') {
+          const imgUrl = bgImage.slice(5, -2).replace(/url\(['"]?/, '').replace(/['"]?\)/, '');
+          const testImg = new Image();
+          testImg.onerror = () => {
+            tile.style.background = tile.style.backgroundColor || '#0a0a0a';
+            tile.style.backgroundImage = 'none';
+            console.warn(`Background image failed: ${imgUrl}`);
+          };
+          testImg.src = imgUrl;
+        }
+      });
+    });
+  }
+
+  // ========== BOOTSTRAP ==========
+  loadProjects().then(() => {
+    // after dynamic projects, re-observe again (in case of late tiles)
+    setTimeout(() => {
+      const extraTiles = document.querySelectorAll('.tile:not(.in-view)');
+      if (extraTiles.length) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in-view');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        extraTiles.forEach(t => obs.observe(t));
+      }
+      // force hero tile after load
+      const heroTile = document.getElementById('heroTile');
+      if (heroTile && !heroTile.classList.contains('in-view')) heroTile.classList.add('in-view');
+    }, 80);
   });
-}
+  handleBgImageErrors();
 
-loadProjects();
+  // make sure that any new added tile gets background image attribute handling and dynamic text
+  const originalRender = renderTiles;
+  window.renderTiles = renderTiles;  // (just safe)
 </script>
-
 </body>
 </html>
