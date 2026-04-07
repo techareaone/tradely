@@ -26,16 +26,20 @@ Easy to share. Use: https://tradely.dev
 
 [PyX Wizard](https://github.com/techareaone/PyX) - [Latest Download](https://github.com/techareaone/PyX/releases/latest) Desc: An Easy to Use Python to EXE Convertor with Advanced Features
 
-[ColorBg:#00008B,ColorText:#ADD8E6]: #
+# [ColorBg:#00008B,ColorText:#ADD8E6]
+# [ButtonText:GitHub,Download EXE]
 
 [Quiver CongressReport](https://github.com/techareaone/CongressReport) - [Latest Download](https://github.com/techareaone/CongressReport) Desc: A standalone Python daemon that monitors U.S. Congress stock trades via the Quiver Quantitative API and sends real‑time notifications to a Discord channel.
 
-[ColorBg:#8B0000,ColorText:#FFFFFF]: #
+# [ColorBg:#8B0000,ColorText:#FFFFFF]
+# [ButtonText:Repository,Get Script]
 
 [DiscRSS](https://github.com/techareaone/DiscRSS) - [Latest Download](https://github.com/techareaone/DiscRSS) Desc: A standalone Python daemon that monitors RSS and Atom feeds and sends rich embed notifications to Discord channels via webhooks.
 
-[ColorBg:#006400,ColorText:#90EE90]: #
+# [ColorBg:#006400,ColorText:#90EE90]
+# [ButtonText:Source,Download]
 
 [TradeChart](https://github.com/techareaone/TradeChart) - [Demo](https://doc.tradely.dev/TradeChart/) Desc: An easy stock graph visualiser python library.
 
-[ColorBg:#DAFFD5,ColorText:#C43D5A]: #
+# [ColorBg:#DAFFD5,ColorText:#C43D5A]
+# [ButtonText:GitHub,Demo Bot]
