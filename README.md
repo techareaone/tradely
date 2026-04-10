@@ -45,5 +45,6 @@ Easy to share. Use: https://tradely.dev
 [ButtonText:GitHub,Demo Bot]: #
 
 [Gamely](https://github.com/techareaone/gamely) - [Bot](https://doc.tradely.dev/gamely/) Desc: A bot that helps you learn to trade stocks through games.
+
 [ColorBg:#DAFFD5,ColorText:#C43D5A]: #
 [ButtonText:GitHub,Bot]: #
