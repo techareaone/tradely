@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join Tradely — Finance Games on Discord</title>
+
+<!-- Open Graph / social embed -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://doc.tradely.dev/advertising/">
+<meta property="og:title"       content="Join Tradely — Finance Games on Discord">
+<meta property="og:description" content="Play real market mini-games, compete on leaderboards, and talk stocks — all on Discord. Free to join.">
+<meta property="og:image"       content="https://doc.tradely.dev/advertising/cover.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+
+<!-- Twitter card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Join Tradely — Finance Games on Discord">
+<meta name="twitter:description" content="Play real market mini-games, compete on leaderboards, and talk stocks — all on Discord. Free to join.">
+<meta name="twitter:image"       content="https://doc.tradely.dev/advertising/cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -237,9 +252,92 @@
   .sep-line { flex: 1; height: 1px; background: var(--border); }
   .sep-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 
+  /* ── HOW IT WORKS ───────────────────────────────────────── */
+  .how-steps {
+    width: 100%; max-width: 860px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 3.5rem;
+  }
+  .how-step {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem 1.2rem;
+    text-align: left;
+  }
+  .how-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.7rem;
+  }
+  .how-title { font-size: 0.92rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+  .how-text { font-size: 0.76rem; color: var(--sub); line-height: 1.6; }
+
+  /* ── GAME DEEP DIVES ────────────────────────────────────── */
+  .game-deep {
+    width: 100%; max-width: 860px;
+    display: flex; flex-direction: column;
+    gap: 12px; margin-bottom: 3.5rem;
+  }
+  .gd-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
+  .gd-top { height: 3px; }
+  .gd-body { padding: 1.4rem 1.5rem; }
+  .gd-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem; }
+  .gd-icon { font-size: 1.4rem; }
+  .gd-name { font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; }
+  .gd-tag {
+    margin-left: auto;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 0.22rem 0.65rem; border-radius: 100px;
+  }
+  .gd-desc { font-size: 0.82rem; color: var(--sub); line-height: 1.7; margin-bottom: 1rem; }
+  .gd-steps { display: flex; gap: 8px; flex-wrap: wrap; }
+  .gd-step {
+    background: var(--bg3); border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.72rem; color: var(--sub); font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .gd-step-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; color: var(--muted);
+  }
+
+  /* ── FOR WHO ────────────────────────────────────────────── */
+  .for-who {
+    width: 100%; max-width: 860px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 3.5rem;
+  }
+  .fw-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.4rem 1.2rem;
+    text-align: left;
+    transition: background 0.2s;
+  }
+  .fw-card:hover { background: var(--bg3); }
+  .fw-emoji { font-size: 1.4rem; margin-bottom: 0.7rem; }
+  .fw-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+  .fw-text { font-size: 0.76rem; color: var(--sub); line-height: 1.6; }
+
+  /* ── FAQ ────────────────────────────────────────────────── */
+  .faq-list {
+    width: 100%; max-width: 860px;
+    display: flex; flex-direction: column;
+    gap: 8px; margin-bottom: 3.5rem;
+  }
+  .faq-item {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.2rem 1.4rem;
+    text-align: left;
+  }
+  .faq-q { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .faq-a { font-size: 0.80rem; color: var(--sub); line-height: 1.7; }
+
   /* ── RESPONSIVE ──────────────────────────────────────────── */
   @media (max-width: 680px) {
-    .previews, .inside { grid-template-columns: 1fr; }
+    .previews, .inside, .how-steps, .for-who { grid-template-columns: 1fr; }
     .fold h1 { font-size: 2.2rem; }
     .dp-messages { padding: 0.8rem; }
   }
@@ -426,6 +524,155 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">How it works</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num">Step 01</div>
+      <div class="how-title">Join the Discord</div>
+      <div class="how-text">Click the button on this page. You'll land in the Tradely server on Discord — no account setup, no form, no email required. Just your Discord login.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">Step 02</div>
+      <div class="how-title">Type <span style="font-family:'JetBrains Mono',monospace;color:var(--gold)">/play</span> in any game channel</div>
+      <div class="how-text">The Gamely bot responds immediately with your game. Pick CandleDojo, TradeRun, Tradle, or Stockle. Each one takes under 5 minutes to complete a round.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">Step 03</div>
+      <div class="how-title">Earn points. Climb the board.</div>
+      <div class="how-text">Every correct call and win earns points tracked on the live leaderboard. Rankings reset monthly — so there's always a fresh shot at the top.</div>
+    </div>
+  </div>
+
+  <!-- Game deep dives -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">The games, explained</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="game-deep">
+
+    <div class="gd-card">
+      <div class="gd-top" style="background:var(--teal);"></div>
+      <div class="gd-body">
+        <div class="gd-header">
+          <span class="gd-icon">🕯️</span>
+          <div class="gd-name">CandleDojo</div>
+          <div class="gd-tag" style="background:rgba(6,182,212,0.1);color:var(--teal);border:1px solid rgba(6,182,212,0.2);">Continuous · every 60s</div>
+        </div>
+        <div class="gd-desc">You're shown a real historical stock chart — actual ticker, real price action. Your only job: predict whether the next candle closes higher or lower. Get it right and earn a point. Get it wrong and earn nothing. A new round fires automatically every 60 seconds, so you can play as many or as few rounds as you want. The bot tracks your running score and streak.</div>
+        <div class="gd-steps">
+          <div class="gd-step"><span class="gd-step-n">1</span> Chart is shown</div>
+          <div class="gd-step"><span class="gd-step-n">2</span> Vote UP or DOWN</div>
+          <div class="gd-step"><span class="gd-step-n">3</span> Candle resolves</div>
+          <div class="gd-step"><span class="gd-step-n">4</span> Points awarded</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gd-card">
+      <div class="gd-top" style="background:var(--orange);"></div>
+      <div class="gd-body">
+        <div class="gd-header">
+          <span class="gd-icon">📈</span>
+          <div class="gd-name">TradeRun</div>
+          <div class="gd-tag" style="background:rgba(249,115,22,0.1);color:var(--orange);border:1px solid rgba(249,115,22,0.2);">Simulation · 12 candles</div>
+        </div>
+        <div class="gd-desc">You're given a random real stock and $10,000 in paper capital. Over 12 live candles you decide when to buy in and when to sell. At the end, your return is compared to a simple buy-and-hold of the same stock over the same window. Beat it and you earn a bonus point. This is the game that separates people who think they can trade from people who actually can.</div>
+        <div class="gd-steps">
+          <div class="gd-step"><span class="gd-step-n">1</span> Random stock assigned</div>
+          <div class="gd-step"><span class="gd-step-n">2</span> Buy &amp; sell across 12 candles</div>
+          <div class="gd-step"><span class="gd-step-n">3</span> Return calculated</div>
+          <div class="gd-step"><span class="gd-step-n">4</span> Beat baseline = +1 pt</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gd-card">
+      <div class="gd-top" style="background:var(--violet);"></div>
+      <div class="gd-body">
+        <div class="gd-header">
+          <span class="gd-icon">📊</span>
+          <div class="gd-name">Tradle &amp; Stockle</div>
+          <div class="gd-tag" style="background:rgba(139,92,246,0.1);color:var(--violet);border:1px solid rgba(139,92,246,0.2);">Daily puzzles · once per day</div>
+        </div>
+        <div class="gd-desc">Two daily puzzles, one attempt each. <strong style="color:var(--text)">Tradle</strong> is Wordle for trading — guess the hidden finance term in six tries. <strong style="color:var(--text)">Stockle</strong> is a ticker guessing game — the bot gives you clues about a mystery stock (sector, market cap, price range) and you narrow it down. Both reset at midnight. Everyone in the server gets the exact same puzzle, which makes comparing scores genuinely meaningful.</div>
+        <div class="gd-steps">
+          <div class="gd-step"><span class="gd-step-n">1</span> New puzzle at midnight</div>
+          <div class="gd-step"><span class="gd-step-n">2</span> One shot to solve it</div>
+          <div class="gd-step"><span class="gd-step-n">3</span> Faster = more points</div>
+          <div class="gd-step"><span class="gd-step-n">4</span> Compare scores in chat</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Who it's for -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">Who this is for</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="for-who">
+    <div class="fw-card">
+      <div class="fw-emoji">📚</div>
+      <div class="fw-title">Learning the markets</div>
+      <div class="fw-text">CandleDojo forces you to read real charts under pressure. No fake data, no tutorials — just pattern recognition against actual market history. Most people improve noticeably within a week of daily play.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-emoji">🏆</div>
+      <div class="fw-title">Already trade, want competition</div>
+      <div class="fw-text">The leaderboard resets monthly, so rank is earned fresh every cycle. If you know what you're doing, TradeRun is where you prove it — and there are always people gunning for your spot.</div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-emoji">💬</div>
+      <div class="fw-title">Just want a good finance server</div>
+      <div class="fw-text">Beyond the games there's market chat, earnings discussion, macro threads, and people who actually understand what a candlestick pattern is. It's not a pump group. It's a community.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">Common questions</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Is it actually free?</div>
+      <div class="faq-a">Yes, completely. Tradely is a free Discord server. No subscription, no premium tier, no paywall. You join, you play, that's it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need any trading experience?</div>
+      <div class="faq-a">No. The games are designed to be immediately playable. CandleDojo is literally just picking up or down. If you've never seen a candlestick chart before, you'll figure it out in one round.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is Gamely? Is that a separate thing?</div>
+      <div class="faq-a">Gamely is the Discord bot that powers all the games inside Tradely. When you join the Tradely server, Gamely is already there. You don't install anything separately — just type <span style="font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:0.78rem">/play</span> to get started.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Are the charts and stocks real?</div>
+      <div class="faq-a">Yes. CandleDojo and TradeRun use real historical market data from real tickers. You're reading actual price action, not simulated or randomised data.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this gambling or real money?</div>
+      <div class="faq-a">No real money is involved at any point. Points are just points — they exist on the leaderboard and reset monthly. There is no wagering, no tokens, no financial product of any kind.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What platform does this run on?</div>
+      <div class="faq-a">Discord. You need a Discord account (free) to join. The Tradely server and all its games live inside Discord — no separate app, no website login, no download beyond the Discord client you probably already have.</div>
     </div>
   </div>
 
