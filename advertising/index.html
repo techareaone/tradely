@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Tradely — Finance Games on Discord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #0B0C14;
+    --bg2:    #13141F;
+    --bg3:    #1B1C2E;
+    --bg4:    #23243A;
+    --gold:   #F59E0B;
+    --gold2:  #FCD34D;
+    --teal:   #06B6D4;
+    --violet: #8B5CF6;
+    --orange: #F97316;
+    --green:  #10B981;
+    --red:    #EF4444;
+    --text:   #F1F5F9;
+    --sub:    #94A3B8;
+    --muted:  #4B5563;
+    --border: rgba(255,255,255,0.07);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Ambient glow */
+  body::before {
+    content: '';
+    position: fixed; top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── ABOVE THE FOLD ─────────────────────────────────────── */
+  .fold {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    position: relative; z-index: 1;
+    gap: 0;
+  }
+
+  /* Source badge */
+  .from-source {
+    display: none; align-items: center; gap: 0.55rem;
+    padding: 0.35rem 0.9rem; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+  .from-source.visible { display: inline-flex; }
+  .from-source svg { width: 14px; height: 14px; }
+
+  /* Headline */
+  .fold h1 {
+    font-size: clamp(2.4rem, 7vw, 4.8rem);
+    font-weight: 800; letter-spacing: -0.04em; line-height: 1.05;
+    margin-bottom: 1.4rem; max-width: 780px;
+  }
+  .fold h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .fold-sub {
+    color: var(--sub); font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem;
+  }
+
+  /* Main CTA button */
+  .join-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #5865F2; color: #fff;
+    padding: 1rem 2.4rem; border-radius: 10px;
+    font-weight: 800; font-size: 1.05rem; text-decoration: none;
+    transition: all 0.18s;
+    box-shadow: 0 0 40px rgba(88,101,242,0.35);
+    margin-bottom: 0.9rem;
+  }
+  .join-btn:hover {
+    background: #4752C4;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 44px rgba(88,101,242,0.5);
+  }
+  .join-btn svg { width: 20px; height: 20px; }
+
+  .join-free {
+    font-size: 0.78rem; color: var(--muted); font-weight: 500;
+    margin-bottom: 3.5rem;
+  }
+  .join-free span { color: var(--sub); }
+
+  /* Live members pill */
+  .members-pill {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2);
+    color: #34D399; padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600;
+    margin-bottom: 3rem;
+  }
+  .online-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* ── GAME PREVIEW CARDS ─────────────────────────────────── */
+  .previews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%; max-width: 860px;
+    margin-bottom: 3.5rem;
+  }
+  .preview-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    text-align: left; position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .preview-card:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  .preview-top {
+    height: 3px;
+  }
+  .preview-body { padding: 1.1rem 1.2rem 1.3rem; }
+  .preview-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
+  .preview-name { font-size: 0.88rem; font-weight: 800; margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+  .preview-desc { font-size: 0.76rem; color: var(--sub); line-height: 1.55; }
+
+  /* ── WHAT'S INSIDE SECTION ──────────────────────────────── */
+  .inside {
+    width: 100%; max-width: 860px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 3.5rem;
+  }
+  .inside-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.3rem 1.2rem;
+    text-align: left;
+    transition: background 0.2s;
+  }
+  .inside-card:hover { background: var(--bg3); }
+  .inside-icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+  .inside-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .inside-text { font-size: 0.76rem; color: var(--sub); line-height: 1.55; }
+
+  /* ── DISCORD PROOF BLOCK ────────────────────────────────── */
+  .discord-preview {
+    width: 100%; max-width: 860px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    margin-bottom: 3.5rem; text-align: left;
+  }
+  .dp-topbar {
+    background: var(--bg3); padding: 0.85rem 1.2rem;
+    display: flex; align-items: center; gap: 0.7rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .dp-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .dp-channel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--sub); margin-left: auto;
+  }
+  .dp-channel strong { color: var(--text); }
+  .dp-messages { padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .dp-msg { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .dp-av {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; color: #000;
+  }
+  .dp-right {}
+  .dp-header { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.15rem; }
+  .dp-user { font-size: 0.82rem; font-weight: 700; }
+  .dp-time { font-size: 0.68rem; color: var(--muted); }
+  .dp-text { font-size: 0.82rem; color: var(--sub); line-height: 1.5; }
+  .dp-text strong { color: var(--text); }
+
+  .dp-embed {
+    margin-left: 38px; margin-top: 0.3rem;
+    border-left: 3px solid var(--gold);
+    background: var(--bg3); border-radius: 0 6px 6px 0;
+    padding: 0.75rem 0.9rem; font-size: 0.78rem; max-width: 340px;
+  }
+  .dp-embed-title { font-weight: 700; margin-bottom: 0.2rem; }
+  .dp-embed-body { color: var(--sub); font-size: 0.74rem; line-height: 1.5; }
+  .dp-embed-footer { margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+
+  /* ── BOTTOM CTA ─────────────────────────────────────────── */
+  .bottom-cta {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.8rem; width: 100%; max-width: 480px;
+    margin-bottom: 1rem;
+  }
+  .bottom-cta .join-btn { width: 100%; justify-content: center; font-size: 1.1rem; padding: 1.1rem 2rem; }
+  .bottom-proof {
+    display: flex; align-items: center; gap: 1.5rem;
+    font-size: 0.76rem; color: var(--muted);
+  }
+  .bottom-proof span { display: flex; align-items: center; gap: 0.35rem; }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  .lp-footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.75rem; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .lp-footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── DIVIDER ─────────────────────────────────────────────── */
+  .section-sep {
+    width: 100%; max-width: 860px;
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .sep-line { flex: 1; height: 1px; background: var(--border); }
+  .sep-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 680px) {
+    .previews, .inside { grid-template-columns: 1fr; }
+    .fold h1 { font-size: 2.2rem; }
+    .dp-messages { padding: 0.8rem; }
+  }
+  @media (max-width: 380px) {
+    .bottom-proof { flex-direction: column; gap: 0.5rem; }
+  }
+
+  /* Entrance animation */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .fold > * { animation: fadeUp 0.5s ease both; }
+  .fold > *:nth-child(1){animation-delay:0.05s}
+  .fold > *:nth-child(2){animation-delay:0.12s}
+  .fold > *:nth-child(3){animation-delay:0.18s}
+  .fold > *:nth-child(4){animation-delay:0.24s}
+  .fold > *:nth-child(5){animation-delay:0.28s}
+  .fold > *:nth-child(6){animation-delay:0.32s}
+  .fold > *:nth-child(7){animation-delay:0.38s}
+  .fold > *:nth-child(8){animation-delay:0.44s}
+  .fold > *:nth-child(9){animation-delay:0.50s}
+  .fold > *:nth-child(10){animation-delay:0.56s}
+</style>
+</head>
+<body>
+
+<main class="fold">
+
+  <!-- Source badge (shown only when utm_source matches a known source) -->
+  <div class="from-source" id="sourceBadge">
+    <span id="sourceBadgeIcon"></span>
+    <span id="sourceBadgeLabel"></span>
+  </div>
+
+  <!-- Headline -->
+  <h1>The finance Discord<br>you <em>actually want</em> to be in.</h1>
+
+  <p class="fold-sub">
+    Tradely is a community where we play real market mini-games, compete on leaderboards, and talk stocks — all on Discord. You just saw it on Reddit. Now come play.
+  </p>
+
+  <!-- Primary CTA -->
+  <a class="join-btn" href="https://discord.tradely.dev" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    Join Tradely on Discord
+  </a>
+
+  <div class="join-free">Free to join · <span>Takes 10 seconds</span></div>
+
+  <!-- Members online indicator -->
+  <div class="members-pill">
+    <span class="online-dot"></span>
+    Members online right now
+  </div>
+
+  <!-- Game previews -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">What we play</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="previews">
+    <div class="preview-card">
+      <div class="preview-top" style="background:var(--teal);"></div>
+      <div class="preview-body">
+        <span class="preview-icon">🕯️</span>
+        <div class="preview-name">CandleDojo</div>
+        <div class="preview-desc">Read a real stock chart. Predict UP or DOWN. Earn points for correct calls — new round every 60 seconds.</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <div class="preview-top" style="background:var(--orange);"></div>
+      <div class="preview-body">
+        <span class="preview-icon">📈</span>
+        <div class="preview-name">TradeRun</div>
+        <div class="preview-desc">Buy and sell a real stock across 12 live candles. Beat the baseline return to earn a bonus point.</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <div class="preview-top" style="background:var(--violet);"></div>
+      <div class="preview-body">
+        <span class="preview-icon">📊</span>
+        <div class="preview-name">Tradle + Stockle</div>
+        <div class="preview-desc">Daily puzzles. Guess the trading word or mystery stock ticker. One shot per day — same for everyone.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What's inside -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">What's in the server</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="inside">
+    <div class="inside-card">
+      <div class="inside-icon">🏆</div>
+      <div class="inside-title">Live Leaderboard</div>
+      <div class="inside-text">Global rankings updated every 15 minutes. Monthly resets mean anyone can climb to the top.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">💬</div>
+      <div class="inside-title">Market Chat</div>
+      <div class="inside-text">Talk stocks, crypto, and macro with people who actually know what a candlestick is.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">⚡</div>
+      <div class="inside-title">Point Multipliers</div>
+      <div class="inside-text">Server events with 2× multipliers drop regularly. Play during the window, earn double everything.</div>
+    </div>
+  </div>
+
+  <!-- Discord mock messages -->
+  <div class="section-sep">
+    <div class="sep-line"></div>
+    <div class="sep-label">See it in action</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <div class="discord-preview">
+    <div class="dp-topbar">
+      <div class="dp-dot" style="background:#ff5f57;"></div>
+      <div class="dp-dot" style="background:#febc2e;"></div>
+      <div class="dp-dot" style="background:#28c840;"></div>
+      <div class="dp-channel"><strong>#trading-games</strong> — Tradely</div>
+    </div>
+    <div class="dp-messages">
+
+      <div class="dp-msg">
+        <div class="dp-av" style="background:#F59E0B;">C</div>
+        <div class="dp-right">
+          <div class="dp-header">
+            <span class="dp-user" style="color:#FCD34D;">cryptowolf</span>
+            <span class="dp-time">Today at 2:14 PM</span>
+          </div>
+          <div class="dp-text">just hit 800 points on the leaderboard 📈 stockle finally got me today though</div>
+        </div>
+      </div>
+
+      <div class="dp-msg">
+        <div class="dp-av" style="background:#8B5CF6;">G</div>
+        <div class="dp-right">
+          <div class="dp-header">
+            <span class="dp-user" style="color:#A78BFA;">Gamely</span>
+            <span class="dp-time" style="color:#6EE7B7;">BOT</span>
+          </div>
+          <div class="dp-embed">
+            <div class="dp-embed-title">📈 Stockle — Solved!</div>
+            <div class="dp-embed-body">cryptowolf identified today's Stockle stock (<strong>NVDA</strong>) in <strong>3 guesses</strong>, earning <strong>4 pts</strong>!</div>
+            <div class="dp-embed-footer">Play with /play • Stockle</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dp-msg">
+        <div class="dp-av" style="background:#06B6D4;">T</div>
+        <div class="dp-right">
+          <div class="dp-header">
+            <span class="dp-user" style="color:#67E8F9;">traderboi99</span>
+            <span class="dp-time">Today at 2:17 PM</span>
+          </div>
+          <div class="dp-text">candle dojo is actually insane for training pattern recognition. did like 30 rounds today lol</div>
+        </div>
+      </div>
+
+      <div class="dp-msg">
+        <div class="dp-av" style="background:#EC4899;">Z</div>
+        <div class="dp-right">
+          <div class="dp-header">
+            <span class="dp-user" style="color:#F9A8D4;">zara_charts</span>
+            <span class="dp-time">Today at 2:19 PM</span>
+          </div>
+          <div class="dp-text">tradle in 2 today 🟩🟨⬛⬛⬛ 🟩🟩🟩🟩🟩 &nbsp; +5 pts and staking them double or nothing tomorrow 🎰</div>
+        </div>
+      </div>
+
+      <div class="dp-msg" style="opacity:0.45;">
+        <div class="dp-av" style="background:#4B5563;font-size:0.65rem;">you?</div>
+        <div class="dp-right">
+          <div class="dp-header">
+            <span class="dp-user" style="color:#9CA3AF;">your username</span>
+          </div>
+          <div class="dp-text" style="color:#4B5563;font-style:italic;">Join to start playing...</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bottom-cta">
+    <a class="join-btn" href="https://discord.tradely.dev" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      Join Tradely on Discord
+    </a>
+    <div class="bottom-proof">
+      <span>✓ Free forever</span>
+      <span>✓ No sign-up form</span>
+      <span>✓ Instant access</span>
+    </div>
+  </div>
+
+</main>
+
+<footer class="lp-footer">
+  © 2026 <a href="https://discord.tradely.dev">Tradely</a> · Powered by Gamely
+</footer>
+
+<script>
+  // Known UTM sources — add more entries here as needed
+  const SOURCES = {
+    reddit: {
+      label: 'You came from Reddit',
+      color: '#FF6B35',
+      bg: 'rgba(255,69,0,0.1)',
+      border: 'rgba(255,69,0,0.25)',
+      icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>',
+    },
+    twitter: {
+      label: 'You came from Twitter / X',
+      color: '#1D9BF0',
+      bg: 'rgba(29,155,240,0.1)',
+      border: 'rgba(29,155,240,0.25)',
+      icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    },
+    x: {
+      label: 'You came from X',
+      color: '#1D9BF0',
+      bg: 'rgba(29,155,240,0.1)',
+      border: 'rgba(29,155,240,0.25)',
+      icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    },
+    youtube: {
+      label: 'You came from YouTube',
+      color: '#FF0000',
+      bg: 'rgba(255,0,0,0.1)',
+      border: 'rgba(255,0,0,0.25)',
+      icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
+    },
+    tiktok: {
+      label: 'You came from TikTok',
+      color: '#69C9D0',
+      bg: 'rgba(105,201,208,0.1)',
+      border: 'rgba(105,201,208,0.25)',
+      icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.16 8.16 0 0 0 4.77 1.52V6.75a4.85 4.85 0 0 1-1-.06z"/></svg>',
+    },
+    discord: {
+      label: 'You came from Discord',
+      color: '#5865F2',
+      bg: 'rgba(88,101,242,0.1)',
+      border: 'rgba(88,101,242,0.25)',
+      icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>',
+    },
+  };
+
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = (params.get('utm_source') || '').toLowerCase();
+    const config = SOURCES[utmSource];
+    if (!config) return;
+
+    const badge = document.getElementById('sourceBadge');
+    badge.style.background = config.bg;
+    badge.style.border = '1px solid ' + config.border;
+    badge.style.color = config.color;
+    document.getElementById('sourceBadgeIcon').innerHTML = config.icon;
+    document.getElementById('sourceBadgeLabel').textContent = config.label;
+    badge.classList.add('visible');
+  })();
+</script>
+</body>
+</html>
