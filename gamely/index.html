@@ -8,7 +8,7 @@
 <meta property="og:type"        content="website">
 <meta property="og:url"         content="https://doc.tradely.dev/advertising/">
 <meta property="og:title"       content="Join Tradely — Finance Games on Discord">
-<meta property="og:description" content="Play real market mini-games, compete on leaderboards, and talk stocks — all on Discord. Free to join.">
+<meta property="og:description" content="Play five finance mini-games on the web, earn points, and compete on Discord leaderboards. Free to join.">
 <meta property="og:image"       content="https://doc.tradely.dev/gamely/cover.png">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1080">
@@ -16,7 +16,7 @@
 <!-- Twitter card -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="Join Tradely — Finance Games on Discord">
-<meta name="twitter:description" content="Play real market mini-games, compete on leaderboards, and talk stocks — all on Discord. Free to join.">
+<meta name="twitter:description" content="Play five finance mini-games on the web, earn points, and compete on Discord leaderboards. Free to join.">
 <meta name="twitter:image"       content="https://doc.tradely.dev/gamely/cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -214,44 +214,45 @@
   .embed-game-title { font-weight: 700; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; }
   .embed-desc { color: var(--sub); line-height: 1.5; margin-bottom: 0.8rem; }
 
-  /* Mini candle chart */
-  .embed-candles { display: flex; align-items: flex-end; gap: 4px; height: 55px; margin-bottom: 0.8rem; }
-  .ec { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
-
-  .embed-hidden {
-    height: 55px; flex: 1;
-    background: repeating-linear-gradient(135deg, rgba(245,158,11,0.05) 0px, rgba(245,158,11,0.05) 3px, transparent 3px, transparent 8px);
-    border: 1px dashed rgba(245,158,11,0.3); border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; color: var(--gold); font-family: 'JetBrains Mono', monospace;
+  .mock-bot-tag {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em;
+    background: #5865F2; color: #fff;
+    padding: 0.1rem 0.35rem; border-radius: 3px;
+    text-transform: uppercase; margin-left: 0.1rem;
   }
-  .mock-btns { display: flex; gap: 0.5rem; }
-  .mock-btn {
-    flex: 1; padding: 0.5rem; border-radius: 5px;
-    border: 1px solid; font-size: 0.78rem; font-weight: 700;
-    cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-    transition: all 0.15s;
-  }
-  .mock-btn-up { background: rgba(6,182,212,0.12); border-color: rgba(6,182,212,0.3); color: var(--teal); }
-  .mock-btn-dn { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.3); color: var(--red); }
-  .mock-btn-up:hover { background: rgba(6,182,212,0.22); }
-  .mock-btn-dn:hover { background: rgba(239,68,68,0.22); }
-  #mock-result {
-    margin-top: 0.6rem; padding: 0.5rem 0.7rem; border-radius: 5px;
-    font-size: 0.78rem; font-weight: 600; display: none;
+  .mock-divider {
+    text-align: center; font-size: 0.68rem; color: var(--muted);
     font-family: 'JetBrains Mono', monospace;
+    display: flex; align-items: center; gap: 0.6rem;
+    margin: 0.2rem 0;
   }
-  .mock-embed-footer { margin-top: 0.6rem; font-size: 0.7rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .mock-divider::before, .mock-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .mock-score-row {
+    display: flex; gap: 1.5rem; margin-top: 0.5rem;
+  }
+  .mock-score-stat { }
+  .mock-score-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem; font-weight: 700; color: var(--text);
+  }
+  .mock-score-label {
+    font-size: 0.65rem; color: var(--muted); margin-top: 0.1rem;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
 
-  /* Floating badge */
-  .mock-badge {
-    position: absolute; top: -14px; right: -14px;
+  .mock-play-btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
     background: var(--gold); color: #000;
-    padding: 0.5rem 1rem; border-radius: 8px;
-    font-size: 0.78rem; font-weight: 700; white-space: nowrap;
-    box-shadow: 0 8px 24px rgba(245,158,11,0.4);
-    animation: float-y 3s ease-in-out infinite;
+    padding: 0.45rem 1rem; border-radius: 5px;
+    font-size: 0.78rem; font-weight: 700;
+    text-decoration: none; margin-bottom: 0.7rem;
+    transition: background 0.15s;
   }
+  .mock-play-btn:hover { background: var(--gold2); }
+  .mock-embed-footer { margin-top: 0.55rem; font-size: 0.68rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
   @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
   /* ── STATS STRIP ──────────────────────────────────────────── */
@@ -620,8 +621,8 @@
       <span class="pill-dot"></span>
       Live on Discord Now
     </div>
-    <h1>Finance games.<br>Built for <em>Discord.</em></h1>
-    <p class="hero-sub">Gamely brings five competitive, skill-based mini-games to your server — real stock charts, live news, simulated trading, daily puzzles. One command to start.</p>
+    <h1>Finance games.<br>Play on the web.<br>Compete on <em>Discord.</em></h1>
+    <p class="hero-sub">Five competitive, skill-based finance mini-games — real stock charts, live news, simulated trading, daily puzzles. Play on the website, sync scores to Discord, and climb the leaderboard with your server.</p>
     <div class="hero-actions">
       <a class="btn-gold" href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
@@ -647,7 +648,6 @@
 
   <!-- Discord mock -->
   <div class="hero-right">
-    <div class="mock-badge">+1 point! ✓</div>
     <div class="discord-mock">
       <div class="mock-topbar">
         <div class="mock-dot" style="background:#ff5f57"></div>
@@ -656,8 +656,10 @@
         <span class="mock-channel"># trading-games</span>
       </div>
       <div class="mock-body">
+
+        <!-- User types /play -->
         <div class="mock-msg">
-          <div class="mock-avatar" style="background:#6366f1;">you</div>
+          <div class="mock-avatar" style="background:#6366f1;">Y</div>
           <div class="mock-msg-body">
             <div class="mock-msg-header">
               <span class="mock-username" style="color:#818cf8;">you</span>
@@ -666,20 +668,48 @@
             <div class="mock-slash"><strong>/play</strong> game:CandleDojo</div>
           </div>
         </div>
-        <div class="mock-embed">
-          <div class="embed-game-title">🕯️ CandleDojo — Round 7</div>
-          <div class="embed-desc">AAPL · 1H · seed: 4f2a9c<br>Predict UP or DOWN for the hidden half.</div>
-          <div style="display:flex; gap:6px; align-items:flex-end; height:55px; margin-bottom:0.8rem;">
-            <div id="hero-candles" style="display:flex;gap:3px;align-items:flex-end;height:55px;flex:2;"></div>
-            <div class="embed-hidden">? hidden</div>
+
+        <!-- Bot sends a link (ephemeral-style) -->
+        <div class="mock-msg">
+          <div class="mock-avatar" style="background:#F59E0B;">G</div>
+          <div class="mock-msg-body">
+            <div class="mock-msg-header">
+              <span class="mock-username" style="color:#FCD34D;">Gamely</span>
+              <span class="mock-bot-tag">APP</span>
+              <span class="mock-time">Today at 3:42 PM</span>
+            </div>
+            <div class="mock-embed" style="border-left-color:var(--teal);">
+              <div class="embed-game-title">🕯️ CandleDojo — Ready</div>
+              <div class="embed-desc">Opens in your browser. Score syncs back here when you finish.</div>
+              <a class="mock-play-btn" href="https://gamely.tradely.dev" target="_blank">▶ Play Now</a>
+              <div class="mock-embed-footer">Only you can see this · gamely.tradely.dev</div>
+            </div>
           </div>
-          <div class="mock-btns">
-            <button class="mock-btn mock-btn-up" onclick="heroAnswer('up')">📈 UP</button>
-            <button class="mock-btn mock-btn-dn" onclick="heroAnswer('down')">📉 DOWN</button>
-          </div>
-          <div id="mock-result"></div>
-          <div class="mock-embed-footer">Round 7 · 47 pts total</div>
         </div>
+
+        <!-- Time divider -->
+        <div class="mock-divider">3 minutes later</div>
+
+        <!-- Bot posts score result publicly -->
+        <div class="mock-msg">
+          <div class="mock-avatar" style="background:#F59E0B;">G</div>
+          <div class="mock-msg-body">
+            <div class="mock-msg-header">
+              <span class="mock-username" style="color:#FCD34D;">Gamely</span>
+              <span class="mock-bot-tag">APP</span>
+              <span class="mock-time">Today at 3:45 PM</span>
+            </div>
+            <div class="mock-embed" style="border-left-color:#22C55E;">
+              <div class="embed-game-title" style="color:#86EFAC;">✅ you finished CandleDojo</div>
+              <div class="mock-score-row">
+                <div class="mock-score-stat"><div class="mock-score-val">+1 pt</div><div class="mock-score-label">Earned</div></div>
+                <div class="mock-score-stat"><div class="mock-score-val">92</div><div class="mock-score-label">Total pts</div></div>
+                <div class="mock-score-stat"><div class="mock-score-val">#14</div><div class="mock-score-label">Global rank</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -692,7 +722,7 @@
     <div class="strip-label">Games shipping now</div>
   </div>
   <div class="strip-item">
-    <div class="strip-num">15m</div>
+    <div class="strip-num">30s</div>
     <div class="strip-label">Leaderboard refresh</div>
   </div>
   <div class="strip-item">
@@ -701,7 +731,7 @@
   </div>
   <div class="strip-item">
     <div class="strip-num">∞</div>
-    <div class="strip-label">Rounds per session</div>
+    <div class="strip-label">Free to play</div>
   </div>
 </div>
 
@@ -764,7 +794,7 @@
       <ul class="game-features">
         <li><span class="fi">—</span> 5 RSS feeds: BBC, Reuters, NYT, Guardian, NPR</li>
         <li><span class="fi">—</span> AI-judged answers — no rigid string matching</li>
-        <li><span class="fi">—</span> 90-second answer window via modal</li>
+        <li><span class="fi">—</span> 90-second answer window</li>
         <li><span class="fi">—</span> Per-user caps to prevent repeated questions</li>
         <li><span class="fi">—</span> Rolling 6-question pool — always fresh</li>
       </ul>
@@ -787,7 +817,7 @@
         <li><span class="fi">—</span> Letter-by-letter colour feedback (Wordle style)</li>
         <li><span class="fi">—</span> Win in 1 guess → +6 pts, win in 6 → +1 pt</li>
         <li><span class="fi">—</span> Double-or-Nothing: stake wins for 2× next day</li>
-        <li><span class="fi">—</span> Progress auto-saves on disconnect</li>
+        <li><span class="fi">—</span> Progress auto-saves — pick up where you left off</li>
       </ul>
     </div>
 
@@ -821,7 +851,7 @@
         <span class="eyebrow-label">Commands</span>
       </div>
       <h2 class="section-h2">Simple to run.<br><em>Easy</em> to moderate.</h2>
-      <p class="section-p">Every game launches from <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;color:var(--gold2);background:var(--bg4);padding:0.15em 0.4em;border-radius:4px;">/play</code>. Mods get per-game controls, leaderboards, and embed toggles.</p>
+      <p class="section-p"><code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;color:var(--gold2);background:var(--bg4);padding:0.15em 0.4em;border-radius:4px;">/play</code> sends a link to the game on gamely.tradely.dev — scores sync back automatically. Mods get leaderboard controls and per-game toggles.</p>
     </div>
 
     <div class="commands-layout">
@@ -836,7 +866,7 @@
         <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:1.2rem 1.4rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;">
           <div style="color:var(--muted);margin-bottom:0.5rem;"># Quick start</div>
           <div style="color:var(--gold2);">/play game:CandleDojo</div>
-          <div style="color:var(--green);font-size:0.73rem;margin-top:0.35rem;">→ opens an interactive game in seconds</div>
+          <div style="color:var(--green);font-size:0.73rem;margin-top:0.35rem;">→ sends a link to play at gamely.tradely.dev</div>
         </div>
       </div>
 
@@ -845,12 +875,7 @@
           <tbody>
             <tr>
               <td class="cmd-name">/play game:{...}</td>
-              <td class="cmd-desc">Start a game — choose <code>CandleDojo</code>, <code>TradeRun</code>, <code>NewsTru</code>, <code>Tradle</code>, or <code>Stockle</code>. Add <code>tutorial:yes</code> to replay the intro.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-all">Everyone</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/stop</td>
-              <td class="cmd-desc">Stop your current active game session immediately and show a summary.</td>
+              <td class="cmd-desc">Sends a link to play on gamely.tradely.dev. Choose <code>CandleDojo</code>, <code>TradeRun</code>, <code>NewsTru</code>, <code>Tradle</code>, or <code>Stockle</code> — scores sync back to Discord automatically.</td>
               <td class="cmd-badge-wrap"><span class="cbadge cb-all">Everyone</span></td>
             </tr>
             <tr>
@@ -860,12 +885,7 @@
             </tr>
             <tr>
               <td class="cmd-name">/leaderboard action:{here|off}</td>
-              <td class="cmd-desc">Post a live leaderboard in this channel — updates automatically every 15 minutes. Use <code>off</code> to remove it.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/embeds {on|off}</td>
-              <td class="cmd-desc">Toggle rich embed messages vs plain text for accessibility. Applies to all games server-wide.</td>
+              <td class="cmd-desc">Post a live leaderboard in this channel — updates automatically every 30 seconds. Use <code>off</code> to remove it.</td>
               <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
             </tr>
             <tr>
@@ -900,12 +920,12 @@
       <div class="lb-panel reveal">
         <div class="lb-panel-header">
           <span class="lb-panel-title">🏆 Global Leaderboard</span>
-          <span class="lb-live"><span class="lb-live-dot"></span> Updates every 15 min</span>
+          <span class="lb-live"><span class="lb-live-dot"></span> Updates every 30 sec</span>
         </div>
         <div id="lb-rows"></div>
       </div>
       <div class="lb-copy reveal">
-        <p class="section-p" style="margin-bottom:2.5rem;">Global and per-server rankings update every 15 minutes. Monthly resets keep competition fierce — one command sets everything up.</p>
+        <p class="section-p" style="margin-bottom:2.5rem;">Global and per-server rankings update every 30 seconds. Monthly resets keep competition fierce — one command sets everything up.</p>
 
         <div class="lb-feature">
           <div class="lb-feat-icon">🌐</div>
@@ -942,7 +962,7 @@
 <section class="cta-section">
   <div class="cta-inner">
     <div class="cta-h reveal">Ready to<br><em>Play?</em></div>
-    <p class="cta-sub reveal">Takes 10 seconds to add. Completely free. No database setup, no API keys, no config — just invite and type <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;background:rgba(255,255,255,0.06);padding:0.15em 0.4em;border-radius:4px;color:var(--gold2);">/play</code>.</p>
+    <p class="cta-sub reveal">Takes 10 seconds to add. Completely free. Invite the bot, type <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;background:rgba(255,255,255,0.06);padding:0.15em 0.4em;border-radius:4px;color:var(--gold2);">/play</code>, and get a link to the game — scores sync back to Discord automatically.</p>
     <div class="cta-invite-row reveal">
       <span>🔗</span>
       <span class="cta-invite-url">discord.com/oauth2/authorize?client_id=1490712611388653598</span>
@@ -963,7 +983,7 @@
 <footer>
   <div class="footer-left">
     <div class="footer-brand">Game<span>ly</span></div>
-    <div class="footer-tagline">The competitive Discord finance game bot.</div>
+    <div class="footer-tagline">Finance mini-games, powered by Discord.</div>
   </div>
   <div class="footer-links">
     <a href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">Invite Bot</a>
@@ -976,71 +996,6 @@
 </footer>
 
 <script>
-// ── Candle generator (seeded LCG) ────────────────────────────
-function makeCandles(n, seed) {
-  let x = seed;
-  const out = [];
-  let price = 100 + x % 40;
-  for (let i = 0; i < n; i++) {
-    x = (x * 1664525 + 1013904223) & 0xffffffff;
-    const change = ((x >>> 0) % 12) - 6;
-    const open = price;
-    const close = price + change;
-    const wick = (x >>> 0) % 4;
-    out.push({ open, close, high: Math.max(open,close)+wick, low: Math.min(open,close)-wick });
-    price = close;
-  }
-  return out;
-}
-
-function renderCandles(elId, count, seed, height) {
-  const el = document.getElementById(elId);
-  if (!el) return;
-  const c = makeCandles(count, seed);
-  const maxH = Math.max(...c.map(x=>x.high));
-  const minL = Math.min(...c.map(x=>x.low));
-  const range = (maxH - minL) || 1;
-  el.innerHTML = c.map(cv => {
-    const up  = cv.close >= cv.open;
-    const col = up ? '#06B6D4' : '#EF4444';
-    const bH  = Math.max(2, Math.abs(cv.close - cv.open) / range * height);
-    const bB  = (Math.min(cv.open, cv.close) - minL) / range * height;
-    const wTop = (maxH - cv.high) / range * height;
-    const wBot = (cv.low  - minL) / range * height;
-    return `<div style="display:flex;flex-direction:column;align-items:center;flex:1;height:${height}px;justify-content:flex-end;">
-      <div style="width:2px;height:${wTop}px;background:${col};"></div>
-      <div style="width:10px;height:${bH}px;background:${col};border-radius:2px;margin:1px 0;"></div>
-      <div style="width:2px;height:${wBot}px;background:${col};"></div>
-    </div>`;
-  }).join('');
-}
-
-let heroSeed = 42;
-renderCandles('hero-candles', 6, heroSeed, 50);
-
-function heroAnswer(dir) {
-  const answer = Math.random() > 0.5 ? 'up' : 'down';
-  const correct = dir === answer;
-  const res = document.getElementById('mock-result');
-  res.style.display = 'block';
-  res.style.background  = correct ? 'rgba(16,185,129,0.12)' : 'rgba(239,68,68,0.1)';
-  res.style.border      = `1px solid ${correct ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.3)'}`;
-  res.style.padding     = '0.45rem 0.7rem';
-  res.style.borderRadius = '5px';
-  res.style.marginTop   = '0.5rem';
-  res.style.fontSize    = '0.75rem';
-  res.style.fontFamily  = "'JetBrains Mono', monospace";
-  res.style.color       = correct ? '#10B981' : '#EF4444';
-  res.textContent = correct
-    ? `✓ +1 pt — price went ${answer.toUpperCase()}`
-    : `✗ Price went ${answer.toUpperCase()}. Try in Discord!`;
-  setTimeout(() => {
-    res.style.display = 'none';
-    heroSeed = (heroSeed * 1664525 + 1013904223) & 0xffffffff;
-    renderCandles('hero-candles', 6, heroSeed >>> 0, 50);
-  }, 2800);
-}
-
 // ── Leaderboard ───────────────────────────────────────────────
 const players = [
   { name: 'cryptowolf',   pts: 847, color: '#F59E0B' },
