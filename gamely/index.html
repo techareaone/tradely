@@ -407,8 +407,9 @@
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.2rem 0.55rem; border-radius: 100px; white-space: nowrap;
   }
-  .cb-all { background: rgba(16,185,129,0.12); color: var(--green); }
-  .cb-mod { background: rgba(245,158,11,0.12); color: var(--gold); }
+  .cb-all   { background: rgba(16,185,129,0.12); color: var(--green); }
+  .cb-mod   { background: rgba(245,158,11,0.12); color: var(--gold); }
+  .cb-admin { background: rgba(239,68,68,0.12);  color: var(--red); }
 
   /* ── LEADERBOARD ──────────────────────────────────────────── */
   .lb-section {
@@ -897,6 +898,16 @@
               <td class="cmd-name">/premium</td>
               <td class="cmd-desc">Manage premium features for your server. Coming soon.</td>
               <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
+            </tr>
+            <tr>
+              <td class="cmd-name">/servers</td>
+              <td class="cmd-desc">List all Discord servers using Gamely. Hidden servers are shown as "🙈 Hidden Server" to protect their privacy, unless the command is run from that server itself.</td>
+              <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
+            </tr>
+            <tr>
+              <td class="cmd-name">/hide [hide|show]</td>
+              <td class="cmd-desc">Opt your server in or out of the public Gamely server listing at gamely.tradely.dev/servers/. <code>hide</code> removes it from the directory; <code>show</code> restores it. Platform admins can apply a permanent hide that server admins cannot reverse.</td>
+              <td class="cmd-badge-wrap"><span class="cbadge cb-admin">Admin</span></td>
             </tr>
           </tbody>
         </table>
