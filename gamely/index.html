@@ -2,27 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gamely — Discord Game Bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gamely — Discord Finance Games | Play on gamely.tradely.dev</title>
 <!-- Open Graph / social embed -->
 <meta property="og:type"        content="website">
-<meta property="og:url"         content="https://doc.tradely.dev/advertising/">
-<meta property="og:title"       content="Join Tradely — Finance Games on Discord">
-<meta property="og:description" content="Play five finance mini-games on the web, earn points, and compete on Discord leaderboards. Free to join.">
+<meta property="og:url"         content="https://gamely.tradely.dev/">
+<meta property="og:title"       content="Gamely — Finance Games on Discord & Web">
+<meta property="og:description" content="Play five live-finance mini-games on gamely.tradely.dev, earn points, and compete on Discord leaderboards. Free, fast, synced.">
 <meta property="og:image"       content="https://doc.tradely.dev/gamely/cover.png">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1080">
-
-<!-- Twitter card -->
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="Join Tradely — Finance Games on Discord">
-<meta name="twitter:description" content="Play five finance mini-games on the web, earn points, and compete on Discord leaderboards. Free to join.">
+<meta name="twitter:title"       content="Gamely — Finance Games on Discord & Web">
+<meta name="twitter:description" content="Play five live-finance mini-games on gamely.tradely.dev, earn points, and compete on Discord leaderboards.">
 <meta name="twitter:image"       content="https://doc.tradely.dev/gamely/cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:      #07080F;
@@ -44,9 +39,8 @@
     --border:  rgba(255,255,255,0.07);
     --border2: rgba(255,255,255,0.12);
   }
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -54,242 +48,128 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* Ambient glow orbs */
   body::before {
     content: '';
     position: fixed; top: -20vh; left: 50%;
     transform: translateX(-50%);
-    width: 900px; height: 500px;
-    background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%);
+    width: 1000px; height: 600px;
+    background: radial-gradient(ellipse, rgba(245,158,11,0.05) 0%, transparent 70%);
     pointer-events: none; z-index: 0;
   }
-
-  /* ── NAV ─────────────────────────────────────────────────── */
+  /* Alert banner */
+  .alert-banner {
+    background: linear-gradient(90deg, rgba(245,158,11,0.12), rgba(6,182,212,0.08));
+    border-bottom: 1px solid rgba(245,158,11,0.2);
+    color: var(--gold2);
+    text-align: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+  }
+  .alert-banner a {
+    color: white;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: sticky; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 64px;
-    background: rgba(7,8,15,0.8);
+    padding: 0 3rem; height: 70px;
+    background: rgba(7,8,15,0.85);
     backdrop-filter: blur(20px) saturate(1.4);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;
-    display: flex; align-items: center; gap: 0.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-weight: 800; letter-spacing: -0.02em;
   }
-  .logo-mark {
-    width: 28px; height: 28px; background: var(--gold);
-    border-radius: 6px; display: flex; align-items: center;
-    justify-content: center; font-size: 0.75rem; font-weight: 800;
-    color: #000;
+  .nav-logo img {
+    height: 34px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
   }
   .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
   .nav-links a {
     color: var(--muted); text-decoration: none;
     font-size: 0.875rem; font-weight: 600;
-    padding: 0.4rem 0.8rem; border-radius: 6px;
-    transition: color 0.15s, background 0.15s;
+    padding: 0.4rem 0.8rem; border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
   }
   .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
   .nav-links .nav-highlight { color: var(--gold); }
-  .nav-links .nav-highlight:hover { color: var(--gold2); background: rgba(245,158,11,0.08); }
   .nav-invite {
     background: var(--gold); color: #000;
-    padding: 0.45rem 1.1rem; border-radius: 6px;
+    padding: 0.45rem 1.2rem; border-radius: 8px;
     font-weight: 700; font-size: 0.82rem;
     text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
-    transition: all 0.15s;
+    transition: all 0.2s;
   }
-  .nav-invite:hover { background: var(--gold2); transform: translateY(-1px); }
-  .nav-invite svg { width: 14px; height: 14px; }
-
-  /* ── HERO ────────────────────────────────────────────────── */
+  .nav-invite:hover { background: var(--gold2); transform: translateY(-2px); }
   .hero {
     min-height: 100vh;
     display: grid; grid-template-columns: 1fr 1fr;
     align-items: center; gap: 4rem;
-    padding: 6rem 5rem 4rem;
+    padding: 5rem 5rem 4rem;
     max-width: 1400px; margin: 0 auto;
     position: relative; z-index: 1;
   }
-  .hero-left { }
   .hero-pill {
     display: inline-flex; align-items: center; gap: 0.5rem;
     border: 1px solid rgba(245,158,11,0.3);
     background: rgba(245,158,11,0.07);
     color: var(--gold2); padding: 0.3rem 0.9rem;
     border-radius: 100px; font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.04em; margin-bottom: 1.8rem;
+    margin-bottom: 1.8rem;
   }
-  .pill-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--gold); box-shadow: 0 0 6px var(--gold);
-    animation: glow-pulse 2s ease-in-out infinite;
-  }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: glow-pulse 2s infinite; }
   @keyframes glow-pulse { 0%,100%{opacity:1;box-shadow:0 0 6px var(--gold)} 50%{opacity:0.5;box-shadow:0 0 2px var(--gold)} }
-
   .hero h1 {
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 800; line-height: 1.05;
     letter-spacing: -0.04em; margin-bottom: 1.5rem;
   }
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-sub {
-    color: var(--sub); font-size: 1.05rem; line-height: 1.75;
-    max-width: 480px; margin-bottom: 2.5rem; font-weight: 400;
-  }
-  .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3rem; }
-  .btn-gold {
-    background: var(--gold); color: #000;
-    padding: 0.85rem 2rem; border-radius: 8px;
+  .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { color: var(--sub); font-size: 1.05rem; line-height: 1.75; max-width: 520px; margin-bottom: 2rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-gold, .btn-web {
+    padding: 0.85rem 2rem; border-radius: 10px;
     font-weight: 700; font-size: 0.95rem;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
-    transition: all 0.15s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
+    transition: all 0.2s;
   }
-  .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(245,158,11,0.35); }
+  .btn-gold { background: var(--gold); color: #000; }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(245,158,11,0.3); }
+  .btn-web { background: rgba(255,255,255,0.06); border: 1px solid var(--border2); color: var(--text); backdrop-filter: blur(4px); }
+  .btn-web:hover { background: rgba(245,158,11,0.12); border-color: var(--gold); color: var(--gold2); transform: translateY(-2px); }
   .btn-ghost {
     background: transparent; color: var(--sub);
-    padding: 0.85rem 2rem; border-radius: 8px;
+    padding: 0.85rem 2rem; border-radius: 10px;
     font-weight: 600; font-size: 0.95rem;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
-    border: 1px solid var(--border2); transition: all 0.15s;
+    border: 1px solid var(--border2); transition: all 0.2s;
   }
   .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
-
   .hero-stats { display: flex; gap: 2.5rem; }
-  .hero-stat {}
-  .stat-val { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+  .stat-val { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; }
   .stat-val span { color: var(--gold); }
-  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 0.1rem; }
-
-  /* Hero right — Discord mock */
-  .hero-right { position: relative; }
-  .discord-mock {
-    background: var(--bg2); border: 1px solid var(--border2);
-    border-radius: 12px; overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,158,11,0.06);
-  }
-  .mock-topbar {
-    display: flex; align-items: center; gap: 0.8rem;
-    padding: 0.9rem 1.2rem; background: var(--bg3);
-    border-bottom: 1px solid var(--border);
-  }
-  .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .mock-channel {
-    font-size: 0.82rem; color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    margin-left: auto;
-  }
-  .mock-body { padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
-
-  /* Chat message */
-  .mock-msg { display: flex; align-items: flex-start; gap: 0.8rem; }
-  .mock-avatar {
-    width: 32px; height: 32px; border-radius: 50%;
-    flex-shrink: 0; display: flex; align-items: center;
-    justify-content: center; font-size: 0.75rem; font-weight: 700; color: #000;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .mock-msg-body {}
-  .mock-msg-header { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.15rem; }
-  .mock-username { font-size: 0.85rem; font-weight: 700; }
-  .mock-time { font-size: 0.7rem; color: var(--muted); }
-  .mock-slash { font-size: 0.82rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-  .mock-slash strong { color: var(--gold2); }
-
-  /* Embed card */
-  .mock-embed {
-    margin-left: 40px;
-    border-left: 3px solid var(--teal);
-    background: var(--bg3); border-radius: 0 6px 6px 0;
-    padding: 0.9rem 1rem; font-size: 0.82rem;
-    max-width: 360px;
-  }
-  .embed-game-title { font-weight: 700; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; }
-  .embed-desc { color: var(--sub); line-height: 1.5; margin-bottom: 0.8rem; }
-
-  .mock-bot-tag {
-    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em;
-    background: #5865F2; color: #fff;
-    padding: 0.1rem 0.35rem; border-radius: 3px;
-    text-transform: uppercase; margin-left: 0.1rem;
-  }
-  .mock-divider {
-    text-align: center; font-size: 0.68rem; color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    display: flex; align-items: center; gap: 0.6rem;
-    margin: 0.2rem 0;
-  }
-  .mock-divider::before, .mock-divider::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
-  .mock-score-row {
-    display: flex; gap: 1.5rem; margin-top: 0.5rem;
-  }
-  .mock-score-stat { }
-  .mock-score-val {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem; font-weight: 700; color: var(--text);
-  }
-  .mock-score-label {
-    font-size: 0.65rem; color: var(--muted); margin-top: 0.1rem;
-    text-transform: uppercase; letter-spacing: 0.06em;
-  }
-
-  .mock-play-btn {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    background: var(--gold); color: #000;
-    padding: 0.45rem 1rem; border-radius: 5px;
-    font-size: 0.78rem; font-weight: 700;
-    text-decoration: none; margin-bottom: 0.7rem;
-    transition: background 0.15s;
-  }
-  .mock-play-btn:hover { background: var(--gold2); }
-  .mock-embed-footer { margin-top: 0.55rem; font-size: 0.68rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-
-  @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-
-  /* ── STATS STRIP ──────────────────────────────────────────── */
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 0.2rem; }
+  /* Discord mock same style but refined */
+  .hero-right .discord-mock { background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
   .stats-strip {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--bg2);
     display: grid; grid-template-columns: repeat(4,1fr);
-    position: relative; z-index: 1;
   }
-  .strip-item {
-    padding: 2rem 2.5rem;
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 0.3rem;
-  }
-  .strip-item:last-child { border-right: none; }
-  .strip-num {
-    font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em;
-    color: var(--gold);
-  }
-  .strip-label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
-
-  /* ── SECTION CHROME ───────────────────────────────────────── */
+  .strip-item { padding: 2rem 2rem; border-right: 1px solid var(--border); }
+  .strip-num { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--gold); }
+  .strip-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
   .section-eyebrow {
-    display: flex; align-items: center; gap: 0.6rem;
-    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;
   }
-  .eyebrow-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem; color: var(--gold); font-weight: 600;
-    letter-spacing: 0.05em;
-  }
+  .eyebrow-num { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); font-weight: 600; }
   .eyebrow-line { width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
-  .eyebrow-label {
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-  }
   .section-h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800; letter-spacing: -0.035em; line-height: 1.1;
@@ -297,744 +177,255 @@
   }
   .section-h2 em { font-style: normal; color: var(--gold); }
   .section-p { color: var(--sub); line-height: 1.75; font-size: 1rem; max-width: 520px; }
-
-  /* ── GAMES ────────────────────────────────────────────────── */
-  .games-section {
-    padding: 8rem 5rem; max-width: 1400px; margin: 0 auto;
-    position: relative; z-index: 1;
-  }
-  .games-header { margin-bottom: 4rem; }
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border-radius: 16px; overflow: hidden;
-  }
-  .games-bottom-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border-radius: 0 0 16px 16px;
-    margin-top: 1px;
-    overflow: hidden;
-  }
+  .games-section, .commands-section, .lb-section, .cta-section { padding: 7rem 5rem; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+  .games-grid, .games-bottom-row { display: grid; gap: 1px; background: var(--border); border-radius: 20px; overflow: hidden; }
+  .games-grid { grid-template-columns: repeat(3, 1fr); }
+  .games-bottom-row { grid-template-columns: repeat(2, 1fr); margin-top: 1px; border-radius: 0 0 20px 20px; }
   .game-card {
     background: var(--bg2); padding: 2.5rem;
-    position: relative; overflow: hidden;
-    transition: background 0.25s;
+    position: relative; transition: all 0.25s;
   }
-  .game-card:hover { background: var(--bg3); }
-  .game-card-accent {
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  }
-  .game-card-glow {
-    position: absolute; top: -60px; right: -60px;
-    width: 200px; height: 200px; border-radius: 50%;
-    opacity: 0; transition: opacity 0.3s;
-    pointer-events: none;
-  }
-  .game-card:hover .game-card-glow { opacity: 1; }
-  .game-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; }
+  .game-card:hover { background: var(--bg3); transform: translateY(-2px); }
+  .game-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .game-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
   .game-label {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.22rem 0.65rem; border-radius: 100px;
-    margin-bottom: 0.9rem;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    padding: 0.22rem 0.65rem; border-radius: 100px; margin-bottom: 0.9rem;
   }
-  .game-card h3 {
-    font-size: 1.5rem; font-weight: 800;
-    letter-spacing: -0.025em; margin-bottom: 0.8rem;
-  }
-  .game-card p { color: var(--sub); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
-  .game-features { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .game-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.7rem; }
+  .game-card p { color: var(--sub); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.2rem; }
   .game-features li {
-    display: flex; align-items: flex-start; gap: 0.6rem;
-    font-size: 0.83rem; color: var(--muted);
+    display: flex; gap: 0.6rem; font-size: 0.82rem; color: var(--muted);
     padding: 0.4rem 0; border-top: 1px solid var(--border);
   }
-  .game-features li:first-child { border-top: none; padding-top: 0; }
-  .fi { font-size: 0.75rem; margin-top: 0.1rem; flex-shrink: 0; }
-
-  /* Per-game color classes */
-  .gc-teal  .game-card-accent { background: var(--teal); }
-  .gc-teal  .game-label { background: rgba(6,182,212,0.12); color: var(--teal); }
-  .gc-teal  .game-card-glow { background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%); }
+  .game-play-link {
+    margin-top: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .game-play-link:hover { gap: 0.6rem; color: var(--gold2); }
+  .gc-teal .game-card-accent { background: var(--teal); }
+  .gc-teal .game-label { background: rgba(6,182,212,0.12); color: var(--teal); }
   .gc-orange .game-card-accent { background: var(--orange); }
   .gc-orange .game-label { background: rgba(249,115,22,0.12); color: var(--orange); }
-  .gc-orange .game-card-glow { background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%); }
-  .gc-blue  .game-card-accent { background: var(--blue); }
-  .gc-blue  .game-label { background: rgba(59,130,246,0.12); color: var(--blue); }
-  .gc-blue  .game-card-glow { background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%); }
+  .gc-blue .game-card-accent { background: var(--blue); }
+  .gc-blue .game-label { background: rgba(59,130,246,0.12); color: var(--blue); }
   .gc-violet .game-card-accent { background: var(--violet); }
   .gc-violet .game-label { background: rgba(139,92,246,0.12); color: var(--violet); }
-  .gc-violet .game-card-glow { background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%); }
-  .gc-gold  .game-card-accent { background: var(--gold); }
-  .gc-gold  .game-label { background: rgba(245,158,11,0.12); color: var(--gold); }
-  .gc-gold  .game-card-glow { background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%); }
-
-  /* ── COMMANDS ─────────────────────────────────────────────── */
-  .commands-section {
-    padding: 8rem 5rem;
-    background: var(--bg2);
-    position: relative; z-index: 1;
-  }
-  .commands-inner { max-width: 1200px; margin: 0 auto; }
-  .commands-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; margin-top: 4rem; }
-  .commands-sticky { position: sticky; top: 6rem; }
-
+  .gc-gold .game-card-accent { background: var(--gold); }
+  .gc-gold .game-label { background: rgba(245,158,11,0.12); color: var(--gold); }
+  .commands-section { background: var(--bg2); width: 100%; border-radius: 0; }
+  .commands-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; margin-top: 3rem; }
   .cmd-table { width: 100%; border-collapse: collapse; }
   .cmd-table tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  .cmd-table tr:last-child { border-bottom: none; }
-  .cmd-table tr:hover { background: rgba(255,255,255,0.02); }
-  .cmd-table td { padding: 1.1rem 1.2rem; vertical-align: top; }
-  .cmd-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.83rem; font-weight: 600; color: var(--gold2);
-    white-space: nowrap; width: 1%; padding-right: 1.5rem;
-  }
-  .cmd-desc { color: var(--sub); font-size: 0.88rem; line-height: 1.6; }
-  .cmd-desc code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8em; color: var(--text);
-    background: var(--bg4); padding: 0.1em 0.4em; border-radius: 3px;
-  }
-  .cmd-badge-wrap { text-align: right; width: 1%; padding-left: 1rem; }
-  .cbadge {
-    display: inline-block; font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 0.2rem 0.55rem; border-radius: 100px; white-space: nowrap;
-  }
-  .cb-all   { background: rgba(16,185,129,0.12); color: var(--green); }
-  .cb-mod   { background: rgba(245,158,11,0.12); color: var(--gold); }
-  .cb-admin { background: rgba(239,68,68,0.12);  color: var(--red); }
-
-  /* ── LEADERBOARD ──────────────────────────────────────────── */
-  .lb-section {
-    padding: 8rem 5rem;
-    position: relative; z-index: 1;
-  }
-  .lb-inner { max-width: 1200px; margin: 0 auto; }
-  .lb-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: center; margin-top: 4rem; }
-
-  .lb-panel {
-    background: var(--bg2); border: 1px solid var(--border2);
-    border-radius: 14px; overflow: hidden;
-  }
+  .cmd-table td { padding: 1rem 1rem; vertical-align: top; }
+  .cmd-name { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 600; color: var(--gold2); white-space: nowrap; }
+  .cmd-desc { color: var(--sub); font-size: 0.87rem; line-height: 1.5; }
+  .cbadge { font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 100px; white-space: nowrap; }
+  .cb-all { background: rgba(16,185,129,0.12); color: var(--green); }
+  .cb-mod { background: rgba(245,158,11,0.12); color: var(--gold); }
+  .cb-admin { background: rgba(239,68,68,0.12); color: var(--red); }
+  .lb-panel { background: var(--bg2); border: 1px solid var(--border2); border-radius: 20px; overflow: hidden; }
   .lb-panel-header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--border);
-    background: var(--bg3);
+    padding: 1.1rem 1.5rem; background: var(--bg3); border-bottom: 1px solid var(--border);
   }
-  .lb-panel-title { font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
-  .lb-live {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-    color: var(--muted); display: flex; align-items: center; gap: 0.4rem;
-  }
-  .lb-live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: glow-pulse 2s infinite; }
-
   .lb-row {
     display: flex; align-items: center; gap: 1rem;
-    padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
+    padding: 0.8rem 1.5rem; border-bottom: 1px solid var(--border);
   }
-  .lb-row:last-child { border-bottom: none; }
-  .lb-row:hover { background: rgba(255,255,255,0.02); }
-  .lb-pos {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem; width: 22px; text-align: center; flex-shrink: 0;
-    color: var(--muted);
-  }
-  .lb-pos.p1 { font-size: 1rem; }
-  .lb-pos.p2 { font-size: 1rem; }
-  .lb-pos.p3 { font-size: 1rem; }
-  .lb-av {
-    width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; font-weight: 700; color: #000; flex-shrink: 0;
-  }
-  .lb-name { flex: 1; font-size: 0.88rem; font-weight: 600; }
-  .lb-track { flex: 1; height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
-  .lb-fill { height: 100%; border-radius: 2px; }
-  .lb-pts {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem; font-weight: 600; color: var(--gold);
-  }
-
-  .lb-copy { }
-  .lb-feature {
-    display: flex; align-items: flex-start; gap: 1rem;
-    padding: 1.2rem 0; border-bottom: 1px solid var(--border);
-  }
-  .lb-feature:last-child { border-bottom: none; }
-  .lb-feat-icon {
-    width: 36px; height: 36px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0; background: var(--bg3);
-  }
-  .lb-feat-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
-  .lb-feat-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-
+  .lb-pos { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; width: 28px; color: var(--muted); }
+  .lb-av { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .lb-name { flex: 1; font-weight: 600; font-size: 0.9rem; }
+  .lb-track { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .lb-fill { height: 100%; border-radius: 4px; }
+  .lb-pts { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--gold); }
   .lb-cmd-box {
-    margin-top: 2.5rem;
     background: var(--bg2); border: 1px solid var(--border2);
-    border-radius: 10px; padding: 1.2rem 1.4rem;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+    border-radius: 14px; padding: 1.2rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
   }
-  .lb-cmd-line1 { color: var(--gold2); }
-  .lb-cmd-line2 { color: var(--green); font-size: 0.76rem; margin-top: 0.4rem; }
-
-  /* ── CTA ──────────────────────────────────────────────────── */
   .cta-section {
-    padding: 10rem 5rem;
     text-align: center;
-    position: relative; z-index: 1; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 30%, rgba(245,158,11,0.05), transparent);
   }
-  .cta-section::before {
-    content: '';
-    position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-    width: 800px; height: 400px;
-    background: radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-  .cta-h { font-size: clamp(2.5rem,6vw,5rem); font-weight: 800; letter-spacing: -0.045em; line-height: 1; margin-bottom: 1.5rem; }
-  .cta-h em { font-style: normal; color: var(--gold); }
-  .cta-sub { color: var(--sub); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
-  .cta-invite-row {
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
-    color: var(--muted); margin-bottom: 2.5rem;
-  }
-  .cta-invite-url { color: var(--sub); }
   .btn-cta-big {
     background: var(--gold); color: #000;
-    padding: 1.1rem 3rem; border-radius: 10px;
-    font-weight: 800; font-size: 1.05rem;
+    padding: 1.1rem 3rem; border-radius: 60px;
+    font-weight: 800; font-size: 1.1rem;
     text-decoration: none; display: inline-flex; align-items: center; gap: 0.7rem;
-    transition: all 0.2s;
-    box-shadow: 0 0 40px rgba(245,158,11,0.25);
+    transition: 0.2s; box-shadow: 0 8px 24px rgba(245,158,11,0.3);
   }
-  .btn-cta-big:hover {
-    background: var(--gold2);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 16px 48px rgba(245,158,11,0.4);
-  }
-  .btn-cta-big svg { width: 20px; height: 20px; }
-  .cta-meta { margin-top: 1.2rem; font-size: 0.82rem; color: var(--muted); }
-  .cta-meta a { color: var(--gold); text-decoration: none; font-weight: 600; }
-
-  /* ── FOOTER ───────────────────────────────────────────────── */
+  .btn-cta-big:hover { background: var(--gold2); transform: scale(1.02) translateY(-3px); }
   footer {
     background: var(--bg2); border-top: 1px solid var(--border);
     padding: 3rem 5rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1.5rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
   }
-  .footer-left { }
-  .footer-brand { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
-  .footer-brand span { color: var(--gold); }
+  .footer-brand img { height: 28px; width: auto; margin-bottom: 0.3rem; }
   .footer-tagline { font-size: 0.8rem; color: var(--muted); }
-  .footer-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
-  .footer-links a {
-    color: var(--muted); text-decoration: none; font-size: 0.83rem;
-    font-weight: 500; transition: color 0.15s;
-  }
-  .footer-links a:hover { color: var(--text); }
-  .footer-links .fl-gold { color: var(--gold); font-weight: 600; }
-  .footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
-
-  /* ── FLOATING BUTTON ──────────────────────────────────────── */
-  .float-btn {
+  .float-btn-web {
     position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
     background: var(--gold); color: #000;
-    padding: 0.8rem 1.4rem; border-radius: 100px;
-    font-weight: 700; font-size: 0.82rem;
-    text-decoration: none; display: flex; align-items: center; gap: 0.45rem;
-    box-shadow: 0 8px 28px rgba(245,158,11,0.4);
-    transition: all 0.2s;
-    animation: float-y 3s ease-in-out infinite;
+    padding: 0.8rem 1.6rem; border-radius: 60px;
+    font-weight: 800; font-size: 0.85rem;
+    text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+    box-shadow: 0 8px 24px rgba(245,158,11,0.5);
+    transition: 0.2s; animation: float-y 3s infinite;
   }
-  .float-btn:hover { background: var(--gold2); box-shadow: 0 14px 40px rgba(245,158,11,0.55); animation: none; transform: scale(1.04) translateY(-2px); }
-  .float-btn svg { width: 14px; height: 14px; }
-
-  /* ── SCROLL REVEAL ────────────────────────────────────────── */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .reveal.up { opacity: 1; transform: translateY(0); }
-  .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .reveal-left.up { opacity: 1; transform: translateX(0); }
-
-  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .float-btn-web:hover { background: var(--gold2); transform: scale(1.05); animation: none; }
+  .reveal, .reveal-left { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease; }
+  .reveal-left { transform: translateX(-28px); }
+  .reveal.up, .reveal-left.up { opacity: 1; transform: translateY(0) translateX(0); }
   @media (max-width: 1100px) {
-    .hero { grid-template-columns: 1fr; padding: 6rem 3rem 3rem; gap: 3rem; }
+    .hero { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
     .hero-right { display: none; }
-    .games-grid { grid-template-columns: 1fr 1fr; }
-    .games-bottom-row { grid-template-columns: 1fr 1fr; }
-    .commands-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-    .commands-sticky { position: static; }
-    .lb-layout { grid-template-columns: 1fr; gap: 3rem; }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
-    .games-section, .commands-section, .lb-section, .cta-section { padding: 5rem 1.5rem; }
     .games-grid, .games-bottom-row { grid-template-columns: 1fr; }
+    .commands-layout { grid-template-columns: 1fr; gap: 2rem; }
     .stats-strip { grid-template-columns: repeat(2,1fr); }
     .strip-item:nth-child(2) { border-right: none; }
+    .games-section, .commands-section, .lb-section, .cta-section { padding: 4rem 1.5rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 760px) {
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .strip-item { border-right: none; }
+    .strip-item:nth-child(2) { border-right: none; }
     .strip-item:nth-child(3) { border-top: 1px solid var(--border); }
-    .strip-item:last-child { border-top: 1px solid var(--border); }
-    footer { flex-direction: column; padding: 2.5rem 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- Floating invite -->
-<a class="float-btn" href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-  Add to Discord
-</a>
+<div class="alert-banner">
+  🎮 All games live at <a href="https://gamely.tradely.dev" target="_blank">gamely.tradely.dev</a> — play instantly, scores sync with Discord → 
+</div>
 
-<!-- Nav -->
 <nav>
   <div class="nav-logo">
-    <div class="logo-mark">G</div>
-    Gamely
+    <img src="gamely-logo.png" alt="Gamely" onerror="this.onerror=null; this.alt='Gamely'; this.style.minWidth='100px'; this.innerText='Gamely'">
   </div>
   <ul class="nav-links">
     <li><a href="#games">Games</a></li>
     <li><a href="#commands">Commands</a></li>
     <li><a href="#leaderboard">Leaderboard</a></li>
-    <li><a href="https://discord.tradely.dev" target="_blank" class="nav-highlight">Tradely ↗</a></li>
+    <li><a href="https://gamely.tradely.dev" target="_blank" class="nav-highlight">Play Web ↗</a></li>
   </ul>
   <a class="nav-invite" href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-    Invite Bot
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    Add Bot
   </a>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-pill">
-      <span class="pill-dot"></span>
-      Live on Discord Now
-    </div>
+    <div class="hero-pill"><span class="pill-dot"></span> Live on Discord + Web</div>
     <h1>Finance games.<br>Play on the web.<br>Compete on <em>Discord.</em></h1>
-    <p class="hero-sub">Five competitive, skill-based finance mini-games — real stock charts, live news, simulated trading, daily puzzles. Play on the website, sync scores to Discord, and climb the leaderboard with your server.</p>
+    <p class="hero-sub">Five real-data mini-games — live charts, news puzzles, simulated trading. Play directly on <strong class="gold">gamely.tradely.dev</strong>, your score syncs back to Discord leaderboards in seconds.</p>
     <div class="hero-actions">
-      <a class="btn-gold" href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        Add to Discord — Free
-      </a>
-      <a class="btn-ghost" href="#games">See all 5 games ↓</a>
+      <a class="btn-web" href="https://gamely.tradely.dev" target="_blank">🎮 Play on gamely.tradely.dev →</a>
+      <a class="btn-gold" href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">➕ Add to Discord</a>
+      <a class="btn-ghost" href="#games">Explore games ↓</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="stat-val">5<span>×</span></div>
-        <div class="stat-label">Mini-Games</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-val"><span>/</span>play</div>
-        <div class="stat-label">One command</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-val">0<span>$</span></div>
-        <div class="stat-label">Cost, forever</div>
-      </div>
+      <div class="hero-stat"><div class="stat-val">5<span>×</span></div><div class="stat-label">Games live</div></div>
+      <div class="hero-stat"><div class="stat-val"><span>/</span>play</div><div class="stat-label">Slash command</div></div>
+      <div class="hero-stat"><div class="stat-val">0<span>$</span></div><div class="stat-label">Free forever</div></div>
     </div>
   </div>
-
-  <!-- Discord mock -->
   <div class="hero-right">
     <div class="discord-mock">
-      <div class="mock-topbar">
-        <div class="mock-dot" style="background:#ff5f57"></div>
-        <div class="mock-dot" style="background:#febc2e"></div>
-        <div class="mock-dot" style="background:#28c840"></div>
-        <span class="mock-channel"># trading-games</span>
-      </div>
-      <div class="mock-body">
-
-        <!-- User types /play -->
-        <div class="mock-msg">
-          <div class="mock-avatar" style="background:#6366f1;">Y</div>
-          <div class="mock-msg-body">
-            <div class="mock-msg-header">
-              <span class="mock-username" style="color:#818cf8;">you</span>
-              <span class="mock-time">Today at 3:42 PM</span>
-            </div>
-            <div class="mock-slash"><strong>/play</strong> game:CandleDojo</div>
-          </div>
-        </div>
-
-        <!-- Bot sends a link (ephemeral-style) -->
-        <div class="mock-msg">
-          <div class="mock-avatar" style="background:#F59E0B;">G</div>
-          <div class="mock-msg-body">
-            <div class="mock-msg-header">
-              <span class="mock-username" style="color:#FCD34D;">Gamely</span>
-              <span class="mock-bot-tag">APP</span>
-              <span class="mock-time">Today at 3:42 PM</span>
-            </div>
-            <div class="mock-embed" style="border-left-color:var(--teal);">
-              <div class="embed-game-title">🕯️ CandleDojo — Ready</div>
-              <div class="embed-desc">Opens in your browser. Score syncs back here when you finish.</div>
-              <a class="mock-play-btn" href="https://gamely.tradely.dev" target="_blank">▶ Play Now</a>
-              <div class="mock-embed-footer">Only you can see this · gamely.tradely.dev</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Time divider -->
-        <div class="mock-divider">3 minutes later</div>
-
-        <!-- Bot posts score result publicly -->
-        <div class="mock-msg">
-          <div class="mock-avatar" style="background:#F59E0B;">G</div>
-          <div class="mock-msg-body">
-            <div class="mock-msg-header">
-              <span class="mock-username" style="color:#FCD34D;">Gamely</span>
-              <span class="mock-bot-tag">APP</span>
-              <span class="mock-time">Today at 3:45 PM</span>
-            </div>
-            <div class="mock-embed" style="border-left-color:#22C55E;">
-              <div class="embed-game-title" style="color:#86EFAC;">✅ you finished CandleDojo</div>
-              <div class="mock-score-row">
-                <div class="mock-score-stat"><div class="mock-score-val">+1 pt</div><div class="mock-score-label">Earned</div></div>
-                <div class="mock-score-stat"><div class="mock-score-val">92</div><div class="mock-score-label">Total pts</div></div>
-                <div class="mock-score-stat"><div class="mock-score-val">#14</div><div class="mock-score-label">Global rank</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="mock-topbar" style="display:flex; padding:0.8rem 1rem; gap:0.8rem; background:var(--bg3);"><div style="display:flex; gap:0.4rem;"><div style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></div><div style="width:10px;height:10px;border-radius:50%;background:#febc2e"></div><div style="width:10px;height:10px;border-radius:50%;background:#28c840"></div></div><span style="color:var(--muted); font-size:0.75rem;"># trading-games</span></div>
+      <div class="mock-body" style="padding:1rem;">
+        <div class="mock-msg" style="display:flex; gap:0.8rem; margin-bottom:1rem;"><div class="mock-avatar" style="background:#6366f1; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700;">Y</div><div><div style="display:flex; gap:0.5rem;"><span style="color:#818cf8;">you</span><span style="color:var(--muted); font-size:0.7rem;">Today</span></div><div style="font-family:monospace;"><strong style="color:var(--gold2);">/play</strong> game:CandleDojo</div></div></div>
+        <div class="mock-msg" style="display:flex; gap:0.8rem;"><div class="mock-avatar" style="background:#F59E0B; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;">G</div><div><div><span style="color:#FCD34D;">Gamely</span> <span style="background:#5865F2; font-size:0.6rem; padding:0.1rem 0.3rem; border-radius:4px;">APP</span></div><div style="border-left:3px solid var(--teal); background:var(--bg3); border-radius:6px; padding:0.7rem; margin-top:0.2rem;"><div>🕯️ <strong>CandleDojo</strong> — ready</div><div style="font-size:0.75rem; color:var(--sub);">Play on the web — score auto-syncs</div><a href="https://gamely.tradely.dev" target="_blank" style="display:inline-block; margin-top:0.5rem; background:var(--gold); color:#000; padding:0.3rem 1rem; border-radius:6px; text-decoration:none; font-weight:700; font-size:0.75rem;">▶ Play Now</a></div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Stats strip -->
 <div class="stats-strip">
-  <div class="strip-item">
-    <div class="strip-num">5</div>
-    <div class="strip-label">Games shipping now</div>
-  </div>
-  <div class="strip-item">
-    <div class="strip-num">30s</div>
-    <div class="strip-label">Leaderboard refresh</div>
-  </div>
-  <div class="strip-item">
-    <div class="strip-num">6h</div>
-    <div class="strip-label">NewsTru feed cycle</div>
-  </div>
-  <div class="strip-item">
-    <div class="strip-num">∞</div>
-    <div class="strip-label">Free to play</div>
-  </div>
+  <div class="strip-item"><div class="strip-num">5</div><div class="strip-label">live games</div></div>
+  <div class="strip-item"><div class="strip-num">⚡ 30s</div><div class="strip-label">leaderboard sync</div></div>
+  <div class="strip-item"><div class="strip-num">📰 6h</div><div class="strip-label">news cycle</div></div>
+  <div class="strip-item"><div class="strip-num">∞</div><div class="strip-label">free access</div></div>
 </div>
 
-<!-- Games -->
 <section class="games-section" id="games">
-  <div class="games-header reveal">
-    <div class="section-eyebrow">
-      <span class="eyebrow-num">01</span>
-      <span class="eyebrow-line"></span>
-      <span class="eyebrow-label">Games</span>
-    </div>
-    <h2 class="section-h2">Five games.<br>All <em>live data.</em></h2>
-    <p class="section-p">Every game pulls from real-world sources — stock prices, live news, actual company fundamentals. No simulated numbers.</p>
-  </div>
-
+  <div class="games-header reveal"><div class="section-eyebrow"><span class="eyebrow-num">01</span><span class="eyebrow-line"></span><span class="eyebrow-label">Game lineup</span></div><h2 class="section-h2">Five finance challenges.<br><em>Real data.</em> No filler.</h2></div>
   <div class="games-grid reveal">
-
-    <!-- CandleDojo -->
-    <div class="game-card gc-teal">
-      <div class="game-card-accent"></div>
-      <div class="game-card-glow"></div>
-      <span class="game-icon">🕯️</span>
-      <span class="game-label">Live Markets</span>
-      <h3>CandleDojo</h3>
-      <p>See the first half of a real stock or crypto chart. Predict whether price went UP or DOWN in the hidden half. Points for correct calls.</p>
-      <ul class="game-features">
-        <li><span class="fi">—</span> Real Yahoo Finance OHLCV data</li>
-        <li><span class="fi">—</span> Multiple timeframes: 1H, 4H, Daily, Weekly</li>
-        <li><span class="fi">—</span> Auditable seeds — every round reproducible</li>
-        <li><span class="fi">—</span> 60-second timer, continuous play</li>
-        <li><span class="fi">—</span> Volume bars + full wick rendering</li>
-      </ul>
-    </div>
-
-    <!-- TradeRun -->
-    <div class="game-card gc-orange">
-      <div class="game-card-accent"></div>
-      <div class="game-card-glow"></div>
-      <span class="game-icon">📈</span>
-      <span class="game-label">Simulated Trading</span>
-      <h3>TradeRun</h3>
-      <p>Trade a real stock across 12 candles in ~60 seconds. Buy and sell shares with a live balance. Beat the baseline to earn a bonus point.</p>
-      <ul class="game-features">
-        <li><span class="fi">—</span> 12 candles, one every 5 seconds (~60s total)</li>
-        <li><span class="fi">—</span> BUY &amp; SELL buttons — long-only</li>
-        <li><span class="fi">—</span> Starts with 3× the stock price as cash</li>
-        <li><span class="fi">—</span> +1 pt for positive return · +1 bonus to beat baseline</li>
-        <li><span class="fi">—</span> Auto-advances between runs non-stop</li>
-      </ul>
-    </div>
-
-    <!-- NewsTru -->
-    <div class="game-card gc-blue">
-      <div class="game-card-accent"></div>
-      <div class="game-card-glow"></div>
-      <span class="game-icon">📰</span>
-      <span class="game-label">Live News</span>
-      <h3>NewsTru</h3>
-      <p>A fresh headline from major outlets every 6 hours. An AI generates a factual question from it. Type your answer — synonyms count.</p>
-      <ul class="game-features">
-        <li><span class="fi">—</span> 5 RSS feeds: BBC, Reuters, NYT, Guardian, NPR</li>
-        <li><span class="fi">—</span> AI-judged answers — no rigid string matching</li>
-        <li><span class="fi">—</span> 90-second answer window</li>
-        <li><span class="fi">—</span> Per-user caps to prevent repeated questions</li>
-        <li><span class="fi">—</span> Rolling 6-question pool — always fresh</li>
-      </ul>
-    </div>
-
+    <div class="game-card gc-teal"><div class="game-card-accent"></div><span class="game-icon">🕯️</span><span class="game-label">Live markets</span><h3>CandleDojo</h3><p>Predict if price went up/down after seeing half a real chart. Yahoo Finance data.</p><ul class="game-features"><li>— 1H, 4H, Daily timeframes</li><li>— Verifiable rounds</li></ul><a href="https://gamely.tradely.dev" target="_blank" class="game-play-link">Play on gamely.tradely.dev →</a></div>
+    <div class="game-card gc-orange"><div class="game-card-accent"></div><span class="game-icon">📈</span><span class="game-label">Sim trading</span><h3>TradeRun</h3><p>Trade a real stock across 12 candles, beat baseline for bonus points.</p><ul class="game-features"><li>— 60 sec rounds</li><li>— BUY/SELL live balance</li></ul><a href="https://gamely.tradely.dev" target="_blank" class="game-play-link">Play on gamely.tradely.dev →</a></div>
+    <div class="game-card gc-blue"><div class="game-card-accent"></div><span class="game-icon">📰</span><span class="game-label">Live news</span><h3>NewsTru</h3><p>AI-generated questions from BBC, Reuters. Factual, synonym-friendly.</p><ul class="game-features"><li>— Fresh every 6h</li><li>— Rolling 6-question pool</li></ul><a href="https://gamely.tradely.dev" target="_blank" class="game-play-link">Play on gamely.tradely.dev →</a></div>
   </div>
-
   <div class="games-bottom-row reveal">
-
-    <!-- Tradle -->
-    <div class="game-card gc-violet">
-      <div class="game-card-accent"></div>
-      <div class="game-card-glow"></div>
-      <span class="game-icon">📊</span>
-      <span class="game-label">Daily Puzzle</span>
-      <h3>Tradle</h3>
-      <p>A trading-themed Wordle. 6 tries to guess the daily 5-letter market word. Win, then choose to bank your points or risk them Double-or-Nothing.</p>
-      <ul class="game-features">
-        <li><span class="fi">—</span> One word per day — same for all players</li>
-        <li><span class="fi">—</span> Letter-by-letter colour feedback (Wordle style)</li>
-        <li><span class="fi">—</span> Win in 1 guess → +6 pts, win in 6 → +1 pt</li>
-        <li><span class="fi">—</span> Double-or-Nothing: stake wins for 2× next day</li>
-        <li><span class="fi">—</span> Progress auto-saves — pick up where you left off</li>
-      </ul>
-    </div>
-
-    <!-- Stockle -->
-    <div class="game-card gc-gold">
-      <div class="game-card-accent"></div>
-      <div class="game-card-glow"></div>
-      <span class="game-icon">💹</span>
-      <span class="game-label">Daily Stock Puzzle</span>
-      <h3>Stockle</h3>
-      <p>Guess the daily mystery stock ticker in 6 tries. Each guess reveals Market Cap, Revenue, Sector, and Country hints — hot or cold style.</p>
-      <ul class="game-features">
-        <li><span class="fi">—</span> One stock per day — same ticker for everyone</li>
-        <li><span class="fi">—</span> Market Cap &amp; Revenue: % difference + ↑↓ direction</li>
-        <li><span class="fi">—</span> Sector: exact match or miss</li>
-        <li><span class="fi">—</span> Country: exact · same region · different region</li>
-        <li><span class="fi">—</span> Live data from Yahoo Finance</li>
-      </ul>
-    </div>
-
+    <div class="game-card gc-violet"><div class="game-card-accent"></div><span class="game-icon">📊</span><span class="game-label">Daily puzzle</span><h3>Tradle</h3><p>Market-themed Wordle, double-or-nothing risk mode.</p><ul class="game-features"><li>— 6 tries</li><li>— Daily word + streak</li></ul><a href="https://gamely.tradely.dev" target="_blank" class="game-play-link">Play on gamely.tradely.dev →</a></div>
+    <div class="game-card gc-gold"><div class="game-card-accent"></div><span class="game-icon">💹</span><span class="game-label">Stock puzzle</span><h3>Stockle</h3><p>Guess daily ticker using market cap, revenue, sector hints.</p><ul class="game-features"><li>— Real fundamentals</li><li>— Global leaderboard</li></ul><a href="https://gamely.tradely.dev" target="_blank" class="game-play-link">Play on gamely.tradely.dev →</a></div>
   </div>
 </section>
 
-<!-- Commands -->
 <section class="commands-section" id="commands">
-  <div class="commands-inner">
-    <div class="reveal">
-      <div class="section-eyebrow">
-        <span class="eyebrow-num">02</span>
-        <span class="eyebrow-line"></span>
-        <span class="eyebrow-label">Commands</span>
-      </div>
-      <h2 class="section-h2">Simple to run.<br><em>Easy</em> to moderate.</h2>
-      <p class="section-p"><code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;color:var(--gold2);background:var(--bg4);padding:0.15em 0.4em;border-radius:4px;">/play</code> sends a link to the game on gamely.tradely.dev — scores sync back automatically. Mods get leaderboard controls and per-game toggles.</p>
-    </div>
-
-    <div class="commands-layout">
-      <div class="commands-sticky reveal-left">
-        <div class="section-eyebrow" style="margin-top:0.5rem;">
-          <span class="eyebrow-line" style="width:40px;"></span>
-          <span class="eyebrow-label">Player commands</span>
-        </div>
-        <p style="color:var(--muted);font-size:0.85rem;line-height:1.6;margin-bottom:2rem;">
-          All game commands are slash commands. Type <code style="font-family:'JetBrains Mono',monospace;color:var(--gold2);">/</code> in any channel where Gamely is present to see the full list.
-        </p>
-        <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:1.2rem 1.4rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;">
-          <div style="color:var(--muted);margin-bottom:0.5rem;"># Quick start</div>
-          <div style="color:var(--gold2);">/play game:CandleDojo</div>
-          <div style="color:var(--green);font-size:0.73rem;margin-top:0.35rem;">→ sends a link to play at gamely.tradely.dev</div>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <table class="cmd-table">
-          <tbody>
-            <tr>
-              <td class="cmd-name">/play game:{...}</td>
-              <td class="cmd-desc">Sends a link to play on gamely.tradely.dev. Choose <code>CandleDojo</code>, <code>TradeRun</code>, <code>NewsTru</code>, <code>Tradle</code>, or <code>Stockle</code> — scores sync back to Discord automatically.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-all">Everyone</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/status [enable|disable] [game]</td>
-              <td class="cmd-desc">View current game status for this server. Mods can enable or disable individual games or all gameplay globally.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-all">Everyone</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/leaderboard action:{here|off}</td>
-              <td class="cmd-desc">Post a live leaderboard in this channel — updates automatically every 30 seconds. Use <code>off</code> to remove it.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/multiplier</td>
-              <td class="cmd-desc">View the current active point multiplier for your server. Multipliers are granted via the Gamely console.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/premium</td>
-              <td class="cmd-desc">Manage premium features for your server. Coming soon.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/servers</td>
-              <td class="cmd-desc">List all Discord servers using Gamely. Hidden servers are shown as "🙈 Hidden Server" to protect their privacy, unless the command is run from that server itself.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td>
-            </tr>
-            <tr>
-              <td class="cmd-name">/hide [hide|show]</td>
-              <td class="cmd-desc">Opt your server in or out of the public Gamely server listing at gamely.tradely.dev/servers/. <code>hide</code> removes it from the directory; <code>show</code> restores it. Platform admins can apply a permanent hide that server admins cannot reverse.</td>
-              <td class="cmd-badge-wrap"><span class="cbadge cb-admin">Admin</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <div class="commands-inner reveal"><div class="section-eyebrow"><span class="eyebrow-num">02</span><span class="eyebrow-line"></span><span class="eyebrow-label">Commands</span></div><h2 class="section-h2">Slash to start.<br><em>Auto-sync</em> scores.</h2>
+  <div class="commands-layout">
+    <div class="commands-sticky reveal-left"><div style="background:var(--bg3); border-radius:16px; padding:1.3rem;"><div style="font-family:monospace; color:var(--gold2);">/play game:CandleDojo</div><div style="font-size:0.75rem; color:var(--sub); margin-top:0.5rem;">→ Instantly get a link to gamely.tradely.dev, scores land back here.</div></div></div>
+    <div class="reveal"><table class="cmd-table">
+      <tr><td class="cmd-name">/play</td><td class="cmd-desc">Launch any game — link opens on gamely.tradely.dev, score syncs to Discord</td><td class="cmd-badge-wrap"><span class="cbadge cb-all">Everyone</span></td></tr>
+      <tr><td class="cmd-name">/leaderboard here|off</td><td class="cmd-desc">Post live leaderboard that auto-updates every 30s</td><td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td></tr>
+      <tr><td class="cmd-name">/status</td><td class="cmd-desc">View or toggle games for your server</td><td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td></tr>
+      <tr><td class="cmd-name">/multiplier</td><td class="cmd-desc">Check active point multiplier (events)</td><td class="cmd-badge-wrap"><span class="cbadge cb-mod">Mod</span></td></tr>
+      <tr><td class="cmd-name">/hide</td><td class="cmd-desc">Opt server out of public directory</td><td class="cmd-badge-wrap"><span class="cbadge cb-admin">Admin</span></td></tr>
+    </table></div>
+  </div></div>
 </section>
 
-<!-- Leaderboard -->
 <section class="lb-section" id="leaderboard">
-  <div class="lb-inner">
-    <div class="reveal">
-      <div class="section-eyebrow">
-        <span class="eyebrow-num">03</span>
-        <span class="eyebrow-line"></span>
-        <span class="eyebrow-label">Leaderboard</span>
-      </div>
-      <h2 class="section-h2">Compete.<br>Climb.<br><em>Dominate.</em></h2>
-    </div>
-    <div class="lb-layout">
-      <div class="lb-panel reveal">
-        <div class="lb-panel-header">
-          <span class="lb-panel-title">🏆 Global Leaderboard</span>
-          <span class="lb-live"><span class="lb-live-dot"></span> Updates every 30 sec</span>
-        </div>
-        <div id="lb-rows"></div>
-      </div>
-      <div class="lb-copy reveal">
-        <p class="section-p" style="margin-bottom:2.5rem;">Global and per-server rankings update every 30 seconds. Monthly resets keep competition fierce — one command sets everything up.</p>
-
-        <div class="lb-feature">
-          <div class="lb-feat-icon">🌐</div>
-          <div>
-            <div class="lb-feat-title">Global Rankings</div>
-            <div class="lb-feat-desc">Points earned across all games and all servers count toward a single global leaderboard.</div>
-          </div>
-        </div>
-        <div class="lb-feature">
-          <div class="lb-feat-icon">📅</div>
-          <div>
-            <div class="lb-feat-title">Monthly Resets</div>
-            <div class="lb-feat-desc">Monthly scores reset automatically so fresh players always have a shot at the top.</div>
-          </div>
-        </div>
-        <div class="lb-feature">
-          <div class="lb-feat-icon">⚡</div>
-          <div>
-            <div class="lb-feat-title">Point Multipliers</div>
-            <div class="lb-feat-desc">Server multipliers (2×) can be activated to boost all points earned during special events.</div>
-          </div>
-        </div>
-
-        <div class="lb-cmd-box">
-          <div class="lb-cmd-line1">/leaderboard action:here</div>
-          <div class="lb-cmd-line2">✓ Leaderboard posts and auto-updates in this channel</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="lb-inner reveal"><div class="section-eyebrow"><span class="eyebrow-num">03</span><span class="eyebrow-line"></span><span class="eyebrow-label">Competition</span></div><h2 class="section-h2">Global + server ranks.<br><em>Live</em> every 30 sec.</h2>
+  <div class="lb-layout" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-top:3rem;">
+    <div class="lb-panel"><div class="lb-panel-header"><span>🏆 Global leaderboard</span><span class="lb-live-dot" style="background:var(--green); width:8px;height:8px;border-radius:50%;display:inline-block;animation:glow-pulse 2s infinite;"></span><span style="font-size:0.7rem;">live sync</span></div><div id="lb-rows"></div></div>
+    <div><p class="section-p" style="margin-bottom:2rem;">Points from every game on gamely.tradely.dev automatically update Discord rankings. Monthly resets, server multipliers, and bragging rights.</p>
+    <div class="lb-cmd-box"><div class="lb-cmd-line1">/leaderboard action:here</div><div class="lb-cmd-line2" style="color:var(--green);">✓ leaderboard pinned + auto-refresh</div></div></div>
+  </div></div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
-  <div class="cta-inner">
-    <div class="cta-h reveal">Ready to<br><em>Play?</em></div>
-    <p class="cta-sub reveal">Takes 10 seconds to add. Completely free. Invite the bot, type <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;background:rgba(255,255,255,0.06);padding:0.15em 0.4em;border-radius:4px;color:var(--gold2);">/play</code>, and get a link to the game — scores sync back to Discord automatically.</p>
-    <div class="cta-invite-row reveal">
-      <span>🔗</span>
-      <span class="cta-invite-url">discord.com/oauth2/authorize?client_id=1490712611388653598</span>
-    </div>
-    <div class="reveal">
-      <a class="btn-cta-big" href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.132 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        Invite Gamely to Discord
-      </a>
-      <p class="cta-meta">Free forever · No login required · Instant setup<br>
-        Built by the <a href="https://discord.tradely.dev" target="_blank">Tradely community</a>
-      </p>
-    </div>
-  </div>
+  <div class="cta-inner reveal"><div class="cta-h" style="font-size:clamp(2.5rem,6vw,4rem); font-weight:800;">Play at <em>gamely.tradely.dev</em></div><p class="cta-sub" style="margin:1rem auto; max-width:600px;">Jump straight into the action — no Discord required to play, but points sync if you add the bot. Type <code style="background:rgba(255,255,255,0.1);padding:0.2rem 0.5rem;border-radius:6px;">/play</code> on Discord or just click below.</p>
+  <a class="btn-cta-big" href="https://gamely.tradely.dev" target="_blank">🎮 Launch Games →</a>
+  <p class="cta-meta" style="margin-top:1.2rem;">✨ Free forever · Built by Tradely community · <a href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank" style="color:var(--gold);">Add Discord Bot</a></p></div>
 </section>
 
-<!-- Footer -->
 <footer>
-  <div class="footer-left">
-    <div class="footer-brand">Game<span>ly</span></div>
-    <div class="footer-tagline">Finance mini-games, powered by Discord.</div>
-  </div>
-  <div class="footer-links">
-    <a href="https://discord.com/oauth2/authorize?client_id=1490712611388653598" target="_blank">Invite Bot</a>
-    <a href="#games">Games</a>
-    <a href="#commands">Commands</a>
-    <a href="#leaderboard">Leaderboard</a>
-    <a href="https://discord.tradely.dev" target="_blank" class="fl-gold">💬 Tradely Community</a>
-  </div>
-  <div class="footer-copy">© 2026 Gamely · Built by the <a href="https://discord.tradely.dev" target="_blank" style="color:var(--gold);text-decoration:none;">Tradely</a> community</div>
+  <div><div class="footer-brand"><img src="gamely-logo.png" alt="Gamely" style="height:28px;"></div><div class="footer-tagline">Finance games, powered by Discord + web</div></div>
+  <div class="footer-links" style="display:flex; gap:1.5rem;"><a href="https://gamely.tradely.dev" target="_blank">Play Now</a><a href="#games">Games</a><a href="#commands">Commands</a><a href="https://discord.tradely.dev" target="_blank">Tradely</a></div>
+  <div class="footer-copy">© 2026 Gamely · <a href="https://discord.tradely.dev" target="_blank" style="color:var(--gold);">Discord Community</a></div>
 </footer>
 
-<script>
-// ── Leaderboard ───────────────────────────────────────────────
-const players = [
-  { name: 'cryptowolf',   pts: 847, color: '#F59E0B' },
-  { name: 'traderboi99',  pts: 712, color: '#3B82F6' },
-  { name: 'bullmarket_k', pts: 634, color: '#06B6D4' },
-  { name: 'zara_charts',  pts: 589, color: '#EC4899' },
-  { name: 'doji_master',  pts: 541, color: '#8B5CF6' },
-  { name: 'stonks_up',    pts: 499, color: '#10B981' },
-  { name: 'bearhunter7',  pts: 423, color: '#F97316' },
-];
-const icons    = ['🥇','🥈','🥉','4.','5.','6.','7.'];
-const posClass = ['p1','p2','p3','','','',''];
-const maxPts   = players[0].pts;
-document.getElementById('lb-rows').innerHTML = players.map((p,i) =>
-  `<div class="lb-row">
-    <span class="lb-pos ${posClass[i]}">${icons[i]}</span>
-    <div class="lb-av" style="background:${p.color};">${p.name[0].toUpperCase()}</div>
-    <span class="lb-name">${p.name}</span>
-    <div class="lb-track"><div class="lb-fill" style="width:${Math.round(p.pts/maxPts*100)}%;background:${p.color};"></div></div>
-    <span class="lb-pts">${p.pts}</span>
-  </div>`
-).join('');
+<a class="float-btn-web" href="https://gamely.tradely.dev" target="_blank">🎮 Play on gamely.tradely.dev →</a>
 
-// ── Scroll reveal ─────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+<script>
+  const players = [
+    { name: 'cryptowolf', pts: 847, color: '#F59E0B' },
+    { name: 'traderboi99', pts: 712, color: '#3B82F6' },
+    { name: 'bullmarket_k', pts: 634, color: '#06B6D4' },
+    { name: 'zara_charts', pts: 589, color: '#EC4899' },
+    { name: 'doji_master', pts: 541, color: '#8B5CF6' },
+    { name: 'stonks_up', pts: 499, color: '#10B981' },
+    { name: 'bearhunter7', pts: 423, color: '#F97316' },
+  ];
+  const icons = ['🥇','🥈','🥉','4.','5.','6.','7.'];
+  const maxPts = players[0].pts;
+  document.getElementById('lb-rows').innerHTML = players.map((p,i)=>`<div class="lb-row"><span class="lb-pos">${icons[i]}</span><div class="lb-av" style="background:${p.color};">${p.name[0]}</div><span class="lb-name">${p.name}</span><div class="lb-track"><div class="lb-fill" style="width:${Math.round(p.pts/maxPts*100)}%;background:${p.color};"></div></div><span class="lb-pts">${p.pts}</span></div>`).join('');
+  
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('up'); }); }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+  document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
