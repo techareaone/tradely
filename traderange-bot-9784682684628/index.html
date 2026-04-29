@@ -74,6 +74,16 @@
             background: var(--red-soft);
         }
 
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--red);
+            color: var(--red-soft);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(198, 42, 42, 0.2);
+        }
+
         .card {
             background: rgba(20, 6, 8, 0.7);
             border: 1px solid rgba(198, 42, 42, 0.3);
@@ -105,6 +115,13 @@
             margin-top: 2rem;
         }
 
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .container { padding: 1rem; }
@@ -118,8 +135,9 @@
     <h1>TradeRange Bot</h1>
     <p style="font-size: 1.1rem; margin-top: 0.5rem;">Stock‑themed minigames, live leaderboards, and server ranking for Discord communities.</p>
 
-    <div style="margin: 2rem 0;">
+    <div class="button-group">
         <a class="btn" id="inviteButton" href="#" target="_blank">Add to Discord</a>
+        <a class="btn btn-secondary" href="https://traderange.net" target="_blank">Play on traderange.net</a>
     </div>
 
     <h2>Features</h2>
@@ -142,7 +160,8 @@
     </div>
 
     <div style="background: #1a0808; border-radius: 1rem; padding: 1rem; text-align: center; margin: 2rem 0;">
-        <p style="font-size: 0.9rem;">Invite‑only server listing. Your community must be invited to appear in the directory.</p>
+        <p style="font-size: 0.9rem;">Invite‑only server listing. Your community must be invited to appear in the directory.<br>
+        <a href="https://traderange.net" style="color: var(--red-soft);">See what TradeRange is all about →</a></p>
     </div>
 </div>
 
