@@ -44,7 +44,7 @@ Easy to share. Use: https://tradely.dev
 [ColorBg:#DAFFD5,ColorText:#C43D5A]: #
 [ButtonText:GitHub,Demo Bot]: #
 
-[Gamely](https://gamely.tradely.dev) - [Bot](https://doc.tradely.dev/gamely/) Desc: A bot that helps you learn to trade stocks through games.
+[TradeRange](https://traderange.net) - [Invite Bot](https://traderange.net/bot.html) Desc: A bot that helps you learn to trade stocks through games.
 
 [ColorBg:#DAFFD5,ColorText:#C43D5A]: #
 [ButtonText:Play Now,Bot]: #
