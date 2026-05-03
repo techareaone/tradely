@@ -2,6 +2,8 @@
 *A community for investors and traders of every level.*
 *Open-Source Code Repositories Available!*
 
+https://doc.tradely.dev
+
 Talk markets, share strategies, and stay ahead with live news feeds. Compete in trading challenges and track congressional trades in real time. 
 
 📰  Live News Feeds: Get breaking market data as it happens. 
